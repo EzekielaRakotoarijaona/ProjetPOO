@@ -9,7 +9,7 @@ protected:
   std::string adresse;
 public:
   Client();
-  Client(std::string n, std::string ad) {nom = n; adresse = ad;};
+  Client(std::string n, std::string ad);
   inline std::string retourner_nom() {return nom;};
   inline std::string retourner_adresse() {return adresse;};
   void afficher();
