@@ -5,11 +5,11 @@
 #include <vector>
 #include "client.h"
 
-class Vendeur: class Client{
+class Vendeur: public Client{
 protected:
   std::vector<int> tableau_bien;
 public:
-  Vendeur(std::string nom, std::string adresse, vector<int> bien):Client(nom, adresse);
+  Vendeur(std::string nom, std::string adresse, std::vector<int> bien);
   void afficher();
   inline std::vector<int> retourner_tableauBien() {return tableau_bien;};
   void ajouter_bien(int id);

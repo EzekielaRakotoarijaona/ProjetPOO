@@ -19,7 +19,7 @@ void Vendeur::ajouter_bien(int id){
 
 bool Vendeur::retirer_bien(int id){
   for(vector<int>::iterator it = tableau_bien.begin() ; it < tableau_bien.end() ; it++)
-    if(tableau_bien).at(it) == id){
+    if(tableau_bien.at(it) == id){
       tableau_bien.erase(it);
       return true;
     }

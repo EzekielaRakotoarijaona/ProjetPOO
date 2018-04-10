@@ -1,20 +1,20 @@
-#ifndef ACHETEUR_H_INCLUDED
-#define ACHETEUR_H_INCLUDED
+#ifndef ACHETEUR_H
+#define ACHETEUR_H
 #include <iostream>
 #include <vector>
 #include "client.h"
 
-Class Acheteur: public Client{
+class Acheteur: public Client{
 protected:
- vector <int> prix;
- vector <bool> proposition;
- vector <int> visite;
+ std::vector <int> prix;
+ std::vector <bool> proposition;
+ std::vector <int> idbien;
 
 public:
-    Acheteur(std::string _nom, std::string _adresse, vector<int> _prix, vector<bool> _proposition, vector<int> _visite): Client(_nom, _adresse);
-    void visite(int prix, bool proposition, int idbien);  //Fonction d'ajout d'une nouvelle visite
-    vector<int> ConsultVisite();   //fonction pour consulter toutes les visites
-    bool Proposition(int idbien, int prix);  // fonction proposition d'une nouvelle visite
+    Acheteur(std::string _nom, std::string _adresse, std::vector<int> _prix, std::vector<bool> _proposition, std::vector<int> _idbien);
+    void visite(int _prix, bool _proposition, int _idbien);
+    void proposer_visite(int _idbien, int _prix);
+    void afficher();
     inline ~Acheteur () {}; //destructeur
 };
 
