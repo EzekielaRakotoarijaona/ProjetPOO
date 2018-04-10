@@ -1,3 +1,6 @@
+#ifndef BIENS_H
+#define BIENS_H
+
 #include <iostream>
 
 
@@ -19,3 +22,5 @@ public:
   inline void virtual afficher() {cout << prix_bien << endl << adresse_bien << endl << surface_bien << endl << ref_client_vendeur_bien << endl << id_bien << endl;};
   inline ~Bien() {};
 };
+
+#endif

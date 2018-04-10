@@ -1,3 +1,6 @@
+#ifndef LOCAUX_PRO_H
+#define LOCAUX_PRO_H
+
 #include <iostream>
 
 class Locaux_pro: public Biens{
@@ -11,3 +14,5 @@ public:
   inline bool retourner_stockage() {return piece_stockage;};
   inline ~Locaux_pro() {};
 };
+
+#endif

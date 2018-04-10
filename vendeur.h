@@ -1,3 +1,6 @@
+#ifndef VENDEUR_H
+#define VENDEUR_H
+
 #include <iostream>
 #include <vector>
 #include "biens.h"
@@ -16,3 +19,5 @@ public:
       if(tableau_bien).at(it) == id){        tableau_bien.erase(it);        return true;      }    return false; }
   inline ~Vendeur() {};
 };
+
+#endif

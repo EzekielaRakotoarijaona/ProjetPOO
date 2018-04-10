@@ -1,3 +1,6 @@
+#ifndef CLIENT_H
+#define CLIENT_H
+
 #include <iostream>
 
 class Client{
@@ -12,3 +15,5 @@ public:
   inline void afficher() {cout << nom << endl << adresse << endl;};
   inline ~Client() {};
 };
+
+#endif

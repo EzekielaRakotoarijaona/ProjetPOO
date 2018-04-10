@@ -1,3 +1,6 @@
+#ifndef TERRAIN_H
+#define TERRAIN_H
+
 #include <iostream>
 
 class Terrain: public Biens{
@@ -10,3 +13,5 @@ public:
   inline void afficher() {cout << constructible << endl;};
   inline ~Terrain() {};
 };
+
+#endif

@@ -1,4 +1,8 @@
+#ifndef APPARTEMENT_H
+#define APPARTEMENT_H
+
 #include <iostream>
+
 
 class Appartement: public Biens{
 protected:
@@ -20,3 +24,5 @@ public:
   inline void afficher() {cout << nombre_de_piece_appartement << endl << etage << endl << garage << endl << cave << endl << balcon << endl << nombre_appartement_immeuble << endl;};
   inline ~Appartement() {};
 };
+
+#endif

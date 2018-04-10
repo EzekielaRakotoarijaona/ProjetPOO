@@ -1,3 +1,6 @@
+#ifndef MAISON_H
+#define MAISON_H
+
 #include <iostream>
 
 class Maison: public Biens{
@@ -16,3 +19,5 @@ public:
   inline afficher(){std::cout<<nombre_pieces<<garage<<jardin<<piscine<<std::endl;};
   inline ~maison(){};
 };
+
+#endif
