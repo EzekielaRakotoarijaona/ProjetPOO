@@ -6,7 +6,7 @@
 #include "appartement.h"
 #include "maison.h"
 #include "terrain.h"
-#include "locaux_Pro.h"
+#include "locaux_pro.h"
 #include <stdlib.h>
 #include <stdio.h>
 using namespace std;
@@ -56,12 +56,12 @@ void completer_client_acheteur(std::map<string, Acheteur> table_acheteur;){
 */
 
 Agence::Agence(){
-  clients_vendeurs = {};
-  clients_acheteurs = {};
-  _appartement = {};
-  _maison = {};
-  _terrain = {};
-  _locauxpro = {};
+  clients_vendeurs.empty();
+  clients_acheteurs.empty();
+  _appartement.empty();
+  _maison.empty();
+  _terrain.empty();
+  _locauxpro.empty();
   cout << "agence creee" << endl;
   //completer_client_acheteur();
 }
