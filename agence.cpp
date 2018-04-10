@@ -65,3 +65,28 @@ Agence::Agence(){
   cout << "agence creee" << endl;
   //completer_client_acheteur();
 }
+
+void Agence::ajouter_client_vendeur(Vendeur c){
+  clients_vendeurs.insert(make_pair(c.retourner_nom(),c));
+  cout<<"Client Ajoute"<<endl;
+}
+
+void Agence::ajouter_client_acheteur(Acheteur c){
+  clients_acheteurs.insert(make_pair(c.retourner_nom(),c));
+  cout<<"Client Ajoute"<<endl;
+}
+
+void Agence::supprimer_client_vendeur(string nom){
+  map<string,Vendeur>::iterator it;
+  it = clients_vendeurs.find(nom);
+  //Acceder a l'objet vendeur puis a son tableau de bien et supprimer tous les biens de ce vendeur
+  clients_vendeurs.erase(it);
+  cout<<"Client Supprime"<<endl;
+}
+
+void Agence::supprimer_client_acheteur(string nom){
+  map<string,Acheteur>::iterator it;
+  it = clients_acheteurs.find(nom);
+  clients_acheteurs.erase(it);
+  cout<<"Client Supprime"<<endl;
+}
