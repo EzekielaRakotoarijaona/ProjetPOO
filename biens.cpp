@@ -11,7 +11,7 @@ Biens::Biens(){
   cout << "bien cree" << endl;
 }
 
-Biens::Biens(int prix, string adresse, int surface, int reference, if id){
+Biens::Biens(int prix, string adresse, int surface, int reference, int id){
   prix_bien = prix;
   adresse_bien = adresse;
   surface_bien = surface;

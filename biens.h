@@ -13,7 +13,14 @@ protected:
   int id_bien;
 public:
   Biens();
-  Biens(int prix, std::string adresse, int surface, int reference, if id) {prix_bien = prix; adresse_bien = adresse; surface_bien = surface; ref_client_vendeur_bien = reference; id_bien = id;};
+  Biens(int prix, std::string adresse, int surface, int reference, if id)
+    {
+      prix_bien = prix;
+      adresse_bien = adresse;
+      surface_bien = surface;
+      ref_client_vendeur_bien = reference;
+      id_bien = id;
+    };
   inline int retourner_prix() {return prix_bien;};
   inline std::string retourner_adresse() {return adresse_bien;};
   inline int retourner_surface() {return surface_bien;};
