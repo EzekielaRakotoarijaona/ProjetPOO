@@ -1,3 +1,6 @@
-modifier tous les constructeurs où y a un héritage
+finir la focntion supprimer client vendeur commentaire dessus
 suite des fonctions dans agence (compléter + save)
+faire les fonctions de recherche specifique
+faire une fonction de creation d'id pour les biens
+menu et interface utilisateur dans le main 
 blabla dans la fonction main
