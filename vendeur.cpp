@@ -5,6 +5,7 @@ using namespace std;
 
 Vendeur::Vendeur(string nom, string adresse, vector<int> bien):Client(nom, adresse){
   tableau_bien = bien;
+  cout << "vendeur cree" << endl;
 }
 
 void Vendeur::afficher(){

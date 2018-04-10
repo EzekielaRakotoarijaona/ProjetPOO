@@ -61,5 +61,6 @@ Agence::Agence(){
   _maison = {};
   _terrain = {};
   _locauxpro = {};
-  completer_client_acheteur();
+  cout << "agence creee" << endl;
+  //completer_client_acheteur();
 }

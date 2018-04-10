@@ -6,6 +6,7 @@ Acheteur::Acheteur(string _nom, string _adresse, vector<int> _prix, vector<bool>
   prix = _prix;
   proposition = _proposition;
   visite = _visite;
+  cout << "acheteur cree" << endl;
 }
 
 void Acheteur::visite(int prix, bool proposition, int idbien){

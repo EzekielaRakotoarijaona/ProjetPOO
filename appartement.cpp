@@ -9,6 +9,7 @@ Appartement::Appartement(){
   cave = false;
   balcon = false;
   nombre_appartement_immeuble = 0;
+  cout << "appartement cree" << endl;
 }
 
 Appartement::Appartement(int _nb_pieces, int _etage, bool _garage, bool _cave, bool _balcon, int _nb_appart_imm){

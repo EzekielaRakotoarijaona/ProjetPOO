@@ -8,6 +8,7 @@ Biens::Biens(){
   surface_bien = 0;
   ref_client_vendeur_bien = "\0";
   id_bien = 0;
+  cout << "bien cree" << endl;
 }
 
 Biens::Biens(int prix, string adresse, int surface, int reference, if id){
@@ -16,6 +17,7 @@ Biens::Biens(int prix, string adresse, int surface, int reference, if id){
   surface_bien = surface;
   ref_client_vendeur_bien = reference;
   id_bien = id;
+  cout << "bien cree" << endl;
 }
 
 void virtual Biens::afficher(){

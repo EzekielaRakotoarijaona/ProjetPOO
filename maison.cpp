@@ -7,6 +7,7 @@ Maison::Maison(int prix, string adresse, int surface, string ref_client, int _id
   garage = _garage;
   jardin = _jardin;
   piscine = _piscine;
+  cout << "maison creee" << endl;
 }
 
 void Maison::afficher(){
