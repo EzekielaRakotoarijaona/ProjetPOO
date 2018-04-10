@@ -3,14 +3,13 @@
 
 #include <iostream>
 #include <vector>
-#include "biens.h"
+#include "client.h"
 
 class Vendeur: class Client{
 protected:
   std::vector<int> tableau_bien;
 public:
-  inline Vendeur() {tableau_bien = {};};
-  inline Vendeur(std::vector<int> tab) {tableau_bien = tab;};
+  inline Vendeur(string nom, string adresse, vector<int> bien):Client(nom, adresse) {tableau_bien = bien;};
   inline void afficher() {for(int i = 0 ; i < tableau_bien.size() ; i++)  cout << tableau_bien[i] << endl;};
   inline std::vector<int> retourner_tableauBien() {return tableau_bien;};
   inline void ajouter_bien(int id) {    tableau_bien.push_back(id);  };
