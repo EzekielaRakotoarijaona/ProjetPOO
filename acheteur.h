@@ -11,6 +11,6 @@ public:
     Acheteur::Acheteur();
     void NouvelleVisite (Biens &bien, int prix, );
     void ConsultVisite (Biens &bien);
-    bool Proposition (Biens &bien, int prix )
+    bool Proposition (Biens &bien, int prix );
     ~Acheteur ();
 };
