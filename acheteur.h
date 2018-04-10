@@ -9,8 +9,8 @@ protected:
 
 public:
     Acheteur::Acheteur(int prix, bool proposition);
-    bool NouvelleVisite (Biens &bien, int prix);
+    bool NouvelleVisite (int bien, int prix);
     tab ConsultVisite ();
-    bool Proposition (Biens &bien, int prix);
+    bool Proposition (int bien, int prix);
     ~Acheteur ();
 };
