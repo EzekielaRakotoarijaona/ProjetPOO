@@ -1,3 +1,5 @@
+#ifndef ACHETEUR_H_INCLUDED
+#define ACHETEUR_H_INCLUDED
 #include <iostream>
 #include <string>
 Class Acheteur: public Client{
@@ -43,3 +45,4 @@ public:
     //destructeur 
     ~Acheteur ();
 };
+#endif // ACHETEUR_H_INCLUDED
