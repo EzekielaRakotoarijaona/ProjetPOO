@@ -16,5 +16,6 @@ public:
   inline bool retourner_garage() {return garage;};
   inline bool retourner_cave() {return cave;};
   inline bool retourner_balcon() {return balcon;};
-  inline int retourner nbAppartImm() {return nombre_appartement_immeuble;};
+  inline int retourner_nbAppartImm() {return nombre_appartement_immeuble;};
+  inline void afficher() {cout << nombre_de_piece_appartement << endl << etage << endl << garage << endl << cave << endl << balcon << endl << nombre_appartement_immeuble << endl;};
 };
