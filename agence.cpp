@@ -12,7 +12,7 @@ using namespace std;
 
 #define TAILLE_MAX 4096
 
-
+/*
 void completer_client_acheteur(std::map<string, Acheteur> table_acheteur;){
   FILE* fichier = NULL;                           // on créé un pointeur sur un fichier, initialisé à null
   fichier = fopen("acheteurs.txt", "r");          // on ouvre le fichier
@@ -52,7 +52,7 @@ void completer_client_acheteur(std::map<string, Acheteur> table_acheteur;){
   }
   fclose(fichier);
 }
-
+*/
 
 Agence::Agence(){
   clients_vendeurs = {};
