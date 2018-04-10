@@ -10,8 +10,8 @@ protected:
   bool jardin;
   bool piscine;
 public:
-  Maison(int prix, std::string adresse, int surface, std::string ref_client, int _id_bien,int _nombre_pieces, bool _garage, bool _jardin, bool _piscine):Biens(prix, adresse, surface, ref_client, _id_bien)
-  inline retourner_jardin(){return jardin;};
+  Maison(int prix, std::string adresse, int surface, std::string ref_client, int _id_bien,int _nombre_pieces, bool _garage, bool _jardin, bool _piscine);
+  inline retourner_jardin(){ return jardin;};
   inline retourner_garage(){return  garage;};
   inline retourner_piscine(){return piscine;};
   void afficher();
