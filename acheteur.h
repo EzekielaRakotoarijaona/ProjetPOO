@@ -1,16 +1,16 @@
 #include <iostream>
 #include <string>
-Cass Acheteur: public Client{
+Class Acheteur: public Client{
 protected:
 
- int prix;
- bool proposition;
+ vector <int> prix;
+ vector <bool> proposition;
  vector <int> Achat;
 
 public:
-    Acheteur::Acheteur();
-    void NouvelleVisite (Biens &bien, int prix, );
-    void ConsultVisite (Biens &bien);
-    bool Proposition (Biens &bien, int prix );
+    Acheteur::Acheteur(int prix, bool proposition);
+    bool NouvelleVisite (Biens &bien, int prix);
+    tab ConsultVisite ();
+    bool Proposition (Biens &bien, int prix);
     ~Acheteur ();
 };
