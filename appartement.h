@@ -2,6 +2,7 @@
 #define APPARTEMENT_H
 
 #include <iostream>
+#include "biens.h"
 
 
 class Appartement: public Biens{

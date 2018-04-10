@@ -2,15 +2,6 @@
 #include "appartement.h"
 using namespace std;
 
-Appartement::Appartement(){
-  nombre_de_piece_appartement = 0;
-  etage = 0;
-  garage = false;
-  cave = false;
-  balcon = false;
-  nombre_appartement_immeuble = 0;
-  cout << "appartement cree" << endl;
-}
 
 Appartement::Appartement(int _prix, std::string _adresse, int _surface, int _reference, int _id_bien,int _nb_pieces, int _etage, bool _garage, bool _cave, bool _balcon, int _nb_appart_imm):Biens(_prix,_adresse,_surface,_reference,_id_bien){
   nombre_de_piece_appartement = _nb_pieces;

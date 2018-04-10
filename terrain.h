@@ -2,6 +2,7 @@
 #define TERRAIN_H
 
 #include <iostream>
+#include "biens.h"
 
 class Terrain: public Biens{
 protected:

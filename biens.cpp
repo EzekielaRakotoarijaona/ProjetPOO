@@ -20,7 +20,7 @@ Biens::Biens(int prix, string adresse, int surface, int reference, int id){
   cout << "bien cree" << endl;
 }
 
-void virtual Biens::afficher(){
+void Biens::afficher(){
   cout << "prix : " << prix_bien << endl;
   cout << "adresse : " << adresse_bien << endl;
   cout << "surface : " << surface_bien << endl;
