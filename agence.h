@@ -30,6 +30,10 @@ public:
   inline void ajouter_appartement(Appartement a){_appartement.insert(std::make_pair(a.retourner_id(),a));};
   inline void ajouter_terrain(Terrain t){_terrain.insert(std::make_pair(t.retourner_id(),t));};
   inline void ajouter_locaux(Locaux_pro l){_locauxpro.insert(std::make_pair(l.retourner_id(),l));};
+  void supprimer_appartement(int id);
+  void supprimer_maison(int id);
+  void supprimer_terrain(int id);
+  void supprimer_locaux(int id);
   void afficher();
 };
 

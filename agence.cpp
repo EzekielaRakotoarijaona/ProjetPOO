@@ -90,3 +90,29 @@ void Agence::supprimer_client_acheteur(string nom){
   clients_acheteurs.erase(it);
   cout<<"Client Supprime"<<endl;
 }
+
+void Agence::supprimer_appartement(int id){
+  map<int,Appartement>::iterator it;
+  it = _appartement.find(id);
+  _appartement.erase(it);
+  cout<<"Bien Supprime"<<endl;
+}
+
+void Agence::supprimer_maison(int id){
+  map<int,Maison>::iterator it;
+  it = _maison.find(id);
+  _maison.erase(it);
+  cout<<"Bien Supprime"<<endl;
+
+}void Agence::supprimer_terrain(int id){
+  map<int,Terrain>::iterator it;
+  it = _terrain.find(id);
+  _terrain.erase(it);
+  cout<<"Bien Supprime"<<endl;
+
+}void Agence::supprimer_locaux(int id){
+  map<int,Locaux_pro>::iterator it;
+  it = _locauxpro.find(id);
+  _locauxpro.erase(it);
+  cout<<"Bien Supprime"<<endl;
+}
