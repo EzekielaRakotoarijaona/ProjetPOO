@@ -7,6 +7,7 @@ Locaux_pro::Locaux_pro(int _prix, std::string _adresse, int _surface, string _re
   taille_vitrine = taille;
   piece_stockage = stockage;
   cout << "locaux crees" << endl;
+  this->Biens::afficher();
 }
 
 void Locaux_pro::afficher(){

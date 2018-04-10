@@ -10,6 +10,8 @@ Appartement::Appartement(int _prix, std::string _adresse, int _surface, string _
   cave = _cave;
   balcon = _balcon;
   nombre_appartement_immeuble = _nb_appart_imm;
+  cout << "appartement cree" << endl;
+  this->Biens::afficher();
 }
 
 int Appartement::retourner_nombrePieceAppartement(){

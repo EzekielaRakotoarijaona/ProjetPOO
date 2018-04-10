@@ -8,7 +8,7 @@ class Terrain: public Biens{
 protected:
   bool constructible;
 public:
-  Terrain(int _prix, std::string _adresse, int _surface, std::string _reference, int _id_bien,bool _constructible): Biens(_prix,_adresse,_surface,_reference,_id_bien) {constructible = _constructible;};
+  Terrain(int _prix, std::string _adresse, int _surface, std::string _reference, int _id_bien,bool _constructible);
   inline bool retourner_constructible() {return constructible;};
   void afficher();
   inline ~Terrain() {};

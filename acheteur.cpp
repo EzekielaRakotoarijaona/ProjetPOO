@@ -7,6 +7,7 @@ Acheteur::Acheteur(string _nom, string _adresse, vector<int> _prix, vector<bool>
   proposition = _proposition;
   idbien = _idbien;
   cout << "acheteur cree" << endl;
+  this->Client::afficher();
 }
 
 void Acheteur::visite(int _prix, bool _proposition, int _idbien){
