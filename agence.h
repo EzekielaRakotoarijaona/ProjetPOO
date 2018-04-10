@@ -3,6 +3,6 @@
 
 class Agence{
 protected:
-  
+
 public:
 }
