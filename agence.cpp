@@ -1,5 +1,6 @@
 #include <iostream>
 #include <map>
+#include "agence.h"
 #include "vendeur.h"
 #include "acheteur.h"
 #include "appartement.h"
