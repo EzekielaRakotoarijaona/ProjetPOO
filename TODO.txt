@@ -1,6 +1,5 @@
-finir la focntion supprimer client vendeur commentaire dessus
-suite des fonctions dans agence (compléter + save)
-faire les fonctions de recherche specifique
-faire une fonction de creation d'id pour les biens
-menu et interface utilisateur dans le main 
-blabla dans la fonction main
+finir la focntion supprimer client vendeur commentaire dessus (En cours)
+suite des fonctions dans agence (compléter + save) (A voir)
+faire les fonctions de recherche specifique (En cours)
+faire une fonction de creation d'id pour les biens (Done)
+menu et interface utilisateur dans le main (En cours)

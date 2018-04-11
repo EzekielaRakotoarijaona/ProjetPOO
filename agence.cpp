@@ -171,7 +171,7 @@ void Agence::afficher_clients(){
   cin >> type;
   if (type == 1)
     for(map <string, Acheteur>::iterator it = clients_acheteurs.begin() ; it != clients_acheteurs.end() ; it++)
-      it->second.afficher();
+      it->second.afficher_acheteur();
   if (type == 2)
     for(map <string, Vendeur>::iterator it2 = clients_vendeurs.begin() ; it2 != clients_vendeurs.end() ; it2++)
       it2->second.afficher();

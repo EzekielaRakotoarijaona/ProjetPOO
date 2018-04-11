@@ -15,14 +15,16 @@ void Acheteur::visite(int _prix, bool _proposition, int _idbien){
 }
 
 //Methode Afficher
-void Acheteur::afficher(){
-  for(int i = 0 ; i < idbien.size() ; i++)
-    cout << "id du bien : " << idbien[i] << endl;
-  for(int i = 0 ; i < proposition.size() ; i++)
-    cout << "proposition : " << proposition[i] << endl;
-  for(int i = 0 ; i < prix.size() ; i++)
-    cout << "prix : " << prix[i] << endl;
+void Acheteur::afficher_acheteur(){
   this->Client::afficher();
+}
+
+void Acheteur::afficher_visites(){
+  for(int i = 0 ; i < idbien.size() ; i++){
+    cout << "id du bien : " << idbien[i] << endl;
+    cout << "proposition : " << proposition[i] << endl;
+    cout << "prix : " << prix[i] << endl;
+  }
 }
 
 //Methode Proposer visite
