@@ -9,7 +9,7 @@ class Vendeur: public Client{
 protected:
   std::vector<int> tableau_bien;
 public:
-  Vendeur(std::string nom, std::string adresse, std::vector<int> bien);
+  Vendeur(std::string nom, std::string adresse);
   void afficher();
   inline std::vector<int> retourner_tableauBien() {return tableau_bien;};
   void ajouter_bien(int id);

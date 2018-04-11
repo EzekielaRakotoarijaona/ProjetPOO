@@ -11,7 +11,7 @@ protected:
  std::vector <int> idbien;
 
 public:
-    Acheteur(std::string _nom, std::string _adresse, std::vector<int> _prix, std::vector<bool> _proposition, std::vector<int> _idbien);
+    Acheteur(std::string _nom, std::string _adresse);
     void visite(int _prix, bool _proposition, int _idbien);
     void proposer_visite(int _idbien, int _prix);
     void afficher();

@@ -2,10 +2,7 @@
 #include "acheteur.h"
 using namespace std;
 
-Acheteur::Acheteur(string _nom, string _adresse, vector<int> _prix, vector<bool> _proposition, vector<int> _idbien): Client(_nom, _adresse){
-  prix = _prix;
-  proposition = _proposition;
-  idbien = _idbien;
+Acheteur::Acheteur(string _nom, string _adresse): Client(_nom, _adresse){
   cout << "acheteur cree" << endl;
   this->Client::afficher();
 }

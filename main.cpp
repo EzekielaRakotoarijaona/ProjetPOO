@@ -9,10 +9,10 @@ using namespace std;
 #include "agence.h"
 
 
-int create_id_maison(vector<int,Maison> v)
+int create_id_maison(map<int,Maison> v)
 {
     int id = rand()%100000;
-    id += 1000000
+    id += 1000000;
     while(v.find(id) != v.end())
     {
       int id = rand()%100000;
@@ -21,10 +21,10 @@ int create_id_maison(vector<int,Maison> v)
     return id;
 }
 
-int create_id_appartement(vector<int,Appartement> v)
+int create_id_appartement(map<int,Appartement> v)
 {
   int id = rand()%100000;
-  id += 2000000
+  id += 2000000;
   while(v.find(id) != v.end())
   {
     int id = rand()%100000;
@@ -33,10 +33,10 @@ int create_id_appartement(vector<int,Appartement> v)
   return id;
 }
 
-int create_id_locaux(vector<int,Locaux_pro> v)
+int create_id_locaux(map<int,Locaux_pro> v)
 {
   int id = rand()%100000;
-  id += 4000000
+  id += 4000000;
   while(v.find(id) != v.end())
   {
     int id = rand()%100000;
@@ -45,10 +45,10 @@ int create_id_locaux(vector<int,Locaux_pro> v)
   return id;
 }
 
-int create_id_terrain(vector<int,Terrain> v)
+int create_id_terrain(map<int,Terrain> v)
 {
   int id = rand()%100000;
-  id += 3000000
+  id += 3000000;
   while(v.find(id) != v.end())
   {
     int id = rand()%100000;
@@ -63,9 +63,84 @@ int decode_id(int id)
   return id;
 }
 
+void ajout_client(Agence ag){
+  int type_client = -1;
+  cout << "1 : acheteur\n2 : vendeur" << endl;
+  cin >> type_client;
+  string n;
+  string ad;
+  cout << "nom du client : " << endl;
+  cin >> n;
+  cout << "adresse du client : " << endl;
+  cin >> ad;
+  if (type_client == 1){
+    Acheteur a(n, ad);
+    ag.ajouter_client_acheteur(a);
+  }
+  if (type_client == 2){
+    Vendeur a(n, ad);
+    ag.ajouter_client_vendeur(a);
+  }
+}
+
+void consulter_visites(Agence ag){
+  map <string, Acheteur> client_ach = ag.retourner_client_acheteur();
+  map<string, Acheteur>::iterator it;
+  for(it = client_ach.begin() ; it != client_ach.end() ; it++){
+    it->second.afficher();
+  }
+}
+
+void consulter_client(Agence ag){
+  map <string, Acheteur> client_ach = ag.retourner_client_acheteur();
+  map <string, Vendeur> client_ven = ag.retourner_client_vendeur();
+  map<string, Acheteur>::iterator it;
+  map<string, Vendeur>::iterator it2;
+  cout << "fkpogjposejgposjgposjgpojwpo" << endl;
+  for(it = client_ach.begin() ; it != client_ach.end() ; it++){
+    cout << "fkpogjposejgposjgposjgpojwpo" << endl;
+    it->second.afficher();
+  }
+  cout << endl;
+  for(it2 = client_ven.begin() ; it2 != client_ven.end() ; it2++)
+    it2->second.afficher();
+}
+
+void consulter_biens(Agence ag){
+  int type = -1;
+  cout << "quel type de bien ?" << endl;
+  cout << "1 : appartement\n2 : maison\n3 : terrain\n4 : locaux pro" << endl;
+  cin >> type;
+  map <int, Appartement> app = ag.retourner_appartement();
+  map <int, Appartement>::iterator it;
+  map <int, Maison> mai = ag.retourner_maison();
+  map <int, Maison>::iterator it2;
+  map <int, Terrain> terr = ag.retourner_terrain();
+  map <int, Terrain>::iterator it3;
+  map <int, Locaux_pro> loc = ag.retourner_locauxpro();
+  map <int, Locaux_pro>::iterator it4;
+
+  switch(type){
+    case 1:
+      for(it = app.begin() ; it != app.end() ; it++)
+        it->second.afficher();
+      break;
+    case 2:
+      for(it2 = mai.begin() ; it2 != mai.end() ; it2++)
+        it2->second.afficher();
+      break;
+    case 3:
+      for(it3 = terr.begin() ; it3 != terr.end() ; it3++)
+        it3->second.afficher();
+      break;
+    case 4:
+      for(it4 = loc.begin() ; it4 != loc.end() ; it4++)
+        it4->second.afficher();
+      break;
+  }
+}
 
 void gestion_menu(int &fin, int &commande){
-  system("clear");
   cout << "bienvenue sur votre logiciel de gestion" << endl << "que voulez-vous faire ?" << endl;
   cout << "\n1 : Consulter les visites et les biens disponibles" << "\n2 : gestion des clients" << "\n3 : quitter" << endl;
   cin >> commande;
@@ -76,21 +151,34 @@ int main(){
   Agence UnToitPourTous;
   int fin = 0;
   int commande = -1;
+  int consult = -1;
+  int action = -1;
   system("clear");
   while(fin == 0){
     gestion_menu(fin, commande);
     switch(commande){
-      /*case 1:
-        int consult = 0;
-        cout << "1 : consulter les visites\n2 : consulter les biens disponibles" << endl;
+      case 1:
+        cout << "1 : consulter les visites\n2 : consulter les biens disponibles\n3 : consulter les clients" << endl;
         cin >> consult;
         if (consult == 1)
-          //consulter_visites(UnToitPourTous);
+          consulter_visites(UnToitPourTous);
         if (consult == 2)
-          //consulter_biens(unToitPourTous);
+          consulter_biens(UnToitPourTous);
+        if (consult == 3)
+          consulter_client(UnToitPourTous);
         break;
       case 2:
-        break;*/
+        cout << "1 : ajouter un client\n2 : supprimer client\n3 : ajouter un bien\n4 : supprimer un bien" << endl;
+        cin >> action;
+        if (action == 1)
+          ajout_client(UnToitPourTous);
+        /*if (action == 2)
+          suppr_client(UnToitPourTous);
+        if (action == 3)
+          ajout_bien(UnToitPourTous);
+        if (action == 4)
+          suppr_bien(UnToitPourTous);*/
+        break;
       case 3:
         return 1;
     }

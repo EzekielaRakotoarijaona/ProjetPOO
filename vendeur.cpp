@@ -3,8 +3,7 @@
 #include "vendeur.h"
 using namespace std;
 
-Vendeur::Vendeur(string nom, string adresse, vector<int> bien):Client(nom, adresse){
-  tableau_bien = bien;
+Vendeur::Vendeur(string nom, string adresse):Client(nom, adresse){
   cout << "vendeur cree" << endl;
   this->Client::afficher();
 }
