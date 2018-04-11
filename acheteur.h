@@ -15,8 +15,7 @@ protected:
  //Methode classe acheteur
 public:
     Acheteur(std::string _nom, std::string _adresse);
-    void visite(int _prix, bool _proposition, int _idbien);
-    void proposer_visite(int _idbien, int _prix);
+    void ajouter_visite(int _prix, bool _proposition, int _idbien);
     void afficher_acheteur();
     void afficher_visites();
     inline ~Acheteur () {}; //destructeur

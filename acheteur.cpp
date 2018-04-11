@@ -8,7 +8,7 @@ Acheteur::Acheteur(string _nom, string _adresse): Client(_nom, _adresse){
 }
 
 //Methode visite
-void Acheteur::visite(int _prix, bool _proposition, int _idbien){
+void Acheteur::ajouter_visite(int _prix, bool _proposition, int _idbien){
   prix.push_back(_prix);
   idbien.push_back(_idbien);
   proposition.push_back(_proposition);
@@ -25,14 +25,4 @@ void Acheteur::afficher_visites(){
     cout << "proposition : " << proposition[i] << endl;
     cout << "prix : " << prix[i] << endl;
   }
-}
-
-//Methode Proposer visite
-void Acheteur::proposer_visite(int _idbien, int _prix){
-  for (int i = 0 ; i < idbien.size() ; i++)
-    if (i == _idbien){
-      idbien[i] = _idbien;
-      proposition[i] = true;
-      prix[i] = _prix;
-    }
 }
