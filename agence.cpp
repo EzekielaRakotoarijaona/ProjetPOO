@@ -140,6 +140,10 @@ void Agence::supprimer_client_acheteur(string nom){
 void Agence::supprimer_appartement(int id){
   map <int, Appartement>::iterator it;
   it = _appartement.find(id);
+  string nom = it->second.retourner_referenceClient();
+  map <string, Vendeur>::iterator it1;
+  it1 = clients_vendeurs.find(nom);
+  it1->second.retirer_bien(id);
   _appartement.erase(it);
   cout << "appartement supprime" <<endl << endl;
 }
@@ -148,6 +152,10 @@ void Agence::supprimer_appartement(int id){
 void Agence::supprimer_maison(int id){
   map <int, Maison>::iterator it;
   it = _maison.find(id);
+  string nom = it->second.retourner_referenceClient();
+  map <string, Vendeur>::iterator it1;
+  it1 = clients_vendeurs.find(nom);
+  it1->second.retirer_bien(id);
   _maison.erase(it);
   cout << "maison supprimee" << endl << endl;
 }
@@ -156,6 +164,10 @@ void Agence::supprimer_maison(int id){
 void Agence::supprimer_terrain(int id){
   map <int, Terrain>::iterator it;
   it = _terrain.find(id);
+  string nom = it->second.retourner_referenceClient();
+  map <string, Vendeur>::iterator it1;
+  it1 = clients_vendeurs.find(nom);
+  it1->second.retirer_bien(id);
   _terrain.erase(it);
   cout << "terrain supprime" << endl << endl;
 }
@@ -164,6 +176,10 @@ void Agence::supprimer_terrain(int id){
 void Agence::supprimer_locaux(int id){
   map <int, Locaux_pro>::iterator it;
   it = _locauxpro.find(id);
+  string nom = it->second.retourner_referenceClient();
+  map <string, Vendeur>::iterator it1;
+  it1 = clients_vendeurs.find(nom);
+  it1->second.retirer_bien(id);
   _locauxpro.erase(it);
   cout << "locaux supprimes" << endl << endl;
 }
