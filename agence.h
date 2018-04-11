@@ -37,6 +37,7 @@ public:
   void supprimer_terrain(int id);
   void supprimer_locaux(int id);
   void afficher_clients();
+  void afficher_biens();
   inline std::map <std::string, Vendeur> retourner_client_vendeur() {return clients_vendeurs;};
   inline std::map <std::string, Acheteur> retourner_client_acheteur() {return clients_acheteurs;};
   inline std::map <int, Appartement> retourner_appartement() {return _appartement;};

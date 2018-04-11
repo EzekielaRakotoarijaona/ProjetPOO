@@ -55,114 +55,177 @@ int decode_id(int id){
   return id;
 }
 
-void ajout_client(Agence ag){
-  int type_client = -1;
-  string n;
-  string ad;
 
-  cout << "1 : acheteur\n2 : vendeur" << endl;
-  cin >> type_client;
-  cout << "nom du client : " << endl;
-  cin >> n;
-  cout << "adresse du client : " << endl;
-  cin >> ad;
 
-  if (type_client == 1){
-    Acheteur a(n, ad);
-    ag.ajouter_client_acheteur(a);
-  }
-  if (type_client == 2){
-    Vendeur a(n, ad);
-    ag.ajouter_client_vendeur(a);
-  }
-}
-
-void consulter_visites(Agence ag){
-  map <string, Acheteur> client_ach = ag.retourner_client_acheteur();
-  map<string, Acheteur>::iterator it;
-  for(it = client_ach.begin() ; it != client_ach.end() ; it++){
-    it->second.afficher();
-  }
-}
-
-void consulter_client(Agence ag){
-  ag.afficher_clients();
-}
-
-void consulter_biens(Agence ag){
-  int type = -1;
-  cout << "quel type de bien ?" << endl;
-  cout << "1 : appartement\n2 : maison\n3 : terrain\n4 : locaux pro" << endl;
-  cin >> type;
-  map <int, Appartement> app = ag.retourner_appartement();
-  map <int, Appartement>::iterator it;
-  map <int, Maison> mai = ag.retourner_maison();
-  map <int, Maison>::iterator it2;
-  map <int, Terrain> terr = ag.retourner_terrain();
-  map <int, Terrain>::iterator it3;
-  map <int, Locaux_pro> loc = ag.retourner_locauxpro();
-  map <int, Locaux_pro>::iterator it4;
-
-  switch(type){
-    case 1:
-      for(it = app.begin() ; it != app.end() ; it++)
-        it->second.afficher();
-      break;
-    case 2:
-      for(it2 = mai.begin() ; it2 != mai.end() ; it2++)
-        it2->second.afficher();
-      break;
-    case 3:
-      for(it3 = terr.begin() ; it3 != terr.end() ; it3++)
-        it3->second.afficher();
-      break;
-    case 4:
-      for(it4 = loc.begin() ; it4 != loc.end() ; it4++)
-        it4->second.afficher();
-      break;
-  }
-}
 
 void gestion_menu(int &fin, int &commande){
-  cout << "bienvenue sur votre logiciel de gestion" << endl << "que voulez-vous faire ?" << endl;
-  cout << "\n1 : Consulter les visites et les biens disponibles" << "\n2 : gestion des clients" << "\n3 : quitter" << endl;
+  cout << "\n1 : Consulter les visites et les biens disponibles" << "\n2 : gestion des clients et des biens" << "\n3 : quitter" << endl;
   cin >> commande;
 }
 
 
 int main(){
+  // INITIALISATION DES DONNEES
   Agence UnToitPourTous;
   int fin = 0;
   int commande = -1;
   int consult = -1;
   int action = -1;
   system("clear");
+  cout << "bienvenue sur votre logiciel de gestion" << endl;
+
+  // BOUCLE, VA PERMETTRE DE FAIRE TOURNER LE PROGRAMME
   while(fin == 0){
     gestion_menu(fin, commande);
     switch(commande){
+
+      // CONSULTATION DE DONNEES
       case 1:
         cout << "1 : consulter les visites\n2 : consulter les biens disponibles\n3 : consulter les clients" << endl;
         cin >> consult;
-        if (consult == 1)
-          consulter_visites(UnToitPourTous);
+
+        // ce cas va traiter l'affichage de toutes les visites
+        if (consult == 1){
+          map <string, Acheteur> client_ach = UnToitPourTous.retourner_client_acheteur();
+          map<string, Acheteur>::iterator it;
+          for(it = client_ach.begin() ; it != client_ach.end() ; it++){
+            it->second.afficher();
+          }
+        }
+
+        // ce cas va traiter l'affichage de tous les biens
         if (consult == 2)
-          consulter_biens(UnToitPourTous);
+          UnToitPourTous.afficher_biens();
+
+        // ce cas va traiter l'affichage des clients vendeurs et acheteurs
         if (consult == 3)
-          consulter_client(UnToitPourTous);
+          UnToitPourTous.afficher_clients();
         break;
+
+      // GESTION DES CLIENTS, DES BIENS ET DES VISITES
       case 2:
         cout << "1 : ajouter un client\n2 : supprimer client\n3 : ajouter un bien\n4 : supprimer un bien" << endl;
         cin >> action;
-        if (action == 1)
-          ajout_client(UnToitPourTous);
-        break;
-        /*if (action == 2)
-          suppr_client(UnToitPourTous);
-        if (action == 3)
-          ajout_bien(UnToitPourTous);
-        if (action == 4)
-          suppr_bien(UnToitPourTous);*/
 
+        // ce cas va traiter l'ajout d'un client dans la map associée de la classe agence
+        if (action == 1){
+          int type_client = -1;
+          string nom_du_client;
+          string adresse_du_client;
+
+          cout << "1 : acheteur\n2 : vendeur" << endl;     cin >> type_client;
+          cout << "nom du client : " << endl;              cin >> nom_du_client;
+          cout << "adresse du client : " << endl;          cin >> adresse_du_client;
+
+          if (type_client == 1){
+            Acheteur acheteur_a_ajouter(nom_du_client, adresse_du_client);
+            UnToitPourTous.ajouter_client_acheteur(acheteur_a_ajouter);
+          }
+          if (type_client == 2){
+            Vendeur vendeur_a_ajouter(nom_du_client, adresse_du_client);
+            UnToitPourTous.ajouter_client_vendeur(vendeur_a_ajouter);
+          }
+        }
+
+        // ce cas va traiter la suppression des clients en fonction de leur nom
+        if (action == 2){
+          int type_client = -1;
+          string suppression;
+          cout << "1 : acheteur\n2 : vendeur" << endl;          cin >> type_client;
+          cout << "nom du client a supprimer : " << endl;       cin >> suppression;
+
+          if (type_client == 1)
+            UnToitPourTous.supprimer_client_acheteur(suppression);
+
+          if (type_client == 2)
+            UnToitPourTous.supprimer_client_vendeur(suppression);
+
+        }
+
+        // ce cas va traiter l'ajout de differents biens
+        if (action == 3){
+          int type_bien = -1;
+          int prix;
+          string adresse;
+          int surface;
+          string ref_client;
+          int id_bien;
+          cout << "1 : appartement\n2 : maison\n3 : terrain\n4 : locaux pro" << endl;  cin >> type_bien;
+          cout << "prix du bien : " << endl;                                           cin >> prix;
+          cout << "adresse du bien : " << endl;                                        cin >> adresse;
+          cout << "surface du bien : " << endl;                                        cin >> surface;
+          cout << "reference du client" << endl;                                       cin >> ref_client;
+          cout << "id du bien : " << endl;                                             cin >> id_bien;
+
+          if (type_bien == 1){
+            int nombre_de_piece_appartement;
+            int etage;
+            bool garage;
+            bool cave;
+            bool balcon;
+            int nombre_appartement_immeuble;
+            cout << "nombre de pieces : " << endl;                         cin >> nombre_de_piece_appartement;
+            cout << "nombre d'etage : " << endl;                           cin >> etage;
+            cout << "presence d'un garage (1 ou 0) : " << endl;            cin >> garage;
+            cout << "presence d'une cave (1 ou 0) : " << endl;             cin >> cave;
+            cout << "presence d'un balcon (1 ou 0) : " << endl;            cin >> balcon;
+            cout << "nombre d'appartement dans l'immeuble : " << endl;     cin >> nombre_appartement_immeuble;
+            Appartement app(prix, adresse, surface, ref_client, id_bien, nombre_de_piece_appartement, etage, garage, cave, balcon, nombre_appartement_immeuble);
+            UnToitPourTous.ajouter_appartement(app);
+          }
+
+          if (type_bien == 2){
+            int nombre_pieces;
+            bool garage;
+            bool jardin;
+            bool piscine;
+            cout << "nombre de pieces : " << endl;                         cin >> nombre_pieces;
+            cout << "presence d'un garage (1 ou 0) : " << endl;            cin >> garage;
+            cout << "presence d'un jardin (1 ou 0) : " << endl;            cin >> jardin;
+            cout << "presence d'une piscine (1 ou 0) : " << endl;          cin >> piscine;
+            Maison mai(prix, adresse, surface, ref_client, id_bien, nombre_pieces, garage, jardin, piscine);
+            UnToitPourTous.ajouter_maison(mai);
+          }
+
+          if (type_bien == 3){
+            bool constructible;
+            cout << "le terrain est constructible (1 ou 0) : " << endl;     cin >> constructible;
+            Terrain terr(prix, adresse, surface, ref_client, id_bien, constructible);
+            UnToitPourTous.ajouter_terrain(terr);
+          }
+
+          if (type_bien == 4){
+            int taille_vitrine;
+            bool piece_stockage;
+            cout << "taille de la vitrine : " << endl;                        cin >> taille_vitrine;
+            cout << "presence d'une piece de stockage (1 ou 0) : " << endl;   cin >> piece_stockage;
+            Locaux_pro loc(prix, adresse, surface, ref_client, id_bien, taille_vitrine, piece_stockage);
+            UnToitPourTous.ajouter_locaux(loc);
+          }
+        }
+
+        // ce cas va traiter la suppression d'un bien selon son identifiant
+        if (action == 4){
+          int type_bien = -1;
+          int suppression;
+          cout << "1 : appartement\n2 : maison\n3 : terrain\n4 : locaux pro" << endl;  cin >> type_bien;
+          cout << "id du bien a supprimer : " << endl;                                 cin >> suppression;
+
+          if (type_bien == 1)
+            UnToitPourTous.supprimer_appartement(suppression);
+
+          if (type_bien == 2)
+            UnToitPourTous.supprimer_maison(suppression);
+
+          if (type_bien == 3)
+            UnToitPourTous.supprimer_terrain(suppression);
+
+          if (type_bien == 4)
+            UnToitPourTous.supprimer_locaux(suppression);
+        }
+        break;
+
+      // QUITTER LE PROGRAMME
       case 3:
         return 1;
     }

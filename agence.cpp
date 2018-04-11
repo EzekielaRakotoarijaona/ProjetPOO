@@ -64,76 +64,115 @@ Agence::Agence(){
   _maison.empty();
   _terrain.empty();
   _locauxpro.empty();
-  cout << "agence creee" << endl;
+  cout << "agence creee" << endl << endl;
   //completer_client_acheteur();
 }
 
 // methode ajouter client vendeur
 void Agence::ajouter_client_vendeur(Vendeur c){
   clients_vendeurs.insert(make_pair(c.retourner_nom(),c));
-  cout<<"Client Ajoute"<<endl;
+  cout << "Client Ajoute" << endl << endl;
 }
 
 // methode ajouter client acheteur
 void Agence::ajouter_client_acheteur(Acheteur c){
   clients_acheteurs.insert(make_pair(c.retourner_nom(),c));
-  cout<<"Client Ajoute"<<endl;
+  cout << "Client Ajoute" << endl << endl;
 }
 
 //Methode supprimer client vendeur
 void Agence::supprimer_client_vendeur(string nom){
-  map<string,Vendeur>::iterator it;
+  map <string, Vendeur>::iterator it;
   it = clients_vendeurs.find(nom);
   //Acceder a l'objet vendeur puis a son tableau de bien et supprimer tous les biens de ce vendeur
   clients_vendeurs.erase(it);
-  cout<<"Client Supprime"<<endl;
+  cout << "Client vendeur supprime" << endl << endl;
 }
 
 // methode de suppression des clients acheteur
 void Agence::supprimer_client_acheteur(string nom){
-  map<string,Acheteur>::iterator it;
+  map <string, Acheteur>::iterator it;
   it = clients_acheteurs.find(nom);
   clients_acheteurs.erase(it);
-  cout<<"Client Supprime"<<endl;
+  cout << "Client acheteur supprime" << endl << endl;
 }
 
 // methode de suppression des appartements
 void Agence::supprimer_appartement(int id){
-  map<int,Appartement>::iterator it;
+  map <int, Appartement>::iterator it;
   it = _appartement.find(id);
   _appartement.erase(it);
-  cout<<"Bien Supprime"<<endl;
+  cout << "appartement supprime" <<endl << endl;
 }
 
 // Methode de suppression des maison
 void Agence::supprimer_maison(int id){
-  map<int,Maison>::iterator it;
+  map <int, Maison>::iterator it;
   it = _maison.find(id);
   _maison.erase(it);
-  cout<<"Bien Supprime"<<endl;
+  cout << "maison supprimee" << endl << endl;
 }
 
  //Methode de suppression des terrains
 void Agence::supprimer_terrain(int id){
-  map<int,Terrain>::iterator it;
+  map <int, Terrain>::iterator it;
   it = _terrain.find(id);
   _terrain.erase(it);
-  cout<<"Bien Supprime"<<endl;
+  cout << "terrain supprime" << endl << endl;
 }
 
  //methode de suppression des locaux
 void Agence::supprimer_locaux(int id){
-  map<int,Locaux_pro>::iterator it;
+  map <int, Locaux_pro>::iterator it;
   it = _locauxpro.find(id);
   _locauxpro.erase(it);
-  cout<<"Bien Supprime"<<endl;
+  cout << "locaux supprimes" << endl << endl;
 }
 
-void Agence::afficher_clients(){
-  cout << "vide : " << clients_acheteurs.empty() << endl;
-  for(map <string, Acheteur>::iterator it = clients_acheteurs.begin() ; it != clients_acheteurs.end() ; it++){
-    it->second.afficher();
+void Agence::afficher_biens(){
+  int type = -1;
+  cout << "quel type de bien ?" << endl;
+  cout << "1 : appartement\n2 : maison\n3 : terrain\n4 : locaux pro" << endl;
+  cin >> type;
+  map <int, Appartement> app = retourner_appartement();
+  map <int, Appartement>::iterator it;
+  map <int, Maison> mai = retourner_maison();
+  map <int, Maison>::iterator it2;
+  map <int, Terrain> terr = retourner_terrain();
+  map <int, Terrain>::iterator it3;
+  map <int, Locaux_pro> loc = retourner_locauxpro();
+  map <int, Locaux_pro>::iterator it4;
+
+  switch(type){
+    case 1:
+      for(it = app.begin() ; it != app.end() ; it++)
+        it->second.afficher();
+      break;
+    case 2:
+      for(it2 = mai.begin() ; it2 != mai.end() ; it2++)
+        it2->second.afficher();
+      break;
+    case 3:
+      for(it3 = terr.begin() ; it3 != terr.end() ; it3++)
+        it3->second.afficher();
+      break;
+    case 4:
+      for(it4 = loc.begin() ; it4 != loc.end() ; it4++)
+        it4->second.afficher();
+      break;
   }
-  for(map <string, Vendeur>::iterator it2 = clients_vendeurs.begin() ; it2 != clients_vendeurs.end() ; it2++)
-    it2->second.afficher();
+}
+
+
+void Agence::afficher_clients(){
+  int type = -1;
+  cout << "quel type de client ?" << endl;
+  cout << "1 : acheteur\n2 : vendeur" << endl;
+  cin >> type;
+  if (type == 1)
+    for(map <string, Acheteur>::iterator it = clients_acheteurs.begin() ; it != clients_acheteurs.end() ; it++)
+      it->second.afficher();
+  if (type == 2)
+    for(map <string, Vendeur>::iterator it2 = clients_vendeurs.begin() ; it2 != clients_vendeurs.end() ; it2++)
+      it2->second.afficher();
 }
