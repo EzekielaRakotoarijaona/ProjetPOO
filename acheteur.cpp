@@ -17,12 +17,12 @@ void Acheteur::visite(int _prix, bool _proposition, int _idbien){
 }
 
 void Acheteur::afficher(){
-  for(int i = 0 ; i < prix.size() ; i++)
-    cout << "prix : " << prix[i] << endl;
   for(int i = 0 ; i < idbien.size() ; i++)
-    cout << "idbien : " << idbien[i] << endl;
+    cout << "id du bien : " << idbien[i] << endl;
   for(int i = 0 ; i < proposition.size() ; i++)
     cout << "proposition : " << proposition[i] << endl;
+  for(int i = 0 ; i < prix.size() ; i++)
+    cout << "prix : " << prix[i] << endl;
 }
 
 void Acheteur::proposer_visite(int _idbien, int _prix){
