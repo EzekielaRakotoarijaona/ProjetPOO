@@ -55,6 +55,10 @@ void completer_client_acheteur(std::map<string, Acheteur> table_acheteur;){
   fclose(fichier);
 }
 */
+int decode_id(int id){
+  id = id/1000000;
+  return id;
+}
 
 // constructeur agence
 Agence::Agence(){
@@ -85,6 +89,41 @@ void Agence::supprimer_client_vendeur(string nom){
   map <string, Vendeur>::iterator it;
   it = clients_vendeurs.find(nom);
   //Acceder a l'objet vendeur puis a son tableau de bien et supprimer tous les biens de ce vendeur
+  vector<int> tab_bien = it->second.retourner_tableauBien();
+  int type;
+  for(int i = 0; i < tab_bien.size(); i++)
+  {
+    type = decode_id(tab_bien[i]);
+
+    if(type == 1)
+    {
+      map <int, Maison>::iterator it1;
+      it1 = _maison.find(tab_bien[i]);
+      _maison.erase(it1);
+    }
+
+    if(type == 2)
+    {
+      map <int, Appartement>::iterator it2;
+      it2 = _appartement.find(tab_bien[i]);
+      _appartement.erase(it2);
+    }
+
+    if(type == 3)
+    {
+      map <int, Terrain>::iterator it3;
+      it3 = _terrain.find(tab_bien[i]);
+      _terrain.erase(it3);
+    }
+
+    if(type == 4)
+    {
+      map <int, Locaux_pro>::iterator it4;
+      it4 = _locauxpro.find(tab_bien[i]);
+      _locauxpro.erase(it4);
+    }
+
+  }
   clients_vendeurs.erase(it);
   cout << "Client vendeur supprime" << endl << endl;
 }
