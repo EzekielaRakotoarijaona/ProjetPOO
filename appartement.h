@@ -6,6 +6,7 @@
 
 
 class Appartement: public Biens{
+  //Attributs 
 protected:
   int nombre_de_piece_appartement;
   int etage;
@@ -13,6 +14,7 @@ protected:
   bool cave;
   bool balcon;
   int nombre_appartement_immeuble;
+  //Methodes 
 public:
   Appartement(int _prix, std::string _adresse, int _surface, std::string _reference, int _id_bien,int _nb_pieces, int _etage, bool _garage, bool _cave, bool _balcon, int _nb_appart_imm);
   int retourner_nombrePieceAppartement();
