@@ -187,7 +187,7 @@ void Agence::supprimer_locaux(int id){
 void Agence::afficher_biens(){
   int type = -1;
   cout << "quel type de bien ?" << endl;
-  cout << "1 : appartement\n2 : maison\n3 : terrain\n4 : locaux pro" << endl;
+  cout << "1 : maison\n2 : appartement\n3 : terrain\n4 : locaux pro" << endl;
   cin >> type;
   map <int, Appartement> app = retourner_appartement();
   map <int, Appartement>::iterator it;
