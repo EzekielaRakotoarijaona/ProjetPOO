@@ -56,7 +56,7 @@ void completer_client_acheteur(std::map<string, Acheteur> table_acheteur;){
 }
 */
 
-
+// constructeur agence 
 Agence::Agence(){
   clients_vendeurs.empty();
   clients_acheteurs.empty();
@@ -68,16 +68,19 @@ Agence::Agence(){
   //completer_client_acheteur();
 }
 
+// methode ajouter client vendeur 
 void Agence::ajouter_client_vendeur(Vendeur c){
   clients_vendeurs.insert(make_pair(c.retourner_nom(),c));
   cout<<"Client Ajoute"<<endl;
 }
 
+// methode ajouter client acheteur 
 void Agence::ajouter_client_acheteur(Acheteur c){
   clients_acheteurs.insert(make_pair(c.retourner_nom(),c));
   cout<<"Client Ajoute"<<endl;
 }
 
+//Methode supprimer client vendeur
 void Agence::supprimer_client_vendeur(string nom){
   map<string,Vendeur>::iterator it;
   it = clients_vendeurs.find(nom);
@@ -86,6 +89,7 @@ void Agence::supprimer_client_vendeur(string nom){
   cout<<"Client Supprime"<<endl;
 }
 
+// methode de suppression des clients acheteur 
 void Agence::supprimer_client_acheteur(string nom){
   map<string,Acheteur>::iterator it;
   it = clients_acheteurs.find(nom);
@@ -93,6 +97,7 @@ void Agence::supprimer_client_acheteur(string nom){
   cout<<"Client Supprime"<<endl;
 }
 
+// methode de suppression des appartements
 void Agence::supprimer_appartement(int id){
   map<int,Appartement>::iterator it;
   it = _appartement.find(id);
@@ -100,18 +105,21 @@ void Agence::supprimer_appartement(int id){
   cout<<"Bien Supprime"<<endl;
 }
 
+// Methode de suppression des maison
 void Agence::supprimer_maison(int id){
   map<int,Maison>::iterator it;
   it = _maison.find(id);
   _maison.erase(it);
   cout<<"Bien Supprime"<<endl;
 
+ //Methode de suppression des terrains
 }void Agence::supprimer_terrain(int id){
   map<int,Terrain>::iterator it;
   it = _terrain.find(id);
   _terrain.erase(it);
   cout<<"Bien Supprime"<<endl;
 
+ //methode de suppression des locaux 
 }void Agence::supprimer_locaux(int id){
   map<int,Locaux_pro>::iterator it;
   it = _locauxpro.find(id);
