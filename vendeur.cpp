@@ -5,12 +5,13 @@ using namespace std;
 
 Vendeur::Vendeur(string nom, string adresse):Client(nom, adresse){
   cout << "vendeur cree" << endl;
-  this->Client::afficher();
+
 }
 
 void Vendeur::afficher(){
   for(int i = 0 ; i < tableau_bien.size() ; i++)
     cout << "id bien : " << tableau_bien[i] << endl;
+  this->Client::afficher();
 }
 
 void Vendeur::ajouter_bien(int id){

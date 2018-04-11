@@ -56,7 +56,7 @@ void completer_client_acheteur(std::map<string, Acheteur> table_acheteur;){
 }
 */
 
-// constructeur agence 
+// constructeur agence
 Agence::Agence(){
   clients_vendeurs.empty();
   clients_acheteurs.empty();
@@ -68,13 +68,13 @@ Agence::Agence(){
   //completer_client_acheteur();
 }
 
-// methode ajouter client vendeur 
+// methode ajouter client vendeur
 void Agence::ajouter_client_vendeur(Vendeur c){
   clients_vendeurs.insert(make_pair(c.retourner_nom(),c));
   cout<<"Client Ajoute"<<endl;
 }
 
-// methode ajouter client acheteur 
+// methode ajouter client acheteur
 void Agence::ajouter_client_acheteur(Acheteur c){
   clients_acheteurs.insert(make_pair(c.retourner_nom(),c));
   cout<<"Client Ajoute"<<endl;
@@ -89,7 +89,7 @@ void Agence::supprimer_client_vendeur(string nom){
   cout<<"Client Supprime"<<endl;
 }
 
-// methode de suppression des clients acheteur 
+// methode de suppression des clients acheteur
 void Agence::supprimer_client_acheteur(string nom){
   map<string,Acheteur>::iterator it;
   it = clients_acheteurs.find(nom);
@@ -111,18 +111,29 @@ void Agence::supprimer_maison(int id){
   it = _maison.find(id);
   _maison.erase(it);
   cout<<"Bien Supprime"<<endl;
+}
 
  //Methode de suppression des terrains
-}void Agence::supprimer_terrain(int id){
+void Agence::supprimer_terrain(int id){
   map<int,Terrain>::iterator it;
   it = _terrain.find(id);
   _terrain.erase(it);
   cout<<"Bien Supprime"<<endl;
+}
 
- //methode de suppression des locaux 
-}void Agence::supprimer_locaux(int id){
+ //methode de suppression des locaux
+void Agence::supprimer_locaux(int id){
   map<int,Locaux_pro>::iterator it;
   it = _locauxpro.find(id);
   _locauxpro.erase(it);
   cout<<"Bien Supprime"<<endl;
+}
+
+void Agence::afficher_clients(){
+  cout << "vide : " << clients_acheteurs.empty() << endl;
+  for(map <string, Acheteur>::iterator it = clients_acheteurs.begin() ; it != clients_acheteurs.end() ; it++){
+    it->second.afficher();
+  }
+  for(map <string, Vendeur>::iterator it2 = clients_vendeurs.begin() ; it2 != clients_vendeurs.end() ; it2++)
+    it2->second.afficher();
 }

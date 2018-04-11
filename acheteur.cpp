@@ -5,7 +5,6 @@ using namespace std;
 
 Acheteur::Acheteur(string _nom, string _adresse): Client(_nom, _adresse){
   cout << "acheteur cree" << endl;
-  this->Client::afficher();
 }
 
 //Methode visite
@@ -23,6 +22,7 @@ void Acheteur::afficher(){
     cout << "proposition : " << proposition[i] << endl;
   for(int i = 0 ; i < prix.size() ; i++)
     cout << "prix : " << prix[i] << endl;
+  this->Client::afficher();
 }
 
 //Methode Proposer visite

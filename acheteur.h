@@ -6,7 +6,7 @@
 
 
 class Acheteur: public Client{
-// Attributs de la classe acheteur 
+// Attributs de la classe acheteur
 protected:
  std::vector <int> prix;
  std::vector <bool> proposition;

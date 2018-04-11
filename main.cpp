@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>  //me faut cette ligne pour que ça marche sous windows, pardon
 using namespace std;
 #include "appartement.h"
 #include "maison.h"
@@ -9,70 +10,63 @@ using namespace std;
 #include "agence.h"
 
 
-int create_id_maison(map<int,Maison> v)
-{
+int create_id_maison(map <int,Maison> v){
     int id = rand()%100000;
     id += 1000000;
-    while(v.find(id) != v.end())
-    {
+    while(v.find(id) != v.end()){
       int id = rand()%100000;
       id += 1000000;
     }
     return id;
 }
 
-int create_id_appartement(map<int,Appartement> v)
-{
+int create_id_appartement(map <int,Appartement> v){
   int id = rand()%100000;
   id += 2000000;
-  while(v.find(id) != v.end())
-  {
+  while(v.find(id) != v.end()){
     int id = rand()%100000;
     id += 2000000;
   }
   return id;
 }
 
-int create_id_locaux(map<int,Locaux_pro> v)
-{
+int create_id_locaux(map <int,Locaux_pro> v){
   int id = rand()%100000;
   id += 4000000;
-  while(v.find(id) != v.end())
-  {
+  while(v.find(id) != v.end()){
     int id = rand()%100000;
     id += 4000000;
   }
   return id;
 }
 
-int create_id_terrain(map<int,Terrain> v)
-{
+int create_id_terrain(map<int,Terrain> v){
   int id = rand()%100000;
   id += 3000000;
-  while(v.find(id) != v.end())
-  {
+  while(v.find(id) != v.end()){
     int id = rand()%100000;
     id += 3000000;
   }
   return id;
 }
 
-int decode_id(int id)
-{
+int decode_id(int id){
   id = id/1000000;
   return id;
 }
 
 void ajout_client(Agence ag){
   int type_client = -1;
-  cout << "1 : acheteur\n2 : vendeur" << endl;
-  cin >> type_client;
   string n;
   string ad;
+
+  cout << "1 : acheteur\n2 : vendeur" << endl;
+  cin >> type_client;
   cout << "nom du client : " << endl;
   cin >> n;
   cout << "adresse du client : " << endl;
   cin >> ad;
+
   if (type_client == 1){
     Acheteur a(n, ad);
     ag.ajouter_client_acheteur(a);
@@ -92,18 +86,7 @@ void consulter_visites(Agence ag){
 }
 
 void consulter_client(Agence ag){
-  map <string, Acheteur> client_ach = ag.retourner_client_acheteur();
-  map <string, Vendeur> client_ven = ag.retourner_client_vendeur();
-  map<string, Acheteur>::iterator it;
-  map<string, Vendeur>::iterator it2;
-  cout << "fkpogjposejgposjgposjgpojwpo" << endl;
-  for(it = client_ach.begin() ; it != client_ach.end() ; it++){
-    cout << "fkpogjposejgposjgposjgpojwpo" << endl;
-    it->second.afficher();
-  }
-  cout << endl;
-  for(it2 = client_ven.begin() ; it2 != client_ven.end() ; it2++)
-    it2->second.afficher();
+  ag.afficher_clients();
 }
 
 void consulter_biens(Agence ag){
@@ -172,13 +155,14 @@ int main(){
         cin >> action;
         if (action == 1)
           ajout_client(UnToitPourTous);
+        break;
         /*if (action == 2)
           suppr_client(UnToitPourTous);
         if (action == 3)
           ajout_bien(UnToitPourTous);
         if (action == 4)
           suppr_bien(UnToitPourTous);*/
-        break;
+
       case 3:
         return 1;
     }
