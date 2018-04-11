@@ -9,7 +9,59 @@ using namespace std;
 #include "agence.h"
 
 
+int create_id_maison(vector<int,Maison> v)
+{
+    int id = rand()%100000;
+    id += 1000000
+    while(v.find(id) != v.end())
+    {
+      int id = rand()%100000;
+      id += 1000000;
+    }
+    return id;
+}
 
+int create_id_appartement(vector<int,Appartement> v)
+{
+  int id = rand()%100000;
+  id += 2000000
+  while(v.find(id) != v.end())
+  {
+    int id = rand()%100000;
+    id += 2000000;
+  }
+  return id;
+}
+
+int create_id_locaux(vector<int,Locaux_pro> v)
+{
+  int id = rand()%100000;
+  id += 4000000
+  while(v.find(id) != v.end())
+  {
+    int id = rand()%100000;
+    id += 4000000;
+  }
+  return id;
+}
+
+int create_id_terrain(vector<int,Terrain> v)
+{
+  int id = rand()%100000;
+  id += 3000000
+  while(v.find(id) != v.end())
+  {
+    int id = rand()%100000;
+    id += 3000000;
+  }
+  return id;
+}
+
+int decode_id(int id)
+{
+  id = id/1000000;
+  return id;
+}
 
 
 void gestion_menu(int &fin, int &commande){

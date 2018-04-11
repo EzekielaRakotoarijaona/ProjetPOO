@@ -9,6 +9,7 @@
 #include "locaux_pro.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "time.h"
 using namespace std;
 
 #define TAILLE_MAX 4096
@@ -54,6 +55,7 @@ void completer_client_acheteur(std::map<string, Acheteur> table_acheteur;){
   fclose(fichier);
 }
 */
+
 
 Agence::Agence(){
   clients_vendeurs.empty();
