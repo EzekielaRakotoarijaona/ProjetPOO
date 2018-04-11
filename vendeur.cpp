@@ -25,4 +25,5 @@ bool Vendeur::retirer_bien(int id){
       return true;
     }
     return false;
+ // Faut it pas ajouter la methode Modifier bien ?
 }
