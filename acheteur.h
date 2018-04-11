@@ -4,12 +4,15 @@
 #include <vector>
 #include "client.h"
 
+
 class Acheteur: public Client{
+// Attributs de la classe acheteur 
 protected:
  std::vector <int> prix;
  std::vector <bool> proposition;
  std::vector <int> idbien;
 
+ //Methode classe acheteur
 public:
     Acheteur(std::string _nom, std::string _adresse);
     void visite(int _prix, bool _proposition, int _idbien);

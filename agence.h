@@ -13,6 +13,7 @@
 
 
 class Agence{
+  // Attributs
 protected:
   std::map <std::string, Vendeur> clients_vendeurs;
   std::map <std::string, Acheteur> clients_acheteurs;
@@ -20,6 +21,7 @@ protected:
   std::map <int, Maison> _maison;
   std::map <int, Terrain> _terrain;
   std::map <int, Locaux_pro> _locauxpro;
+  // Methodes
 public:
   Agence();
   void ajouter_client_vendeur(Vendeur c);
