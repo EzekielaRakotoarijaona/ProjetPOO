@@ -50,11 +50,6 @@ int create_id_terrain(map<int,Terrain> v){
   return id;
 }
 
-int decode_id(int id){
-  id = id/1000000;
-  return id;
-}
-
 
 
 
@@ -150,14 +145,27 @@ int main(){
           int surface;
           string ref_client;
           int id_bien;
-          cout << "1 : appartement\n2 : maison\n3 : terrain\n4 : locaux pro" << endl;  cin >> type_bien;
+          cout << "1 : maison\n2 : appartement\n3 : terrain\n4 : locaux pro" << endl;  cin >> type_bien;
           cout << "prix du bien : " << endl;                                           cin >> prix;
           cout << "adresse du bien : " << endl;                                        cin >> adresse;
           cout << "surface du bien : " << endl;                                        cin >> surface;
           cout << "reference du client" << endl;                                       cin >> ref_client;
 
-
           if (type_bien == 1){
+            int nombre_pieces;
+            bool garage;
+            bool jardin;
+            bool piscine;
+            id_bien = create_id_maison(UnToitPourTous.retourner_maison());
+            cout << "nombre de pieces : " << endl;                         cin >> nombre_pieces;
+            cout << "presence d'un garage (1 ou 0) : " << endl;            cin >> garage;
+            cout << "presence d'un jardin (1 ou 0) : " << endl;            cin >> jardin;
+            cout << "presence d'une piscine (1 ou 0) : " << endl;          cin >> piscine;
+            Maison mai(prix, adresse, surface, ref_client, id_bien, nombre_pieces, garage, jardin, piscine);
+            UnToitPourTous.ajouter_maison(mai);
+          }
+
+          if (type_bien == 2){
             int nombre_de_piece_appartement;
             int etage;
             bool garage;
@@ -175,19 +183,6 @@ int main(){
             UnToitPourTous.ajouter_appartement(app);
           }
 
-          if (type_bien == 2){
-            int nombre_pieces;
-            bool garage;
-            bool jardin;
-            bool piscine;
-            id_bien = create_id_maison(UnToitPourTous.retourner_maison());
-            cout << "nombre de pieces : " << endl;                         cin >> nombre_pieces;
-            cout << "presence d'un garage (1 ou 0) : " << endl;            cin >> garage;
-            cout << "presence d'un jardin (1 ou 0) : " << endl;            cin >> jardin;
-            cout << "presence d'une piscine (1 ou 0) : " << endl;          cin >> piscine;
-            Maison mai(prix, adresse, surface, ref_client, id_bien, nombre_pieces, garage, jardin, piscine);
-            UnToitPourTous.ajouter_maison(mai);
-          }
 
           if (type_bien == 3){
             bool constructible;
