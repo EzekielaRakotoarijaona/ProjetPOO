@@ -12,6 +12,7 @@ void Vendeur::afficher(){
   for(int i = 0 ; i < tableau_bien.size() ; i++)
     cout << "id bien : " << tableau_bien[i] << endl;
   this->Client::afficher();
+  cout << endl;
 }
 
 void Vendeur::ajouter_bien(int id){

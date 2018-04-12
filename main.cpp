@@ -173,6 +173,7 @@ int main(){
             bool cave;
             bool balcon;
             int nombre_appartement_immeuble;
+            id_bien = create_id_appartement(UnToitPourTous.retourner_appartement());
             cout << "nombre de pieces : " << endl;                         cin >> nombre_de_piece_appartement;
             cout << "nombre d'etage : " << endl;                           cin >> etage;
             cout << "presence d'un garage (1 ou 0) : " << endl;            cin >> garage;
@@ -186,6 +187,7 @@ int main(){
 
           if (type_bien == 3){
             bool constructible;
+            id_bien = create_id_terrain(UnToitPourTous.retourner_terrain());
             cout << "le terrain est constructible (1 ou 0) : " << endl;     cin >> constructible;
             Terrain terr(prix, adresse, surface, ref_client, id_bien, constructible);
             UnToitPourTous.ajouter_terrain(terr);
@@ -194,6 +196,7 @@ int main(){
           if (type_bien == 4){
             int taille_vitrine;
             bool piece_stockage;
+            id_bien = create_id_locaux(UnToitPourTous.retourner_locauxpro());
             cout << "taille de la vitrine : " << endl;                        cin >> taille_vitrine;
             cout << "presence d'une piece de stockage (1 ou 0) : " << endl;   cin >> piece_stockage;
             Locaux_pro loc(prix, adresse, surface, ref_client, id_bien, taille_vitrine, piece_stockage);
@@ -205,14 +208,14 @@ int main(){
         if (action == 4){
           int type_bien = -1;
           int suppression;
-          cout << "1 : appartement\n2 : maison\n3 : terrain\n4 : locaux pro" << endl;  cin >> type_bien;
+          cout << "1 : maison\n2 : appartement\n3 : terrain\n4 : locaux pro" << endl;  cin >> type_bien;
           cout << "id du bien a supprimer : " << endl;                                 cin >> suppression;
 
           if (type_bien == 1)
-            UnToitPourTous.supprimer_appartement(suppression);
+            UnToitPourTous.supprimer_maison(suppression);
 
           if (type_bien == 2)
-            UnToitPourTous.supprimer_maison(suppression);
+            UnToitPourTous.supprimer_appartement(suppression);
 
           if (type_bien == 3)
             UnToitPourTous.supprimer_terrain(suppression);

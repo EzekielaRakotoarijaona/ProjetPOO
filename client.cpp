@@ -2,7 +2,7 @@
 #include "client.h"
 using namespace std;
 
-//Constructeur sans spécifications 
+//Constructeur sans spécifications
 Client::Client(){
   nom = "\0";
   adresse = "\0";
@@ -18,5 +18,5 @@ Client::Client(string n, string ad){
 
 //Methode d'affichage
 void Client::afficher(){
-  cout << "nom client : " << nom << endl << "adresse client : " << adresse << endl;
+  cout << "nom client : " << nom << endl << "adresse client : " << adresse << endl << endl;
 }

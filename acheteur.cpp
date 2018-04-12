@@ -20,9 +20,10 @@ void Acheteur::afficher_acheteur(){
 }
 
 void Acheteur::afficher_visites(){
+  cout << "taille :" <<idbien.empty() << endl << endl << endl;
   for(int i = 0 ; i < idbien.size() ; i++){
     cout << "id du bien : " << idbien[i] << endl;
     cout << "proposition : " << proposition[i] << endl;
-    cout << "prix : " << prix[i] << endl;
+    cout << "prix : " << prix[i] << endl << endl;
   }
 }

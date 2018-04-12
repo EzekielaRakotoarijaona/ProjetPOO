@@ -27,4 +27,5 @@ void Appartement::afficher(){
   cout << "balcon : " << balcon << endl;
   cout << "nombre appartement immeuble : " << nombre_appartement_immeuble << endl;
   this->Biens::afficher();
+  cout << endl;
 }

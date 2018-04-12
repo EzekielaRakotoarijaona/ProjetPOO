@@ -21,11 +21,11 @@ Biens::Biens(int prix, string adresse, int surface, string reference, int id){
   id_bien = id;
   cout << "bien cree" << endl;
 }
-// Methode afficher 
+// Methode afficher
 void Biens::afficher(){
   cout << "prix : " << prix_bien << endl;
   cout << "adresse : " << adresse_bien << endl;
   cout << "surface : " << surface_bien << endl;
   cout << "reference client vendeur : " << ref_client_vendeur_bien << endl;
-  cout << "id : " << id_bien << endl;
+  cout << "id : " << id_bien << endl << endl;
 }

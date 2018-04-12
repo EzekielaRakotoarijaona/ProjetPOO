@@ -12,4 +12,5 @@ Locaux_pro::Locaux_pro(int _prix, std::string _adresse, int _surface, string _re
 void Locaux_pro::afficher(){
   cout << "taille vitrine : " << taille_vitrine << endl << "piece_stockage : " << piece_stockage << endl;
   this->Biens::afficher();
+  cout << endl;
 }

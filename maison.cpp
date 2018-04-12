@@ -17,4 +17,5 @@ void Maison::afficher(){
   cout << "jardin : " << jardin << endl;
   cout << "piscine : " << piscine << endl;
   this->Biens::afficher();
+  cout << endl;
 }

@@ -10,4 +10,5 @@ Terrain::Terrain(int _prix, std::string _adresse, int _surface, std::string _ref
 void Terrain::afficher(){
   cout << "constructible : " << constructible << endl;
   this->Biens::afficher();
+  cout << endl;
 }

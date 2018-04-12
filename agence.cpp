@@ -189,10 +189,10 @@ void Agence::afficher_biens(){
   cout << "quel type de bien ?" << endl;
   cout << "1 : maison\n2 : appartement\n3 : terrain\n4 : locaux pro" << endl;
   cin >> type;
-  map <int, Appartement> app = retourner_appartement();
-  map <int, Appartement>::iterator it;
   map <int, Maison> mai = retourner_maison();
-  map <int, Maison>::iterator it2;
+  map <int, Maison>::iterator it;
+  map <int, Appartement> app = retourner_appartement();
+  map <int, Appartement>::iterator it2;
   map <int, Terrain> terr = retourner_terrain();
   map <int, Terrain>::iterator it3;
   map <int, Locaux_pro> loc = retourner_locauxpro();
@@ -200,11 +200,11 @@ void Agence::afficher_biens(){
 
   switch(type){
     case 1:
-      for(it = app.begin() ; it != app.end() ; it++)
+      for(it = mai.begin() ; it != mai.end() ; it++)
         it->second.afficher();
       break;
     case 2:
-      for(it2 = mai.begin() ; it2 != mai.end() ; it2++)
+      for(it2 = app.begin() ; it2 != app.end() ; it2++)
         it2->second.afficher();
       break;
     case 3:
