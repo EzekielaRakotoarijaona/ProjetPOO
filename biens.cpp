@@ -2,7 +2,7 @@
 #include "biens.h"
 using namespace std;
 
-//Constructeur sans s^écifications
+//Constructeur sans spécifications
 Biens::Biens(){
   prix_bien = 0;
   adresse_bien = "\0";
@@ -21,7 +21,7 @@ Biens::Biens(int prix, string adresse, int surface, string reference, int id){
   id_bien = id;
   cout << "bien cree" << endl;
 }
-// Methode afficher
+// Methode afficher biens 
 void Biens::afficher(){
   cout << "prix : " << prix_bien << endl;
   cout << "adresse : " << adresse_bien << endl;

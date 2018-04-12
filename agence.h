@@ -21,7 +21,7 @@ protected:
   std::map <int, Maison> _maison;
   std::map <int, Terrain> _terrain;
   std::map <int, Locaux_pro> _locauxpro;
-  // Methodes
+  // Méthodes
 public:
   Agence();
   void creer_visite(std::string nom, int prix, bool proposition, int idbien);

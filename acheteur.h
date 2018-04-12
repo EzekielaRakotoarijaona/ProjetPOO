@@ -12,7 +12,7 @@ protected:
  std::vector <bool> proposition;
  std::vector <int> idbien;
 
- //Methode classe acheteur
+ //Méthode classe acheteur
 public:
     Acheteur(std::string _nom, std::string _adresse);
     void ajouter_visite(int _prix, bool _proposition, int _idbien);
