@@ -12,12 +12,12 @@ protected:
  std::vector <bool> proposition;
  std::vector <int> idbien;
 
- //Methode classe acheteur
+ //Méthode classe acheteur
 public:
     Acheteur(std::string _nom, std::string _adresse);
-    void ajouter_visite(int _prix, bool _proposition, int _idbien);
-    void afficher_acheteur();
-    void afficher_visites();
+    void ajouter_visite(int _prix, bool _proposition, int _idbien); //Méthode ajouter visite
+    void afficher_acheteur();//Méthode afficher acheteur
+    void afficher_visites();//Méthode afficher visites 
     inline ~Acheteur () {}; //destructeur
 };
 

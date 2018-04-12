@@ -2,28 +2,27 @@
 #include "acheteur.h"
 using namespace std;
 
-
+//constructeur
 Acheteur::Acheteur(string _nom, string _adresse): Client(_nom, _adresse){
   cout << "acheteur cree" << endl;
 }
 
-//Methode visite
+//Methode ajouter visite
 void Acheteur::ajouter_visite(int _prix, bool _proposition, int _idbien){
   prix.push_back(_prix);
   idbien.push_back(_idbien);
   proposition.push_back(_proposition);
 }
 
-//Methode Afficher
+//Methode Afficher nom acheteur 
 void Acheteur::afficher_acheteur(){
   this->Client::afficher();
 }
-
+//Methode afficher les visites
 void Acheteur::afficher_visites(){
-  cout << "taille :" <<idbien.empty() << endl << endl << endl;
   for(int i = 0 ; i < idbien.size() ; i++){
     cout << "id du bien : " << idbien[i] << endl;
     cout << "proposition : " << proposition[i] << endl;
-    cout << "prix : " << prix[i] << endl << endl;
+    cout << "prix : " << prix[i] << endl;
   }
 }

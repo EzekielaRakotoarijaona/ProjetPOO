@@ -13,12 +13,12 @@ Appartement::Appartement(int _prix, std::string _adresse, int _surface, string _
   cout << "appartement cree" << endl;
 }
 
-// Methode qui retourne le nombre de pièce de l'appartement
+// Méthode qui retourne le nombre de pièce de l'appartement
 int Appartement::retourner_nombrePieceAppartement(){
   return nombre_de_piece_appartement;
 }
 
-// Methode d'affichage des informations relatives à l'appartement
+// Méthode d'affichage des informations relatives à l'appartement
 void Appartement::afficher(){
   cout << "nombre de piece appartement : " << nombre_de_piece_appartement << endl;
   cout << "etage : " << etage << endl;
@@ -27,5 +27,4 @@ void Appartement::afficher(){
   cout << "balcon : " << balcon << endl;
   cout << "nombre appartement immeuble : " << nombre_appartement_immeuble << endl;
   this->Biens::afficher();
-  cout << endl;
 }
