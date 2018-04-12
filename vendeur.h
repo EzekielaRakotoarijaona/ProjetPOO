@@ -10,7 +10,8 @@ protected:
   std::vector<int> tableau_bien;
 public:
   Vendeur(std::string nom, std::string adresse);
-  void afficher();
+  void afficher_vendeur();
+  void afficher_b();
   inline std::vector<int> retourner_tableauBien() {return tableau_bien;};
   void ajouter_bien(int id);
   bool retirer_bien(int id);

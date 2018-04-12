@@ -1,0 +1,9 @@
+Latex mode report
+parties ->
+
+Introduction
+I) Analyse : ce qu'il faut faire (pb à solver) -> analyse des besoins fonctionnels, non fonctionnels
+II) Conception : comment on a prévu de le faire -> diagramme de classe
+III) Réalisation : programme, expérience, limites (PAS DE CATALOGUE)
+Conclusion : rappel sujet + remplacer plan rapport par résultats
+Bibliographie

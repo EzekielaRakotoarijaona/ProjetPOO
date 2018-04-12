@@ -24,14 +24,16 @@ protected:
   // Methodes
 public:
   Agence();
+  void creer_visite(std::string nom, int prix, bool proposition, int idbien);
+  void afficher_biens_vendeurs();
   void ajouter_client_vendeur(Vendeur c);
   void ajouter_client_acheteur(Acheteur c);
   void supprimer_client_vendeur(std::string nom);
   void supprimer_client_acheteur(std::string nom);
-  inline void ajouter_maison(Maison m){_maison.insert(std::make_pair(m.retourner_id(),m));};
-  inline void ajouter_appartement(Appartement a){_appartement.insert(std::make_pair(a.retourner_id(),a));};
-  inline void ajouter_terrain(Terrain t){_terrain.insert(std::make_pair(t.retourner_id(),t));};
-  inline void ajouter_locaux(Locaux_pro l){_locauxpro.insert(std::make_pair(l.retourner_id(),l));};
+  void ajouter_maison(Maison m);
+  void ajouter_appartement(Appartement a);
+  void ajouter_terrain(Terrain t);
+  void ajouter_locaux(Locaux_pro l);
   void supprimer_appartement(int id);
   void supprimer_maison(int id);
   void supprimer_terrain(int id);

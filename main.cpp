@@ -76,7 +76,7 @@ int main(){
 
       // CONSULTATION DE DONNEES
       case 1:
-        cout << "1 : consulter les visites\n2 : consulter les biens disponibles\n3 : consulter les clients" << endl;
+        cout << "1 : consulter les visites\n2 : consulter les biens disponibles\n3 : consulter les clients\n4 : consulter les biens d'un client" << endl;
         cin >> consult;
 
         // ce cas va traiter l'affichage de toutes les visites
@@ -95,6 +95,9 @@ int main(){
         // ce cas va traiter l'affichage des clients vendeurs et acheteurs
         if (consult == 3)
           UnToitPourTous.afficher_clients();
+
+        if (consult == 4)
+          UnToitPourTous.afficher_biens_vendeurs();
         break;
 
       // GESTION DES CLIENTS, DES BIENS ET DES VISITES
@@ -238,10 +241,7 @@ int main(){
             cout << "l'identifiant du bien qui interesse le client : " << endl;   cin >> idbien;
             cout << "le client fait il une proposition (1 ou 0) : " << endl;      cin >> proposition;
             cout << "quel est le prix que le client propose : " << endl;          cin >> prix;
-
-            for(map <string, Acheteur>::iterator it = clients_acheteurs.begin() ; it != clients_acheteurs.end() ; it++)
-              if (it->first == nom_client)
-                it->second.ajouter_visite(prix, proposition, idbien);
+            UnToitPourTous.creer_visite(nom_client, prix, proposition, idbien);
           }
         }
         break;

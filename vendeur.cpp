@@ -8,10 +8,14 @@ Vendeur::Vendeur(string nom, string adresse):Client(nom, adresse){
 
 }
 
-void Vendeur::afficher(){
+void Vendeur::afficher_vendeur(){
+  this->Client::afficher();
+  cout << endl;
+}
+
+void Vendeur::afficher_b(){
   for(int i = 0 ; i < tableau_bien.size() ; i++)
     cout << "id bien : " << tableau_bien[i] << endl;
-  this->Client::afficher();
   cout << endl;
 }
 

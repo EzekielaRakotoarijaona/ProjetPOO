@@ -72,6 +72,44 @@ Agence::Agence(){
   //completer_client_acheteur();
 }
 
+
+void Agence::ajouter_maison(Maison m){
+  _maison.insert(std::make_pair(m.retourner_id(),m));
+  string ref = m.retourner_referenceClient();
+  map <string, Vendeur>::iterator it = clients_vendeurs.find(ref);
+  it->second.ajouter_bien(m.retourner_id());
+}
+
+void Agence::ajouter_appartement(Appartement a){
+  _appartement.insert(std::make_pair(a.retourner_id(),a));
+  string ref = a.retourner_referenceClient();
+  map <string, Vendeur>::iterator it = clients_vendeurs.find(ref);
+  it->second.ajouter_bien(a.retourner_id());
+}
+
+void Agence::ajouter_terrain(Terrain t){
+  _terrain.insert(std::make_pair(t.retourner_id(),t));
+  string ref = t.retourner_referenceClient();
+  map <string, Vendeur>::iterator it = clients_vendeurs.find(ref);
+  it->second.ajouter_bien(t.retourner_id());
+}
+
+void Agence::ajouter_locaux(Locaux_pro l){
+  _locauxpro.insert(std::make_pair(l.retourner_id(),l));
+  string ref = l.retourner_referenceClient();
+  map <string, Vendeur>::iterator it = clients_vendeurs.find(ref);
+  it->second.ajouter_bien(l.retourner_id());
+}
+
+
+void Agence::afficher_biens_vendeurs(){
+  string nom;
+  cout << "nom du client :" << endl;
+  cin >> nom;
+  map <string, Vendeur>::iterator it = clients_vendeurs.find(nom);
+  it->second.afficher_b();
+}
+
 // methode ajouter client vendeur
 void Agence::ajouter_client_vendeur(Vendeur c){
   clients_vendeurs.insert(make_pair(c.retourner_nom(),c));
@@ -219,6 +257,13 @@ void Agence::afficher_biens(){
 }
 
 
+void Agence::creer_visite(string nom, int idbien, bool proposition, int prix){
+  map <string, Acheteur>::iterator it;
+  it = clients_acheteurs.find(nom);
+  it->second.ajouter_visite(prix, proposition, idbien);
+
+}
+
 void Agence::afficher_clients(){
   int type = -1;
   cout << "quel type de client ?" << endl;
@@ -229,5 +274,5 @@ void Agence::afficher_clients(){
       it->second.afficher_acheteur();
   if (type == 2)
     for(map <string, Vendeur>::iterator it2 = clients_vendeurs.begin() ; it2 != clients_vendeurs.end() ; it2++)
-      it2->second.afficher();
+      it2->second.afficher_vendeur();
 }
