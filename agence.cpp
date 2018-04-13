@@ -277,3 +277,26 @@ void Agence::afficher_clients(){
     for(map <string, Vendeur>::iterator it2 = clients_vendeurs.begin() ; it2 != clients_vendeurs.end() ; it2++)
       it2->second.afficher_vendeur();
 }
+
+
+void Agence::rechercher_bien_selon_prix(int operateur, int prix, int bien){
+  switch(bien){
+    case 1: // Maison
+      map <int, Maison> mai = retourner_maison();
+      for(map <int, Maison>::iterator it = mai.begin() ; it != mai.end() ; it++){
+        if (operateur == 1){
+          if (it->second.retourner_prix() < prix)
+            it->second.retourner_id();
+          else
+            cout << "aucun bien trouve" << endl;
+          }
+        if (operateur == 2){
+          if (it->second.retourner_prix() > prix)
+            it->second.retourner_id();
+          else
+            cout << "aucun bien trouve" << endl;
+          }
+        }
+      break;
+  }
+}

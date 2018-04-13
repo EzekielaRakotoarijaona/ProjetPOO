@@ -76,7 +76,7 @@ int main(){
 
       // CONSULTATION DE DONNEES
       case 1:
-        cout << "1 : consulter les visites\n2 : consulter les biens disponibles\n3 : consulter les clients\n4 : consulter les biens d'un client" << endl;
+        cout << "1 : consulter les visites\n2 : consulter les biens disponibles\n3 : consulter les clients\n4 : consulter les biens d'un client\n5 : rechercher" << endl;
         cin >> consult;
 
         // ce cas va traiter l'affichage de toutes les visites
@@ -98,6 +98,22 @@ int main(){
 
         if (consult == 4)
           UnToitPourTous.afficher_biens_vendeurs();
+
+        if (consult == 5){
+          int rech = -1;
+          cout << "1 : rechercher un bien selon son prix" << endl;
+          cin >> rech;
+          if (rech == 1){
+            int prix = -1;
+            int operateur = -1;
+            int type_de_bien = -1;
+            cout << "quel type de bien " << endl;
+            cout << "1 : maison\n2 : appartement\n3 : terrain\n4 : locaux pro" << endl;     cin >> type_de_bien;
+            cout << "1 : inferieur a\n2 : superieur a" << endl;                             cin >> operateur;
+            cout << "quel prix : " << endl;                                                 cin >> prix;
+            UnToitPourTous.rechercher_bien_selon_prix(operateur, prix, type_de_bien);
+          }
+        }
         break;
 
       // GESTION DES CLIENTS, DES BIENS ET DES VISITES
