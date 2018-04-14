@@ -46,6 +46,7 @@ public:
   inline std::map <int, Maison> retourner_maison() {return _maison;};
   inline std::map <int, Terrain> retourner_terrain() {return _terrain;};
   inline std::map <int, Locaux_pro> retourner_locauxpro() {return _locauxpro;};
+  bool existe_ref_client(std::string ref_client);
   void rechercher_bien_selon_prix(int operateur, int prix, int bien);
 
 };

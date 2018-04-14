@@ -153,7 +153,6 @@ int main(){
 
           if (type_client == 2)
             UnToitPourTous.supprimer_client_vendeur(suppression);
-
         }
 
         // ce cas va traiter l'ajout de differents biens
@@ -169,57 +168,59 @@ int main(){
           cout << "adresse du bien : " << endl;                                        cin >> adresse;
           cout << "surface du bien : " << endl;                                        cin >> surface;
           cout << "reference du client : " << endl;                                    cin >> ref_client;
+          bool test = UnToitPourTous.existe_ref_client(ref_client);
+          if (test == true){
+
+            if (type_bien == 1){
+              int nombre_pieces;
+              bool garage;
+              bool jardin;
+              bool piscine;
+              id_bien = create_id_maison(UnToitPourTous.retourner_maison());
+              cout << "nombre de pieces : " << endl;                         cin >> nombre_pieces;
+              cout << "presence d'un garage (1 ou 0) : " << endl;            cin >> garage;
+              cout << "presence d'un jardin (1 ou 0) : " << endl;            cin >> jardin;
+              cout << "presence d'une piscine (1 ou 0) : " << endl;          cin >> piscine;
+              Maison mai(prix, adresse, surface, ref_client, id_bien, nombre_pieces, garage, jardin, piscine);
+              UnToitPourTous.ajouter_maison(mai);
+            }
+
+            if (type_bien == 2){
+              int nombre_de_piece_appartement;
+              int etage;
+              bool garage;
+              bool cave;
+              bool balcon;
+              int nombre_appartement_immeuble;
+              id_bien = create_id_appartement(UnToitPourTous.retourner_appartement());
+              cout << "nombre de pieces : " << endl;                         cin >> nombre_de_piece_appartement;
+              cout << "nombre d'etage : " << endl;                           cin >> etage;
+              cout << "presence d'un garage (1 ou 0) : " << endl;            cin >> garage;
+              cout << "presence d'une cave (1 ou 0) : " << endl;             cin >> cave;
+              cout << "presence d'un balcon (1 ou 0) : " << endl;            cin >> balcon;
+              cout << "nombre d'appartement dans l'immeuble : " << endl;     cin >> nombre_appartement_immeuble;
+              Appartement app(prix, adresse, surface, ref_client, id_bien, nombre_de_piece_appartement, etage, garage, cave, balcon, nombre_appartement_immeuble);
+              UnToitPourTous.ajouter_appartement(app);
+            }
 
 
-          if (type_bien == 1){
-            int nombre_pieces;
-            bool garage;
-            bool jardin;
-            bool piscine;
-            id_bien = create_id_maison(UnToitPourTous.retourner_maison());
-            cout << "nombre de pieces : " << endl;                         cin >> nombre_pieces;
-            cout << "presence d'un garage (1 ou 0) : " << endl;            cin >> garage;
-            cout << "presence d'un jardin (1 ou 0) : " << endl;            cin >> jardin;
-            cout << "presence d'une piscine (1 ou 0) : " << endl;          cin >> piscine;
-            Maison mai(prix, adresse, surface, ref_client, id_bien, nombre_pieces, garage, jardin, piscine);
-            UnToitPourTous.ajouter_maison(mai);
-          }
+            if (type_bien == 3){
+              bool constructible;
+              id_bien = create_id_terrain(UnToitPourTous.retourner_terrain());
+              cout << "le terrain est constructible (1 ou 0) : " << endl;     cin >> constructible;
+              Terrain terr(prix, adresse, surface, ref_client, id_bien, constructible);
+              UnToitPourTous.ajouter_terrain(terr);
+            }
 
-          if (type_bien == 2){
-            int nombre_de_piece_appartement;
-            int etage;
-            bool garage;
-            bool cave;
-            bool balcon;
-            int nombre_appartement_immeuble;
-            id_bien = create_id_appartement(UnToitPourTous.retourner_appartement());
-            cout << "nombre de pieces : " << endl;                         cin >> nombre_de_piece_appartement;
-            cout << "nombre d'etage : " << endl;                           cin >> etage;
-            cout << "presence d'un garage (1 ou 0) : " << endl;            cin >> garage;
-            cout << "presence d'une cave (1 ou 0) : " << endl;             cin >> cave;
-            cout << "presence d'un balcon (1 ou 0) : " << endl;            cin >> balcon;
-            cout << "nombre d'appartement dans l'immeuble : " << endl;     cin >> nombre_appartement_immeuble;
-            Appartement app(prix, adresse, surface, ref_client, id_bien, nombre_de_piece_appartement, etage, garage, cave, balcon, nombre_appartement_immeuble);
-            UnToitPourTous.ajouter_appartement(app);
-          }
-
-
-          if (type_bien == 3){
-            bool constructible;
-            id_bien = create_id_terrain(UnToitPourTous.retourner_terrain());
-            cout << "le terrain est constructible (1 ou 0) : " << endl;     cin >> constructible;
-            Terrain terr(prix, adresse, surface, ref_client, id_bien, constructible);
-            UnToitPourTous.ajouter_terrain(terr);
-          }
-
-          if (type_bien == 4){
-            int taille_vitrine;
-            bool piece_stockage;
-            id_bien = create_id_locaux(UnToitPourTous.retourner_locauxpro());
-            cout << "taille de la vitrine : " << endl;                        cin >> taille_vitrine;
-            cout << "presence d'une piece de stockage (1 ou 0) : " << endl;   cin >> piece_stockage;
-            Locaux_pro loc(prix, adresse, surface, ref_client, id_bien, taille_vitrine, piece_stockage);
-            UnToitPourTous.ajouter_locaux(loc);
+            if (type_bien == 4){
+              int taille_vitrine;
+              bool piece_stockage;
+              id_bien = create_id_locaux(UnToitPourTous.retourner_locauxpro());
+              cout << "taille de la vitrine : " << endl;                        cin >> taille_vitrine;
+              cout << "presence d'une piece de stockage (1 ou 0) : " << endl;   cin >> piece_stockage;
+              Locaux_pro loc(prix, adresse, surface, ref_client, id_bien, taille_vitrine, piece_stockage);
+              UnToitPourTous.ajouter_locaux(loc);
+            }
           }
         }
 

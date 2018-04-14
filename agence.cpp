@@ -227,10 +227,10 @@ void Agence::afficher_biens(){
   cout << "quel type de bien ?" << endl;
   cout << "1 : maison\n2 : appartement\n3 : terrain\n4 : locaux pro" << endl;
   cin >> type;
-  map <int, Appartement> app = retourner_appartement();
-  map <int, Appartement>::iterator it;
   map <int, Maison> mai = retourner_maison();
-  map <int, Maison>::iterator it2;
+  map <int, Maison>::iterator it;
+  map <int, Appartement> app = retourner_appartement();
+  map <int, Appartement>::iterator it2;
   map <int, Terrain> terr = retourner_terrain();
   map <int, Terrain>::iterator it3;
   map <int, Locaux_pro> loc = retourner_locauxpro();
@@ -238,11 +238,12 @@ void Agence::afficher_biens(){
 
   switch(type){
     case 1:
-      for(it = app.begin() ; it != app.end() ; it++)
+      for(it = mai.begin() ; it != mai.end() ; it++)
         it->second.afficher();
       break;
+
     case 2:
-      for(it2 = mai.begin() ; it2 != mai.end() ; it2++)
+      for(it2 = app.begin() ; it2 != app.end() ; it2++)
         it2->second.afficher();
       break;
     case 3:
@@ -278,25 +279,63 @@ void Agence::afficher_clients(){
       it2->second.afficher_vendeur();
 }
 
+bool Agence::existe_ref_client(string ref_client){
+  map <string, Vendeur> clients_vendeurs = retourner_client_vendeur();
+  for(map <string, Vendeur>::iterator it = clients_vendeurs.begin() ; it != clients_vendeurs.end() ; it++)
+    if (it->first == ref_client)
+      return true;
+  cout << "erreur : client non trouve" << endl;
+  return false;
+}
 
 void Agence::rechercher_bien_selon_prix(int operateur, int prix, int bien){
   switch(bien){
-    case 1: // Maison
+    case 1: // maison
       map <int, Maison> mai = retourner_maison();
       for(map <int, Maison>::iterator it = mai.begin() ; it != mai.end() ; it++){
-        if (operateur == 1){
+        if (operateur == 1)
           if (it->second.retourner_prix() < prix)
-            it->second.retourner_id();
-          else
-            cout << "aucun bien trouve" << endl;
-          }
-        if (operateur == 2){
+            cout << "id : " << it->second.retourner_id() << endl;
+        if (operateur == 2)
           if (it->second.retourner_prix() > prix)
-            it->second.retourner_id();
-          else
-            cout << "aucun bien trouve" << endl;
-          }
-        }
+            cout << "id : " << it->second.retourner_id() << endl;
+      }
+      break;
+
+    case 2: // appartement
+      map <int, Appartement> app = retourner_appartement();
+      for(map <int, Appartement>::iterator it = app.begin() ; it != app.end() ; it++){
+        if (operateur == 1)
+          if (it->second.retourner_prix() < prix)
+            cout << "id : " << it->second.retourner_id() << endl;
+        if (operateur == 2)
+          if (it->second.retourner_prix() > prix)
+            cout << "id : " << it->second.retourner_id() << endl;
+      }
+      break;
+
+    case 3:
+      map <int, Terrain> terr = retourner_terrain();
+      for(map <int, Terrain>::iterator it = terr.begin() ; it != terr.end() ; it++){
+        if (operateur == 1)
+          if (it->second.retourner_prix() < prix)
+            cout << "id : " << it->second.retourner_id() << endl;
+        if (operateur == 2)
+          if (it->second.retourner_prix() > prix)
+            cout << "id : " << it->second.retourner_id() << endl;
+      }
+      break;
+
+    case 4:
+      map <int, Locaux_pro> loc = retourner_locauxpro();
+      for(map <int, Locaux_pro>::iterator it = loc.begin() ; it != loc.end() ; it++){
+        if (operateur == 1)
+          if (it->second.retourner_prix() < prix)
+            cout << "id : " << it->second.retourner_id() << endl;
+        if (operateur == 2)
+          if (it->second.retourner_prix() > prix)
+            cout << "id : " << it->second.retourner_id() << endl;
+      }
       break;
   }
 }
