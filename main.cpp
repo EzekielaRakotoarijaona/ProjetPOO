@@ -128,7 +128,6 @@ int main(){
             }
             UnToitPourTous.rechercher_bien_selon_prix(operateur, prix, type_de_bien);
           }
-          system("clear");
         }
         break;
 

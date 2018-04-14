@@ -107,6 +107,11 @@ void Agence::afficher_biens_vendeurs(){
   cout << "nom du client :" << endl;
   cin >> nom;
   map <string, Vendeur>::iterator it = clients_vendeurs.find(nom);
+  if(it == clients_vendeurs.end())
+  {
+    cout << "client introuvable" << endl;
+    return;
+  }
   it->second.afficher_b();
 }
 
@@ -126,6 +131,11 @@ void Agence::ajouter_client_acheteur(Acheteur c){
 void Agence::supprimer_client_vendeur(string nom){
   map <string, Vendeur>::iterator it;
   it = clients_vendeurs.find(nom);
+  if(it == clients_vendeurs.end())
+  {
+    cout << "introuvable" << endl;
+    return;
+  }
   //Acceder a l'objet vendeur puis a son tableau de bien et supprimer tous les biens de ce vendeur
   vector<int> tab_bien = it->second.retourner_tableauBien();
   int type;
@@ -170,6 +180,11 @@ void Agence::supprimer_client_vendeur(string nom){
 void Agence::supprimer_client_acheteur(string nom){
   map <string, Acheteur>::iterator it;
   it = clients_acheteurs.find(nom);
+  if(it == clients_acheteurs.end())
+  {
+    cout << "introuvable" << endl;
+    return;
+  }
   clients_acheteurs.erase(it);
   cout << "Client acheteur supprime" << endl << endl;
 }
@@ -178,6 +193,11 @@ void Agence::supprimer_client_acheteur(string nom){
 void Agence::supprimer_appartement(int id){
   map <int, Appartement>::iterator it;
   it = _appartement.find(id);
+  if(it == _appartement.end())
+  {
+    cout << "introuvable" << endl;
+    return;
+  }
   string nom = it->second.retourner_referenceClient();
   map <string, Vendeur>::iterator it1;
   it1 = clients_vendeurs.find(nom);
@@ -190,6 +210,11 @@ void Agence::supprimer_appartement(int id){
 void Agence::supprimer_maison(int id){
   map <int, Maison>::iterator it;
   it = _maison.find(id);
+  if(it == _maison.end())
+  {
+    cout << "introuvable" << endl;
+    return;
+  }
   string nom = it->second.retourner_referenceClient();
   map <string, Vendeur>::iterator it1;
   it1 = clients_vendeurs.find(nom);
@@ -202,6 +227,11 @@ void Agence::supprimer_maison(int id){
 void Agence::supprimer_terrain(int id){
   map <int, Terrain>::iterator it;
   it = _terrain.find(id);
+  if(it == _terrain.end())
+  {
+    cout << "introuvable" << endl;
+    return;
+  }
   string nom = it->second.retourner_referenceClient();
   map <string, Vendeur>::iterator it1;
   it1 = clients_vendeurs.find(nom);
@@ -214,6 +244,11 @@ void Agence::supprimer_terrain(int id){
 void Agence::supprimer_locaux(int id){
   map <int, Locaux_pro>::iterator it;
   it = _locauxpro.find(id);
+  if(it == _locauxpro.end())
+  {
+    cout << "introuvable" << endl;
+    return;
+  }
   string nom = it->second.retourner_referenceClient();
   map <string, Vendeur>::iterator it1;
   it1 = clients_vendeurs.find(nom);
@@ -261,6 +296,11 @@ void Agence::afficher_biens(){
 void Agence::creer_visite(string nom, int idbien, bool proposition, int prix){
   map <string, Acheteur>::iterator it;
   it = clients_acheteurs.find(nom);
+  if(it == clients_acheteurs.end())
+  {
+    cout << "client introuvable" << endl;
+    return;
+  }
   it->second.ajouter_visite(prix, proposition, idbien);
 }
 
@@ -281,11 +321,14 @@ void Agence::afficher_clients(){
 
 bool Agence::existe_ref_client(string ref_client){
   map <string, Vendeur> clients_vendeurs = retourner_client_vendeur();
-  for(map <string, Vendeur>::iterator it = clients_vendeurs.begin() ; it != clients_vendeurs.end() ; it++)
-    if (it->first == ref_client)
-      return true;
-  cout << "erreur : client non trouve" << endl;
-  return false;
+  map <string, Vendeur>::iterator it;
+  it = clients_vendeurs.find(ref_client);
+  if(it == clients_vendeurs.end())
+  {
+    cout << "erreur : client non trouve" << endl;
+    return false;
+  }
+  return true;
 }
 
 void Agence::rechercher_bien_selon_prix(int operateur, int prix, int bien){
