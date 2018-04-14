@@ -291,6 +291,7 @@ bool Agence::existe_ref_client(string ref_client){
 void Agence::rechercher_bien_selon_prix(int operateur, int prix, int bien){
   switch(bien){
     case 1: // maison
+    {
       map <int, Maison> mai = retourner_maison();
       for(map <int, Maison>::iterator it = mai.begin() ; it != mai.end() ; it++){
         if (operateur == 1)
@@ -301,8 +302,9 @@ void Agence::rechercher_bien_selon_prix(int operateur, int prix, int bien){
             cout << "id : " << it->second.retourner_id() << endl;
       }
       break;
-
+    }
     case 2: // appartement
+    {
       map <int, Appartement> app = retourner_appartement();
       for(map <int, Appartement>::iterator it = app.begin() ; it != app.end() ; it++){
         if (operateur == 1)
@@ -313,8 +315,9 @@ void Agence::rechercher_bien_selon_prix(int operateur, int prix, int bien){
             cout << "id : " << it->second.retourner_id() << endl;
       }
       break;
-
-    case 3:
+    }
+    case 3: // terrain
+    {
       map <int, Terrain> terr = retourner_terrain();
       for(map <int, Terrain>::iterator it = terr.begin() ; it != terr.end() ; it++){
         if (operateur == 1)
@@ -325,8 +328,9 @@ void Agence::rechercher_bien_selon_prix(int operateur, int prix, int bien){
             cout << "id : " << it->second.retourner_id() << endl;
       }
       break;
-
-    case 4:
+    }
+    case 4: // locaux pro
+    {
       map <int, Locaux_pro> loc = retourner_locauxpro();
       for(map <int, Locaux_pro>::iterator it = loc.begin() ; it != loc.end() ; it++){
         if (operateur == 1)
@@ -337,5 +341,6 @@ void Agence::rechercher_bien_selon_prix(int operateur, int prix, int bien){
             cout << "id : " << it->second.retourner_id() << endl;
       }
       break;
+    }
   }
 }
