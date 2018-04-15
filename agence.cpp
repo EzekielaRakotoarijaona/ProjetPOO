@@ -78,9 +78,11 @@ Agence::Agence(){
   }
   string nom;
   string adresse;
-  while(!file.eof())
+  while(true)
   {
+    if(file.eof())break;
     getline(file,nom);
+    if(file.eof())break;
     getline(file,adresse);
     Vendeur v(nom,adresse);
     ajouter_client_vendeur(v);
