@@ -292,6 +292,7 @@ int main(){
                 cin.ignore(999, '\n');
                 cin >> nombre_de_piece_appartement;
               }
+              cin.clear();
               cout << "nombre d'etage : " << endl;                           cin >> etage;
               while(etage < 0 || cin.fail())
               {
@@ -300,7 +301,7 @@ int main(){
                 cin.ignore(999, '\n');
                 cin >> etage;
               }
-              cout << "presence d'un garage (1 ou 0) : " << endl;            cin >> garage;
+              cout << "presence d'un garage (1 ou 0) : " << endl;            cin >> int_garage;
               while(int_garage < 0 || int_garage > 1 || cin.fail())
               {
                 cout << "retapez" << endl;
@@ -309,7 +310,7 @@ int main(){
                 cin >> int_garage;
               }
               garage = int_garage;
-              cout << "presence d'une cave (1 ou 0) : " << endl;             cin >> cave;
+              cout << "presence d'une cave (1 ou 0) : " << endl;             cin >> int_cave;
               while(int_cave < 0 || int_cave > 1 || cin.fail())
               {
                 cout << "retapez" << endl;
@@ -318,7 +319,7 @@ int main(){
                 cin >> int_cave;
               }
               cave = int_cave;
-              cout << "presence d'un balcon (1 ou 0) : " << endl;            cin >> balcon;
+              cout << "presence d'un balcon (1 ou 0) : " << endl;            cin >> int_balcon;
               while(int_balcon < 0 || int_balcon > 1 || cin.fail())
               {
                 cout << "retapez" << endl;
@@ -344,7 +345,7 @@ int main(){
               bool constructible;
               int int_constructible;
               id_bien = create_id_terrain(UnToitPourTous.retourner_terrain());
-              cout << "le terrain est constructible (1 ou 0) : " << endl;     cin >> constructible;
+              cout << "le terrain est constructible (1 ou 0) : " << endl;     cin >> int_constructible;
               while(int_constructible < 0 || int_constructible > 1 || cin.fail())
               {
                 cout << "retapez" << endl;
@@ -360,6 +361,7 @@ int main(){
             if (type_bien == 4){
               int taille_vitrine;
               bool piece_stockage;
+              int int_pieces_stockage;
               id_bien = create_id_locaux(UnToitPourTous.retourner_locauxpro());
               cout << "taille de la vitrine : " << endl;                        cin >> taille_vitrine;
               while(taille_vitrine < 0 || cin.fail())
@@ -369,14 +371,15 @@ int main(){
                 cin.ignore(999, '\n');
                 cin >> taille_vitrine;
               }
-              cout << "presence d'une piece de stockage (1 ou 0) : " << endl;   cin >> piece_stockage;
-              while(piece_stockage < 1 || cin.fail())
+              cout << "presence d'une piece de stockage (1 ou 0) : " << endl;   cin >> int_pieces_stockage;
+              while(int_pieces_stockage < 0 || int_pieces_stockage > 1 || cin.fail())
               {
                 cout << "retapez" << endl;
                 cin.clear();
                 cin.ignore(999, '\n');
-                cin >> piece_stockage;
+                cin >> int_pieces_stockage;
               }
+              piece_stockage = int_pieces_stockage;
               Locaux_pro loc(prix, adresse, surface, ref_client, id_bien, taille_vitrine, piece_stockage);
               UnToitPourTous.ajouter_locaux(loc);
             }

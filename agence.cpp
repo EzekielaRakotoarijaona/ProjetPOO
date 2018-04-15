@@ -71,6 +71,7 @@ Agence::Agence(){
   _locauxpro.empty();
   cout << "agence creee" << endl << endl;
   ifstream file;
+  //lecture vendeur.txt
   file.open("vendeur.txt");
   if(!file){
     cout<<"Error in creating file...\n";
@@ -88,6 +89,7 @@ Agence::Agence(){
     ajouter_client_vendeur(v);
   }
   file.close();
+  //lecture maison.txt
   file.open("maison.txt");
   if(!file){
     cout<<"Error in creating file...\n";
@@ -167,6 +169,7 @@ Agence::Agence(){
     this->ajouter_maison(m);
   }
   file.close();
+  //lecture appartement.txt
   file.open("appartement.txt");
   if(!file){
     cout<<"Error in creating file...\n";
@@ -247,6 +250,100 @@ Agence::Agence(){
 
   }
   file.close();
+  //lecture locaux_pro.txt
+  file.open("locaux_pro.txt");
+  if(!file){
+    cout<<"Error in creating file...\n";
+    return;
+  }
+  string taille;
+  int taille_vitrine;
+  string stockage;
+  int piece_stockage;
+  while(true)
+  {
+    getline(file,prix_bien);
+    if(file.eof())break;
+    prix = stoi(prix_bien);
+    cout << "prix\n";
+
+    getline(file,adresse_bien);
+    if(file.eof())break;
+    cout << "adresse\n";
+
+    getline(file,surface_bien);
+    if(file.eof())break;
+    surface = stoi(surface_bien);
+    cout << "surface\n";
+
+    getline(file,reference);
+    if(file.eof())break;
+    cout << "reference\n";
+
+    getline(file,id_bien);
+    if(file.eof())break;
+    id = stoi(id_bien);
+    cout << "id\n";
+
+    getline(file,taille);
+    if(file.eof())break;
+    taille_vitrine = stoi(taille);
+    cout << "id\n";
+
+    getline(file,stockage);
+    if(file.eof())break;
+    piece_stockage = stoi(stockage);
+    cout << "id\n";
+
+    Locaux_pro l(prix,adresse_bien,surface,reference,id,taille_vitrine,piece_stockage);
+    this->ajouter_locaux(l);
+
+  }
+  file.close();
+  //lecture locaux_pro.txt
+  file.open("terrain.txt");
+  if(!file){
+    cout<<"Error in creating file...\n";
+    return;
+  }
+  string construct;
+  int constructible;
+  while(true)
+  {
+    getline(file,prix_bien);
+    if(file.eof())break;
+    prix = stoi(prix_bien);
+    cout << "prix\n";
+
+    getline(file,adresse_bien);
+    if(file.eof())break;
+    cout << "adresse\n";
+
+    getline(file,surface_bien);
+    if(file.eof())break;
+    surface = stoi(surface_bien);
+    cout << "surface\n";
+
+    getline(file,reference);
+    if(file.eof())break;
+    cout << "reference\n";
+
+    getline(file,id_bien);
+    if(file.eof())break;
+    id = stoi(id_bien);
+    cout << "id\n";
+
+    getline(file,construct);
+    if(file.eof())break;
+    constructible = stoi(construct);
+    cout << "id\n";
+
+    Terrain t(prix,adresse_bien,surface,reference,id,constructible);
+    this->ajouter_terrain(t);
+
+  }
+  file.close();
+
 }
 
 
@@ -614,6 +711,37 @@ Agence::~Agence(){
       file << it3->second.retourner_cave() << endl;
       file << it3->second.retourner_balcon() << endl;
       file << it3->second.retourner_nbAppartImm() << endl;
+    }
+    file.close();
+    file.open("locaux_pro.txt",std::ofstream::out | std::ofstream::trunc);
+    if(!file){
+  		cout<<"Error in creating file...\n";
+  		return;
+  	}
+    for(map <int, Locaux_pro>::iterator it4 = _locauxpro.begin() ; it4 != _locauxpro.end() ; it4++)
+    {
+      file << it4->second.retourner_prix() << endl;
+      file << it4->second.retourner_adresse() << endl;
+      file << it4->second.retourner_surface() << endl;
+      file << it4->second.retourner_referenceClient() << endl;
+      file << it4->second.retourner_id() << endl;
+      file << it4->second.retourner_taille() << endl;
+      file << it4->second.retourner_stockage() << endl;
+    }
+    file.close();
+    file.open("terrain.txt",std::ofstream::out | std::ofstream::trunc);
+    if(!file){
+  		cout<<"Error in creating file...\n";
+  		return;
+  	}
+    for(map <int, Terrain>::iterator it5 = _terrain.begin() ; it5 != _terrain.end() ; it5++)
+    {
+      file << it5->second.retourner_prix() << endl;
+      file << it5->second.retourner_adresse() << endl;
+      file << it5->second.retourner_surface() << endl;
+      file << it5->second.retourner_referenceClient() << endl;
+      file << it5->second.retourner_id() << endl;
+      file << it5->second.retourner_constructible() << endl;
     }
     file.close();
 }
