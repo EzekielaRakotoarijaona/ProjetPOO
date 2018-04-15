@@ -70,25 +70,22 @@ Agence::Agence(){
   _terrain.empty();
   _locauxpro.empty();
   cout << "agence creee" << endl << endl;
-  //completer_client_acheteur();
-  /*fstream file;
-  file.open("save.dat",ios::in|ios::binary);
-	if(!file){
-		cout<<"Error in opening file...\n";
-		return;
-	}
+  ifstream file;
+  file.open("vendeur.txt");
+  if(!file){
+    cout<<"Error in creating file...\n";
+    return;
+  }
+  string nom;
+  string adresse;
+  while(!file.eof())
+  {
+    getline(file,nom);
+    getline(file,adresse);
+    Vendeur v(nom,adresse);
+    ajouter_client_vendeur(v);
+  }
 
-	if(file.read((char*)this,sizeof(*this))){
-			cout<<endl<<endl;
-			cout<<"Data extracted from file..\n";
-	}
-	else{
-		cout<<"Error in reading data from file...\n";
-		return;
-	}
-
-	file.close();
-  */
 }
 
 
@@ -408,14 +405,16 @@ void Agence::rechercher_bien_selon_prix(int operateur, int prix, int bien){
 }
 
 Agence::~Agence(){
-  fstream file;
-  file.open("save.dat",ios::out|ios::binary);
-  if(!file){
-		cout<<"Error in creating file...\n";
-		return;
-	}
-  file.write((char*)this,sizeof(*this));
-	file.close();
-  cout<<"Date saved into file the file.\n";
-  file.close();
+    ofstream file;
+    file.open("vendeur.txt",std::ofstream::out | std::ofstream::trunc);
+    if(!file){
+  		cout<<"Error in creating file...\n";
+  		return;
+  	}
+    for(map <string, Vendeur>::iterator it2 = clients_vendeurs.begin() ; it2 != clients_vendeurs.end() ; it2++)
+    {
+      file << it2->second.retourner_nom() << endl;
+      file << it2->second.retourner_adresse() << endl;
+    }
+    file.close();
 }
