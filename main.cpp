@@ -440,7 +440,7 @@ int main(){
               cin.ignore(999, '\n');
               cin >> idbien;
             }
-            cout << "le client fait il une proposition (1 ou 0) : " << endl;      cin >> proposition;
+            cout << "le client fait il une proposition (1 ou 0) : " << endl;      cin >> int_proposition;
             while(int_proposition < 0 || int_proposition > 1 || cin.fail())
             {
               cout << "retapez" << endl;
@@ -457,7 +457,7 @@ int main(){
               cin.ignore(999, '\n');
               cin >> prix;
             }
-            UnToitPourTous.creer_visite(nom_client, prix, proposition, idbien);
+            UnToitPourTous.creer_visite(nom_client, idbien, proposition, prix);
           }
         }
         break;
