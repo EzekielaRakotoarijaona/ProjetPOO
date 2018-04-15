@@ -204,8 +204,11 @@ int main(){
             if (type_bien == 1){
               int nombre_pieces;
               bool garage;
+              int int_garage;
               bool jardin;
+              int int_jardin;
               bool piscine;
+              int int_piscine;
               id_bien = create_id_maison(UnToitPourTous.retourner_maison());
               cout << "nombre de pieces : " << endl;                         cin >> nombre_pieces;
               while(nombre_pieces < 1)
@@ -213,9 +216,27 @@ int main(){
                 cout << "nombre piece incorrect retapez" << endl;
                 cin >> nombre_pieces;
               }
-              cout << "presence d'un garage (1 ou 0) : " << endl;            cin >> garage;
-              cout << "presence d'un jardin (1 ou 0) : " << endl;            cin >> jardin;
-              cout << "presence d'une piscine (1 ou 0) : " << endl;          cin >> piscine;
+              cout << "presence d'un garage (1 ou 0) : " << endl;            cin >> int_garage;
+              while(int_garage < 0 || int_garage > 1)
+              {
+                cout << "retapez" << endl;
+                cin >> int_garage;
+              }
+              garage = int_garage;
+              cout << "presence d'un jardin (1 ou 0) : " << endl;            cin >> int_jardin;
+              while(int_jardin < 0 || int_jardin > 1)
+              {
+                cout << "retapez" << endl;
+                cin >> int_jardin;
+              }
+              jardin = int_jardin;
+              cout << "presence d'une piscine (1 ou 0) : " << endl;          cin >> int_piscine;
+              while(int_piscine < 0 || int_piscine > 1)
+              {
+                cout << "retapez" << endl;
+                cin >> int_piscine;
+              }
+              piscine = int_piscine;
               Maison mai(prix, adresse, surface, ref_client, id_bien, nombre_pieces, garage, jardin, piscine);
               UnToitPourTous.ajouter_maison(mai);
             }
@@ -224,8 +245,11 @@ int main(){
               int nombre_de_piece_appartement;
               int etage;
               bool garage;
+              int int_garage;
               bool cave;
+              int int_cave;
               bool balcon;
+              int int_balcon;
               int nombre_appartement_immeuble;
               id_bien = create_id_appartement(UnToitPourTous.retourner_appartement());
               cout << "nombre de pieces : " << endl;                         cin >> nombre_de_piece_appartement;
@@ -241,8 +265,26 @@ int main(){
                 cin >> etage;
               }
               cout << "presence d'un garage (1 ou 0) : " << endl;            cin >> garage;
+              while(int_garage < 0 || int_garage > 1)
+              {
+                cout << "retapez" << endl;
+                cin >> int_garage;
+              }
+              garage = int_garage;
               cout << "presence d'une cave (1 ou 0) : " << endl;             cin >> cave;
+              while(int_cave < 0 || int_cave > 1)
+              {
+                cout << "retapez" << endl;
+                cin >> int_cave;
+              }
+              cave = int_cave;
               cout << "presence d'un balcon (1 ou 0) : " << endl;            cin >> balcon;
+              while(int_balcon < 0 || int_balcon > 1)
+              {
+                cout << "retapez" << endl;
+                cin >> int_balcon;
+              }
+              balcon = int_balcon;
               cout << "nombre d'appartement dans l'immeuble : " << endl;     cin >> nombre_appartement_immeuble;
               while(nombre_appartement_immeuble < 1)
               {
@@ -256,8 +298,15 @@ int main(){
 
             if (type_bien == 3){
               bool constructible;
+              int int_constructible;
               id_bien = create_id_terrain(UnToitPourTous.retourner_terrain());
               cout << "le terrain est constructible (1 ou 0) : " << endl;     cin >> constructible;
+              while(int_constructible < 0 || int_constructible > 1)
+              {
+                cout << "retapez" << endl;
+                cin >> int_constructible;
+              }
+              constructible = int_constructible;
               Terrain terr(prix, adresse, surface, ref_client, id_bien, constructible);
               UnToitPourTous.ajouter_terrain(terr);
             }
@@ -318,15 +367,17 @@ int main(){
             string nom_client;
             int idbien;
             bool proposition;
+            int int_proposition;
             int prix;
             cout << "quel est le nom du client : " << endl;                       cin >> nom_client;
             cout << "l'identifiant du bien qui interesse le client : " << endl;   cin >> idbien;
             cout << "le client fait il une proposition (1 ou 0) : " << endl;      cin >> proposition;
-            while(proposition != 0 || proposition != 1)
+            while(int_proposition < 0 || int_proposition > 1)
             {
               cout << "retapez" << endl;
-              cin >> proposition;
+              cin >> int_proposition;
             }
+            proposition = int_proposition;
             cout << "quel est le prix que le client propose : " << endl;          cin >> prix;
             while(prix < 0)
             {
