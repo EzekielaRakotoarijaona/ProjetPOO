@@ -117,7 +117,7 @@ int main(){
               cin >> type_de_bien;
             }
             cout << "1 : inferieur a\n2 : superieur a" << endl;                             cin >> operateur;
-            while(operateur != 1 || operateur != 2 || cin.fail())
+            while(operateur < 1 || operateur > 2 || cin.fail())
             {
               cout << "mauvais choix" << endl;
               cin.clear();
@@ -210,6 +210,13 @@ int main(){
             cin >> surface;
           }
           cout << "reference du client : " << endl;                                    cin >> ref_client;
+          while(cin.fail())
+          {
+            cout << "reference invalide retapez" << endl;
+            cin.clear();
+            cin.ignore(999, '\n');
+            cin >> ref_client;
+          }
           bool test = UnToitPourTous.existe_ref_client(ref_client);
           if (test == true){
 
