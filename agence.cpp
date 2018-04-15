@@ -167,6 +167,86 @@ Agence::Agence(){
     this->ajouter_maison(m);
   }
   file.close();
+  file.open("appartement.txt");
+  if(!file){
+    cout<<"Error in creating file...\n";
+    return;
+  }
+  string nombre_de_piece_appartement;
+  int nb_pieces_appartement;
+
+  string _etage;
+  int etage;
+
+  string _cave;
+  int cave;
+
+  string _balcon;
+  int balcon;
+
+  string nombre_appartement_immeuble;
+  int nb_appartement_immeuble;
+
+  while(true)
+  {
+    getline(file,prix_bien);
+    if(file.eof())break;
+    prix = stoi(prix_bien);
+    cout << "prix\n";
+
+    getline(file,adresse_bien);
+    if(file.eof())break;
+    cout << "adresse\n";
+
+    getline(file,surface_bien);
+    if(file.eof())break;
+    surface = stoi(surface_bien);
+    cout << "surface\n";
+
+    getline(file,reference);
+    if(file.eof())break;
+    cout << "reference\n";
+
+    getline(file,id_bien);
+    if(file.eof())break;
+    id = stoi(id_bien);
+    cout << "id\n";
+
+    getline(file,nombre_de_piece_appartement);
+    if(file.eof())break;
+    nb_pieces_appartement = stoi(nombre_de_piece_appartement);
+    cout << "id\n";
+
+    getline(file,_etage);
+    if(file.eof())break;
+    etage = stoi(_etage);
+    cout << "id\n";
+
+    getline(file,_garage);
+    if(file.eof())break;
+    garage = stoi(_garage);
+    cout << "id\n";
+
+    getline(file,_cave);
+    if(file.eof())break;
+    cave = stoi(_cave);
+    cout << "id\n";
+
+    getline(file,_balcon);
+    if(file.eof())break;
+    balcon = stoi(_balcon);
+    cout << "id\n";
+
+    getline(file,nombre_appartement_immeuble);
+    if(file.eof())break;
+    nb_appartement_immeuble = stoi(nombre_appartement_immeuble);
+    cout << "id\n";
+
+    Appartement a(prix,adresse_bien,surface,reference,id,nb_pieces_appartement,etage,garage,cave,balcon,nb_appartement_immeuble);
+    this->ajouter_appartement(a);
+
+  }
+  file.close();
 }
 
 
@@ -514,6 +594,26 @@ Agence::~Agence(){
       file << it->second.retourner_garage() << endl;
       file << it->second.retourner_jardin() << endl;
       file << it->second.retourner_piscine() << endl;
+    }
+    file.close();
+    file.open("appartement.txt",std::ofstream::out | std::ofstream::trunc);
+    if(!file){
+  		cout<<"Error in creating file...\n";
+  		return;
+  	}
+    for(map <int, Appartement>::iterator it3 = _appartement.begin() ; it3 != _appartement.end() ; it3++)
+    {
+      file << it3->second.retourner_prix() << endl;
+      file << it3->second.retourner_adresse() << endl;
+      file << it3->second.retourner_surface() << endl;
+      file << it3->second.retourner_referenceClient() << endl;
+      file << it3->second.retourner_id() << endl;
+      file << it3->second.retourner_nombrePieceAppartement() << endl;
+      file << it3->second.retourner_etage() << endl;
+      file << it3->second.retourner_garage() << endl;
+      file << it3->second.retourner_cave() << endl;
+      file << it3->second.retourner_balcon() << endl;
+      file << it3->second.retourner_nbAppartImm() << endl;
     }
     file.close();
 }
