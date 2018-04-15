@@ -168,6 +168,13 @@ int main(){
           string suppression;
           cout << "1 : acheteur\n2 : vendeur" << endl;          cin >> type_client;
           cout << "nom du client a supprimer : " << endl;       cin >> suppression;
+          while(cin.fail())
+          {
+            cout << "surface invalide retapez" << endl;
+            cin.clear();
+            cin.ignore(999, '\n');
+            cin >> suppression;
+          }
 
           if (type_client == 1)
             UnToitPourTous.supprimer_client_acheteur(suppression);
@@ -391,6 +398,13 @@ int main(){
             cin >> type_bien;
           }
           cout << "id du bien a supprimer : " << endl;                                 cin >> suppression;
+          while(cin.fail())
+          {
+            cout << "id invalide retapez" << endl;
+            cin.clear();
+            cin.ignore(999, '\n');
+            cin >> suppression;
+          }
 
           if (type_bien == 1)
             UnToitPourTous.supprimer_maison(suppression);
@@ -418,6 +432,13 @@ int main(){
             int prix;
             cout << "quel est le nom du client : " << endl;                       cin >> nom_client;
             cout << "l'identifiant du bien qui interesse le client : " << endl;   cin >> idbien;
+            while(cin.fail())
+            {
+              cout << "id_bien invalide retapez" << endl;
+              cin.clear();
+              cin.ignore(999, '\n');
+              cin >> idbien;
+            }
             cout << "le client fait il une proposition (1 ou 0) : " << endl;      cin >> proposition;
             while(int_proposition < 0 || int_proposition > 1 || cin.fail())
             {
