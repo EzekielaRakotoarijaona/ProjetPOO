@@ -87,7 +87,86 @@ Agence::Agence(){
     Vendeur v(nom,adresse);
     ajouter_client_vendeur(v);
   }
+  file.close();
+  file.open("maison.txt");
+  if(!file){
+    cout<<"Error in creating file...\n";
+    return;
+  }
+  string prix_bien;
+  int prix;
 
+  string adresse_bien;
+
+  string surface_bien;
+  int surface;
+
+  string reference;
+
+  string id_bien;
+  int id;
+
+  string nombre_pieces;
+  int pieces;
+
+  string _garage;
+  int garage;
+
+  string _jardin;
+  int jardin;
+
+  string _piscine;
+  int piscine;
+
+  while(true)
+  {
+    getline(file,prix_bien);
+    if(file.eof())break;
+    prix = stoi(prix_bien);
+    cout << "prix\n";
+
+    getline(file,adresse_bien);
+    if(file.eof())break;
+    cout << "adresse\n";
+
+    getline(file,surface_bien);
+    if(file.eof())break;
+    surface = stoi(surface_bien);
+    cout << "surface\n";
+
+    getline(file,reference);
+    if(file.eof())break;
+    cout << "reference\n";
+
+    getline(file,id_bien);
+    if(file.eof())break;
+    id = stoi(id_bien);
+    cout << "id\n";
+
+    getline(file,nombre_pieces);
+    if(file.eof())break;
+    pieces = stoi(nombre_pieces);
+    cout << "nombre_pieces\n";
+
+    getline(file,_garage);
+    if(file.eof())break;
+    garage = stoi(_garage);
+    cout << "garage\n";
+
+    getline(file,_jardin);
+    if(file.eof())break;
+    jardin = stoi(_jardin);
+    cout << "jardin\n";
+
+    getline(file,_piscine);
+    if(file.eof())break;
+    piscine = stoi(_piscine);
+    cout << "piscine\n";
+
+    Maison m(prix,adresse_bien,surface,reference,id,pieces,garage,jardin,piscine);
+    this->ajouter_maison(m);
+  }
+  file.close();
 }
 
 
@@ -417,6 +496,24 @@ Agence::~Agence(){
     {
       file << it2->second.retourner_nom() << endl;
       file << it2->second.retourner_adresse() << endl;
+    }
+    file.close();
+    file.open("maison.txt",std::ofstream::out | std::ofstream::trunc);
+    if(!file){
+  		cout<<"Error in creating file...\n";
+  		return;
+  	}
+    for(map <int, Maison>::iterator it = _maison.begin() ; it != _maison.end() ; it++)
+    {
+      file << it->second.retourner_prix() << endl;
+      file << it->second.retourner_adresse() << endl;
+      file << it->second.retourner_surface() << endl;
+      file << it->second.retourner_referenceClient() << endl;
+      file << it->second.retourner_id() << endl;
+      file << it->second.retourner_nombre_pieces() << endl;
+      file << it->second.retourner_garage() << endl;
+      file << it->second.retourner_jardin() << endl;
+      file << it->second.retourner_piscine() << endl;
     }
     file.close();
 }

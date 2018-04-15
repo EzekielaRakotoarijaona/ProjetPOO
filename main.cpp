@@ -8,6 +8,9 @@ using namespace std;
 #include "acheteur.h"
 #include "vendeur.h"
 #include "agence.h"
+#include <time.h>
+
+
 
 
 int create_id_maison(map <int,Maison> v){
@@ -60,6 +63,7 @@ void gestion_menu(int &fin, int &commande){
 
 
 int main(){
+  srand(time(NULL));
   // INITIALISATION DES DONNEES
   Agence UnToitPourTous;
   int fin = 0;
@@ -217,13 +221,7 @@ int main(){
             cin >> surface;
           }
           cout << "reference du client : " << endl;                                    cin >> ref_client;
-          while(cin.fail())
-          {
-            cout << "reference invalide retapez" << endl;
-            cin.clear();
-            cin.ignore(999, '\n');
-            cin >> ref_client;
-          }
+
           bool test = UnToitPourTous.existe_ref_client(ref_client);
           if (test == true){
 
