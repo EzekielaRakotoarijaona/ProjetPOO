@@ -42,11 +42,16 @@ Agence::Agence(){
   {
     if(file.eof())break;
     getline(file,nom);
+    cout << "lecture nom" << endl;
+
     if(file.eof())break;
     getline(file,adresse);
+    cout << "lecture adresse" << endl;
+
     Vendeur v(nom,adresse);
     ajouter_client_vendeur(v);
   }
+  cout << "vendeur charge" << endl;
   file.close();
   //lecture maison.txt
   file.open("maison.txt");
@@ -84,49 +89,50 @@ Agence::Agence(){
     getline(file,prix_bien);
     if(file.eof())break;
     prix = stoi(prix_bien);
-    cout << "prix\n";
+    cout << "lecture prix\n";
 
     getline(file,adresse_bien);
     if(file.eof())break;
-    cout << "adresse\n";
+    cout << "lecture adresse\n";
 
     getline(file,surface_bien);
     if(file.eof())break;
     surface = stoi(surface_bien);
-    cout << "surface\n";
+    cout << "lecture surface\n";
 
     getline(file,reference);
     if(file.eof())break;
-    cout << "reference\n";
+    cout << "lecture reference\n";
 
     getline(file,id_bien);
     if(file.eof())break;
     id = stoi(id_bien);
-    cout << "id\n";
+    cout << "lecture id\n";
 
     getline(file,nombre_pieces);
     if(file.eof())break;
     pieces = stoi(nombre_pieces);
-    cout << "nombre_pieces\n";
+    cout << "lecture nombre_pieces\n";
 
     getline(file,_garage);
     if(file.eof())break;
     garage = stoi(_garage);
-    cout << "garage\n";
+    cout << "lecture garage\n";
 
     getline(file,_jardin);
     if(file.eof())break;
     jardin = stoi(_jardin);
-    cout << "jardin\n";
+    cout << "lecture jardin\n";
 
     getline(file,_piscine);
     if(file.eof())break;
     piscine = stoi(_piscine);
-    cout << "piscine\n";
+    cout << "lecture piscine\n";
 
     Maison m(prix,adresse_bien,surface,reference,id,pieces,garage,jardin,piscine);
     this->ajouter_maison(m);
   }
+  cout << "maison charge" << endl;
   file.close();
   //lecture appartement.txt
   file.open("appartement.txt");
@@ -154,60 +160,61 @@ Agence::Agence(){
     getline(file,prix_bien);
     if(file.eof())break;
     prix = stoi(prix_bien);
-    cout << "prix\n";
+    cout << "lecture prix\n";
 
     getline(file,adresse_bien);
     if(file.eof())break;
-    cout << "adresse\n";
+    cout << "lecture adresse\n";
 
     getline(file,surface_bien);
     if(file.eof())break;
     surface = stoi(surface_bien);
-    cout << "surface\n";
+    cout << "lecture surface\n";
 
     getline(file,reference);
     if(file.eof())break;
-    cout << "reference\n";
+    cout << "lecture reference\n";
 
     getline(file,id_bien);
     if(file.eof())break;
     id = stoi(id_bien);
-    cout << "id\n";
+    cout << "lecture id\n";
 
     getline(file,nombre_de_piece_appartement);
     if(file.eof())break;
     nb_pieces_appartement = stoi(nombre_de_piece_appartement);
-    cout << "id\n";
+    cout << "lecture nb_pieces_appartement\n";
 
     getline(file,_etage);
     if(file.eof())break;
     etage = stoi(_etage);
-    cout << "id\n";
+    cout << "lecture etage\n";
 
     getline(file,_garage);
     if(file.eof())break;
     garage = stoi(_garage);
-    cout << "id\n";
+    cout << "lecture garage\n";
 
     getline(file,_cave);
     if(file.eof())break;
     cave = stoi(_cave);
-    cout << "id\n";
+    cout << "lecture cave\n";
 
     getline(file,_balcon);
     if(file.eof())break;
     balcon = stoi(_balcon);
-    cout << "id\n";
+    cout << "lecture balcon\n";
 
     getline(file,nombre_appartement_immeuble);
     if(file.eof())break;
     nb_appartement_immeuble = stoi(nombre_appartement_immeuble);
-    cout << "id\n";
+    cout << "lecture nombre_appartement_immeuble\n";
 
     Appartement a(prix,adresse_bien,surface,reference,id,nb_pieces_appartement,etage,garage,cave,balcon,nb_appartement_immeuble);
     this->ajouter_appartement(a);
 
   }
+  cout << "appartement charge" << endl;
   file.close();
   //lecture locaux_pro.txt
   file.open("locaux_pro.txt");
@@ -224,40 +231,41 @@ Agence::Agence(){
     getline(file,prix_bien);
     if(file.eof())break;
     prix = stoi(prix_bien);
-    cout << "prix\n";
+    cout << "lecture prix\n";
 
     getline(file,adresse_bien);
     if(file.eof())break;
-    cout << "adresse\n";
+    cout << "lecture adresse\n";
 
     getline(file,surface_bien);
     if(file.eof())break;
     surface = stoi(surface_bien);
-    cout << "surface\n";
+    cout << "lecture surface\n";
 
     getline(file,reference);
     if(file.eof())break;
-    cout << "reference\n";
+    cout << "lecture reference\n";
 
     getline(file,id_bien);
     if(file.eof())break;
     id = stoi(id_bien);
-    cout << "id\n";
+    cout << "lecture id\n";
 
     getline(file,taille);
     if(file.eof())break;
     taille_vitrine = stoi(taille);
-    cout << "id\n";
+    cout << "lecture taille_vitrine\n";
 
     getline(file,stockage);
     if(file.eof())break;
     piece_stockage = stoi(stockage);
-    cout << "id\n";
+    cout << "lecture piece_stockage\n";
 
     Locaux_pro l(prix,adresse_bien,surface,reference,id,taille_vitrine,piece_stockage);
     this->ajouter_locaux(l);
 
   }
+  cout << "locaux_pro charge" << endl;
   file.close();
   //lecture locaux_pro.txt
   file.open("terrain.txt");
@@ -272,35 +280,36 @@ Agence::Agence(){
     getline(file,prix_bien);
     if(file.eof())break;
     prix = stoi(prix_bien);
-    cout << "prix\n";
+    cout << "lecture prix\n";
 
     getline(file,adresse_bien);
     if(file.eof())break;
-    cout << "adresse\n";
+    cout << "lecture adresse\n";
 
     getline(file,surface_bien);
     if(file.eof())break;
     surface = stoi(surface_bien);
-    cout << "surface\n";
+    cout << "lecture surface\n";
 
     getline(file,reference);
     if(file.eof())break;
-    cout << "reference\n";
+    cout << "lecture reference\n";
 
     getline(file,id_bien);
     if(file.eof())break;
     id = stoi(id_bien);
-    cout << "id\n";
+    cout << "lecture id\n";
 
     getline(file,construct);
     if(file.eof())break;
     constructible = stoi(construct);
-    cout << "id\n";
+    cout << "lecture constructible\n";
 
     Terrain t(prix,adresse_bien,surface,reference,id,constructible);
     this->ajouter_terrain(t);
 
   }
+  cout << "terrain charge" << endl;
   file.close();
   file.open("acheteur.txt");
   if(!file){
@@ -317,38 +326,41 @@ Agence::Agence(){
   {
     if(file.eof())break;
     getline(file,nom);
+    cout << "lecture nom" << endl;
 
     if(file.eof())break;
     getline(file,adresse);
 
     Acheteur a(nom,adresse);
     this->ajouter_client_acheteur(a);
+    cout << "lecture adresse" << endl;
 
     getline(file,str_size);
     if(file.eof())break;
     size = stoi(str_size);
-    cout << "id\n";
+    cout << "lecture taille visite\n";
 
     for(int i = 0; i < size; i++)
     {
       getline(file,str_id);
       if(file.eof())break;
       id = stoi(str_id);
-      cout << "id\n";
+      cout << "lecture id\n";
 
       getline(file,str_proposition);
       if(file.eof())break;
       proposition = stoi(str_proposition);
-      cout << "id\n";
+      cout << "lecture proposition\n";
 
       getline(file,str_prix);
       if(file.eof())break;
       prix = stoi(str_prix);
-      cout << "id\n";
+      cout << "lecture prix\n";
 
       this->creer_visite(nom,id,proposition,prix);
     }
   }
+  cout << "acheteur charge" << endl;
   file.close();
 }
 
@@ -680,6 +692,7 @@ Agence::~Agence(){
       file << it2->second.retourner_nom() << endl;
       file << it2->second.retourner_adresse() << endl;
     }
+    cout << "vendeur sauvegarde" << endl;
     file.close();
     file.open("maison.txt",std::ofstream::out | std::ofstream::trunc);
     if(!file){
@@ -698,6 +711,7 @@ Agence::~Agence(){
       file << it->second.retourner_jardin() << endl;
       file << it->second.retourner_piscine() << endl;
     }
+    cout << "maison sauvegarde" << endl;
     file.close();
     file.open("appartement.txt",std::ofstream::out | std::ofstream::trunc);
     if(!file){
@@ -718,6 +732,7 @@ Agence::~Agence(){
       file << it3->second.retourner_balcon() << endl;
       file << it3->second.retourner_nbAppartImm() << endl;
     }
+    cout << "appartement sauvegarde" << endl;
     file.close();
     file.open("locaux_pro.txt",std::ofstream::out | std::ofstream::trunc);
     if(!file){
@@ -735,6 +750,7 @@ Agence::~Agence(){
       file << it4->second.retourner_stockage() << endl;
     }
     file.close();
+    cout << "locaux sauvegarde" << endl;
     file.open("terrain.txt",std::ofstream::out | std::ofstream::trunc);
     if(!file){
   		cout<<"Error in creating file...\n";
@@ -750,6 +766,7 @@ Agence::~Agence(){
       file << it5->second.retourner_constructible() << endl;
     }
     file.close();
+    cout << "terrain sauvegarde" << endl;
     file.open("acheteur.txt",std::ofstream::out | std::ofstream::trunc);
     if(!file){
   		cout<<"Error in creating file...\n";
@@ -771,5 +788,6 @@ Agence::~Agence(){
         file << prix[i] << endl;
       }
     }
+    cout << "acheteur sauvegarde" << endl;
     file.close();
 }
