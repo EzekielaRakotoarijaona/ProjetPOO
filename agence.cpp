@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <map>
 #include "agence.h"
 #include "vendeur.h"
@@ -70,6 +71,24 @@ Agence::Agence(){
   _locauxpro.empty();
   cout << "agence creee" << endl << endl;
   //completer_client_acheteur();
+  /*fstream file;
+  file.open("save.dat",ios::in|ios::binary);
+	if(!file){
+		cout<<"Error in opening file...\n";
+		return;
+	}
+
+	if(file.read((char*)this,sizeof(*this))){
+			cout<<endl<<endl;
+			cout<<"Data extracted from file..\n";
+	}
+	else{
+		cout<<"Error in reading data from file...\n";
+		return;
+	}
+
+	file.close();
+  */
 }
 
 
@@ -386,4 +405,17 @@ void Agence::rechercher_bien_selon_prix(int operateur, int prix, int bien){
       break;
     }
   }
+}
+
+Agence::~Agence(){
+  fstream file;
+  file.open("save.dat",ios::out|ios::binary);
+  if(!file){
+		cout<<"Error in creating file...\n";
+		return;
+	}
+  file.write((char*)this,sizeof(*this));
+	file.close();
+  cout<<"Date saved into file the file.\n";
+  file.close();
 }
