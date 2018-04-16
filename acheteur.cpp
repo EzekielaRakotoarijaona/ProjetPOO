@@ -56,9 +56,6 @@ void Acheteur::supprimer_visite(int _idbien, bool &suppression, string &nom, int
       if (suppression == false)
         cout << "erreur, aucune visite ayant l'id " << _idbien << " n'a ete trouve" << endl;
     }
-
-    else
-      cout << "impossible, aucune proposition n'a ete faite pour le bien " << _idbien << endl;
   }
 }
 

@@ -361,22 +361,11 @@ int main(){
           cout << "1 : maison\n2 : appartement\n3 : terrain\n4 : locaux pro\n5 : retour" << endl;  cin >> type_bien;
           gestion_exception(1, 5, type_bien);
           if (type_bien == 5) break;
-
+          
+          cout << "attention, la suppression d'un bien va entrainer la suppression des visites associees"
           cout << "id du bien a supprimer : " << endl;   cin >> suppression;
           gestion_exception(-1, -1, suppression);
           UnToitPourTous.acheter_bien(suppression, nom, prix);
-
-          if (type_bien == 1)
-            UnToitPourTous.supprimer_maison(suppression);
-
-          if (type_bien == 2)
-            UnToitPourTous.supprimer_appartement(suppression);
-
-          if (type_bien == 3)
-            UnToitPourTous.supprimer_terrain(suppression);
-
-          if (type_bien == 4)
-            UnToitPourTous.supprimer_locaux(suppression);
         }
 
         // ce cas va permettre d'ajouter des visites
