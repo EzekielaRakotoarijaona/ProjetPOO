@@ -83,6 +83,10 @@ int main(){
         cout << "1 : consulter les visites\n2 : consulter les biens disponibles\n3 : consulter les clients\n4 : consulter les biens d'un client\n5 : rechercher" << endl;
         cin >> consult;
 
+        // on gere si l'utilisateur rentre une donnee incorrecte
+        if (consult < 1 || consult > 5)
+        cout << "retapez" << endl;
+
         // ce cas va traiter l'affichage de toutes les visites
         if (consult == 1){
           map <string, Acheteur> client_ach = UnToitPourTous.retourner_client_acheteur();
@@ -143,8 +147,17 @@ int main(){
 
       // GESTION DES CLIENTS, DES BIENS ET DES VISITES
       case 2:
-        cout << "1 : ajouter un client\n2 : supprimer client\n3 : ajouter un bien\n4 : supprimer un bien\n5 : ajouter une visite" << endl;
+        cout << "1 : ajouter un client\n2 : supprimer client\n3 : ajouter un bien\n4 : supprimer un bien\n5 : ajouter une visite\n6 : retour" << endl;
         cin >> action;
+        if (cin.fail())
+          cout << "entrez un chiffre" << endl;
+
+        // ce cas va regarder si l'utilisateur entre une donnee incorrecte
+        if (action < 1 || action > 6)
+        cout << "retapez" << endl;
+
+        // ce cas va traiter le cas de retour
+        if (action == 6) break;
 
         // ce cas va traiter l'ajout d'un client dans la map associée de la classe agence
         if (action == 1){
@@ -152,7 +165,8 @@ int main(){
           string nom_du_client;
           string adresse_du_client;
 
-          cout << "1 : acheteur\n2 : vendeur" << endl;     cin >> type_client;
+          cout << "1 : acheteur\n2 : vendeur\3 : retour" << endl;     cin >> type_client;
+          if (type_client == 3) break;
           cout << "nom du client : " << endl;              cin >> nom_du_client;
           cout << "adresse du client : " << endl;          cin >> adresse_du_client;
 
