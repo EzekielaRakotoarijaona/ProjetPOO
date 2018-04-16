@@ -597,6 +597,7 @@ void Agence::creer_visite(string nom, int idbien, bool proposition, int prix){
 // cette fonction va permettre de supprimer une visite ainsi que le bien dans la liste des biens de l'agence et dans celle du vendeur
 void Agence::acheter_bien(int idbien){
   string nom_vendeur;
+  bool fait = false;
   int id = decode_id(idbien);
   int id_valide = existe_bien(id, idbien, nom_vendeur);
 
@@ -605,22 +606,24 @@ void Agence::acheter_bien(int idbien){
 
   // supprimer la visite
   for(map <string, Acheteur>::iterator it = clients_acheteurs.begin() ; it != clients_acheteurs.end() ; it++)
-    it->second.supprimer_visite(idbien);
+    fait = it->second.supprimer_visite(idbien);
 
-  // supprimer le bien du vendeur
-  map <string, Vendeur>::iterator it2;
-  it2 = clients_vendeurs.find(nom_vendeur);
-  it2->second.retirer_bien(idbien);
+  if (fait == true){
+    // supprimer le bien du vendeur
+    map <string, Vendeur>::iterator it2;
+    it2 = clients_vendeurs.find(nom_vendeur);
+    it2->second.retirer_bien(idbien);
 
-  // supprimer le bien dans l'agence
-  if (id == 1)
-    supprimer_maison(idbien);
-  if (id == 2)
-    supprimer_appartement(idbien);
-  if (id == 3)
-    supprimer_terrain(idbien);
-  if (id == 4)
-    supprimer_locaux(idbien);
+    // supprimer le bien dans l'agence
+    if (id == 1)
+      supprimer_maison(idbien);
+    if (id == 2)
+      supprimer_appartement(idbien);
+    if (id == 3)
+      supprimer_terrain(idbien);
+    if (id == 4)
+      supprimer_locaux(idbien);
+  }
 }
 
 /* ------------------------------------------------------------------------------------------------------------------------- */

@@ -21,18 +21,17 @@ void Acheteur::ajouter_visite(int _prix, bool _proposition, int _idbien){
 /* ------------------------------------------------------------------------------------------------------------------------- */
 
 // cette fonction va permettre de supprimer les visites ayant pour id celui passe en parametre
-void Acheteur::supprimer_visite(int _idbien){
-  int fait = 0;
+bool Acheteur::supprimer_visite(int _idbien){
   for (int i = 0 ; i < idbien.size() ; i++)
     if (idbien[i] == _idbien){
       this->idbien.erase(idbien.begin() + i);
       this->proposition.erase(proposition.begin() + i);
       this->prix.erase(prix.begin() + i);
-      fait = 1;
       cout << "visite supprimee" << endl;
+      return true;
     }
-  if (fait == 0)
-    cout << "erreur, aucune visite pour le bien ayant l'id " << _idbien << endl;
+  cout << "erreur, aucune visite pour le bien ayant l'id " << _idbien << endl;
+  return false;
 }
 
 /* ------------------------------------------------------------------------------------------------------------------------- */
