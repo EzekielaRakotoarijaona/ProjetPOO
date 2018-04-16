@@ -24,7 +24,8 @@ protected:
   // Méthodes
 public:
   Agence();
-  void creer_visite(std::string nom, int prix, bool proposition, int idbien);
+  void creer_visite(std::string nom, int idbien, bool proposition, int prix);
+  void acheter_bien(int idbien);
   void afficher_biens_vendeurs();
   void ajouter_client_vendeur(Vendeur c);
   void ajouter_client_acheteur(Acheteur c);
@@ -47,6 +48,7 @@ public:
   inline std::map <int, Terrain> retourner_terrain() {return _terrain;};
   inline std::map <int, Locaux_pro> retourner_locauxpro() {return _locauxpro;};
   bool existe_ref_client(std::string ref_client);
+  bool existe_bien(int bien, int idbien, std::string &nom);
   void rechercher_bien_selon_prix(int operateur, int prix, int bien);
   ~Agence();
 };

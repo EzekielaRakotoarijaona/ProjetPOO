@@ -16,6 +16,7 @@ protected:
 public:
     Acheteur(std::string _nom, std::string _adresse);
     void ajouter_visite(int _prix, bool _proposition, int _idbien);
+    void supprimer_visite(int _idbien);
     inline std::vector<int> retourner_prix() {return prix;};
     inline std::vector<bool> retourner_proposition() {return proposition;};
     inline std::vector<int> retourner_idbien() {return idbien;};

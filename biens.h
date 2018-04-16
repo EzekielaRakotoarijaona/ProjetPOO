@@ -22,7 +22,7 @@ public:
   inline int retourner_surface() {return surface_bien;};
   inline std::string retourner_referenceClient() {return ref_client_vendeur_bien;};
   inline int retourner_id() {return id_bien;};
-  void virtual afficher();//Méthode afficher biens 
+  void virtual afficher();//Méthode afficher biens
   inline ~Biens() {};//Destructeur
 };
 

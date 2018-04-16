@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include <algorithm>
+#include <algorithm> // pour compiler sous windows
 #include <map>
 #include "agence.h"
 #include "vendeur.h"
@@ -327,8 +327,7 @@ void Agence::afficher_biens_vendeurs(){
   cout << "nom du client :" << endl;
   cin >> nom;
   map <string, Vendeur>::iterator it = clients_vendeurs.find(nom);
-  if(it == clients_vendeurs.end())
-  {
+  if(it == clients_vendeurs.end()){
     cout << "client introuvable" << endl;
     return;
   }
@@ -351,46 +350,39 @@ void Agence::ajouter_client_acheteur(Acheteur c){
 void Agence::supprimer_client_vendeur(string nom){
   map <string, Vendeur>::iterator it;
   it = clients_vendeurs.find(nom);
-  if(it == clients_vendeurs.end())
-  {
+  if(it == clients_vendeurs.end()){
     cout << "introuvable" << endl;
     return;
   }
   //Acceder a l'objet vendeur puis a son tableau de bien et supprimer tous les biens de ce vendeur
   vector<int> tab_bien = it->second.retourner_tableauBien();
   int type;
-  for(int i = 0; i < tab_bien.size(); i++)
-  {
+  for(int i = 0; i < tab_bien.size(); i++){
     type = decode_id(tab_bien[i]);
 
-    if(type == 1)
-    {
+    if(type == 1){
       map <int, Maison>::iterator it1;
       it1 = _maison.find(tab_bien[i]);
       _maison.erase(it1);
     }
 
-    if(type == 2)
-    {
+    if(type == 2){
       map <int, Appartement>::iterator it2;
       it2 = _appartement.find(tab_bien[i]);
       _appartement.erase(it2);
     }
 
-    if(type == 3)
-    {
+    if(type == 3){
       map <int, Terrain>::iterator it3;
       it3 = _terrain.find(tab_bien[i]);
       _terrain.erase(it3);
     }
 
-    if(type == 4)
-    {
+    if(type == 4){
       map <int, Locaux_pro>::iterator it4;
       it4 = _locauxpro.find(tab_bien[i]);
       _locauxpro.erase(it4);
     }
-
   }
   clients_vendeurs.erase(it);
   cout << "Client vendeur supprime" << endl << endl;
@@ -400,8 +392,7 @@ void Agence::supprimer_client_vendeur(string nom){
 void Agence::supprimer_client_acheteur(string nom){
   map <string, Acheteur>::iterator it;
   it = clients_acheteurs.find(nom);
-  if(it == clients_acheteurs.end())
-  {
+  if(it == clients_acheteurs.end()){
     cout << "introuvable" << endl;
     return;
   }
@@ -413,8 +404,7 @@ void Agence::supprimer_client_acheteur(string nom){
 void Agence::supprimer_appartement(int id){
   map <int, Appartement>::iterator it;
   it = _appartement.find(id);
-  if(it == _appartement.end())
-  {
+  if(it == _appartement.end()){
     cout << "introuvable" << endl;
     return;
   }
@@ -430,8 +420,7 @@ void Agence::supprimer_appartement(int id){
 void Agence::supprimer_maison(int id){
   map <int, Maison>::iterator it;
   it = _maison.find(id);
-  if(it == _maison.end())
-  {
+  if(it == _maison.end()){
     cout << "introuvable" << endl;
     return;
   }
@@ -447,8 +436,7 @@ void Agence::supprimer_maison(int id){
 void Agence::supprimer_terrain(int id){
   map <int, Terrain>::iterator it;
   it = _terrain.find(id);
-  if(it == _terrain.end())
-  {
+  if(it == _terrain.end()){
     cout << "introuvable" << endl;
     return;
   }
@@ -464,8 +452,7 @@ void Agence::supprimer_terrain(int id){
 void Agence::supprimer_locaux(int id){
   map <int, Locaux_pro>::iterator it;
   it = _locauxpro.find(id);
-  if(it == _locauxpro.end())
-  {
+  if(it == _locauxpro.end()){
     cout << "introuvable" << endl;
     return;
   }
@@ -476,6 +463,7 @@ void Agence::supprimer_locaux(int id){
   _locauxpro.erase(it);
   cout << "locaux supprimes" << endl << endl;
 }
+
 //Methode afficher biens
 void Agence::afficher_biens(){
   int type = -1;
@@ -516,14 +504,41 @@ void Agence::afficher_biens(){
 void Agence::creer_visite(string nom, int idbien, bool proposition, int prix){
   map <string, Acheteur>::iterator it;
   it = clients_acheteurs.find(nom);
-  if(it == clients_acheteurs.end())
-  {
+  if(it == clients_acheteurs.end()){
     cout << "client introuvable" << endl;
     return;
   }
   it->second.ajouter_visite(prix, proposition, idbien);
 }
 
+
+void Agence::acheter_bien(int idbien){
+  string nom_vendeur;
+  int id = decode_id(idbien);
+  int id_valide = existe_bien(id, idbien, nom_vendeur);
+
+  if (id < 1 || id > 4 || id_valide == false)
+    return;
+
+  // supprimer la visite
+  for(map <string, Acheteur>::iterator it = clients_acheteurs.begin() ; it != clients_acheteurs.end() ; it++)
+    it->second.supprimer_visite(idbien);
+
+  // supprimer le bien du vendeur
+  map <string, Vendeur>::iterator it2;
+  it2 = clients_vendeurs.find(nom_vendeur);
+  it2->second.retirer_bien(idbien);
+
+  // supprimer le bien dans l'agence
+  if (id == 1)
+    supprimer_maison(idbien);
+  if (id == 2)
+    supprimer_appartement(idbien);
+  if (id == 3)
+    supprimer_terrain(idbien);
+  if (id == 4)
+    supprimer_locaux(idbien);
+}
 
 //Methode afficher clients
 void Agence::afficher_clients(){
@@ -543,12 +558,60 @@ bool Agence::existe_ref_client(string ref_client){
   map <string, Vendeur> clients_vendeurs = retourner_client_vendeur();
   map <string, Vendeur>::iterator it;
   it = clients_vendeurs.find(ref_client);
-  if(it == clients_vendeurs.end())
-  {
+  if(it == clients_vendeurs.end()){
     cout << "erreur : client non trouve" << endl;
     return false;
   }
   return true;
+}
+
+bool Agence::existe_bien(int bien, int idbien, string &nom){
+  switch(bien){
+    case 1: // maison
+    {
+      map <int, Maison> mai = retourner_maison();
+      for(map <int, Maison>::iterator it = mai.begin() ; it != mai.end() ; it++)
+        if (idbien == it->second.retourner_id()){
+          nom = it->second.retourner_referenceClient();
+          return true;
+        }
+      return false;
+    }
+
+    case 2: // appartement
+    {
+      map <int, Appartement> app = retourner_appartement();
+      for(map <int, Appartement>::iterator it = app.begin() ; it != app.end() ; it++)
+        if (idbien == it->second.retourner_id()){
+          nom = it->second.retourner_referenceClient();
+          return true;
+        }
+      return false;
+    }
+
+    case 3: // terrain
+    {
+      map <int, Terrain> terr = retourner_terrain();
+      for(map <int, Terrain>::iterator it = terr.begin() ; it != terr.end() ; it++)
+        if (idbien == it->second.retourner_id()){
+          nom = it->second.retourner_referenceClient();
+          return true;
+        }
+      return false;
+    }
+
+    case 4: // locaux pro
+    {
+      map <int, Locaux_pro> loc = retourner_locauxpro();
+      for(map <int, Locaux_pro>::iterator it = loc.begin() ; it != loc.end() ; it++)
+        if (idbien == it->second.retourner_id()){
+          nom = it->second.retourner_referenceClient();
+          return true;
+        }
+      return false;
+    }
+  }
+  return false;
 }
 
 void Agence::rechercher_bien_selon_prix(int operateur, int prix, int bien){
@@ -615,8 +678,7 @@ Agence::~Agence(){
   		cout<<"Error in creating file...\n";
   		return;
   	}
-    for(map <string, Vendeur>::iterator it2 = clients_vendeurs.begin() ; it2 != clients_vendeurs.end() ; it2++)
-    {
+    for(map <string, Vendeur>::iterator it2 = clients_vendeurs.begin() ; it2 != clients_vendeurs.end() ; it2++){
       file << it2->second.retourner_nom() << endl;
       file << it2->second.retourner_adresse() << endl;
     }
@@ -627,8 +689,7 @@ Agence::~Agence(){
   		cout<<"Error in creating file...\n";
   		return;
   	}
-    for(map <int, Maison>::iterator it = _maison.begin() ; it != _maison.end() ; it++)
-    {
+    for(map <int, Maison>::iterator it = _maison.begin() ; it != _maison.end() ; it++){
       file << it->second.retourner_prix() << endl;
       file << it->second.retourner_adresse() << endl;
       file << it->second.retourner_surface() << endl;
@@ -646,8 +707,7 @@ Agence::~Agence(){
   		cout<<"Error in creating file...\n";
   		return;
   	}
-    for(map <int, Appartement>::iterator it3 = _appartement.begin() ; it3 != _appartement.end() ; it3++)
-    {
+    for(map <int, Appartement>::iterator it3 = _appartement.begin() ; it3 != _appartement.end() ; it3++){
       file << it3->second.retourner_prix() << endl;
       file << it3->second.retourner_adresse() << endl;
       file << it3->second.retourner_surface() << endl;
@@ -667,8 +727,7 @@ Agence::~Agence(){
   		cout<<"Error in creating file...\n";
   		return;
   	}
-    for(map <int, Locaux_pro>::iterator it4 = _locauxpro.begin() ; it4 != _locauxpro.end() ; it4++)
-    {
+    for(map <int, Locaux_pro>::iterator it4 = _locauxpro.begin() ; it4 != _locauxpro.end() ; it4++){
       file << it4->second.retourner_prix() << endl;
       file << it4->second.retourner_adresse() << endl;
       file << it4->second.retourner_surface() << endl;
@@ -684,8 +743,7 @@ Agence::~Agence(){
   		cout<<"Error in creating file...\n";
   		return;
   	}
-    for(map <int, Terrain>::iterator it5 = _terrain.begin() ; it5 != _terrain.end() ; it5++)
-    {
+    for(map <int, Terrain>::iterator it5 = _terrain.begin() ; it5 != _terrain.end() ; it5++){
       file << it5->second.retourner_prix() << endl;
       file << it5->second.retourner_adresse() << endl;
       file << it5->second.retourner_surface() << endl;
@@ -700,8 +758,7 @@ Agence::~Agence(){
   		cout<<"Error in creating file...\n";
   		return;
   	}
-    for(map <string, Acheteur>::iterator it6 = clients_acheteurs.begin() ; it6 != clients_acheteurs.end() ; it6++)
-    {
+    for(map <string, Acheteur>::iterator it6 = clients_acheteurs.begin() ; it6 != clients_acheteurs.end() ; it6++){
       file << it6->second.retourner_nom() << endl;
       file << it6->second.retourner_adresse() << endl;
       vector<int> id = it6->second.retourner_idbien();
@@ -709,8 +766,7 @@ Agence::~Agence(){
       vector<int> prix = it6->second.retourner_prix();
       int size = id.size();
       file << size << endl;
-      for(int i = 0; i < size; i++)
-      {
+      for(int i = 0; i < size; i++){
         file << id[i] << endl;
         file << proposition[i] << endl;
         file << prix[i] << endl;

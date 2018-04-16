@@ -24,12 +24,10 @@ void Vendeur::ajouter_bien(int id){ //Méthode qui ajoute un bien au compte du v
   tableau_bien.push_back(id);
 }
 
-bool Vendeur::retirer_bien(int id){ //Méthode qui
-  for(int i = 0 ; i < tableau_bien.size() ; i++)
-    if(tableau_bien.at(i) == id){
+void Vendeur::retirer_bien(int id){
+  for (int i = 0 ; i < tableau_bien.size() ; i++)
+    if (tableau_bien.at(i) == id){
       tableau_bien.erase(tableau_bien.begin() + i);
-      return true;
+      cout << "bien retire" << endl;
     }
-    return false;
- // Faut it pas ajouter la methode Modifier bien ?
 }

@@ -164,12 +164,10 @@ int main(){
 
       // GESTION DES CLIENTS, DES BIENS ET DES VISITES
       case 2:
-        cout << "1 : ajouter un client\n2 : supprimer client\n3 : ajouter un bien\n4 : supprimer un bien\n5 : ajouter une visite\n6 : retour" << endl;
+        cout << "1 : ajouter un client\n2 : supprimer client\n3 : ajouter un bien\n4 : supprimer un bien\n5 : ajouter une visite\n6 : acheter un bien\n7 : retour" << endl;
         cin >> action;
-        gestion_exception(1, 6, action);
-
-        // ce cas va traiter le cas de retour
-        if (action == 6) break;
+        gestion_exception(1, 7, action);
+        if (action == 7) break;
 
         // ce cas va traiter l'ajout d'un client dans la map associée de la classe agence
         if (action == 1){
@@ -361,6 +359,13 @@ int main(){
             gestion_exception(0, -1, prix);
             UnToitPourTous.creer_visite(nom_client, idbien, proposition, prix);
           }
+        }
+
+        if (action == 6){
+          int idbien;
+          cout << "quel est l'id du bien qui a ete achete : " << endl;  cin >> idbien;
+          gestion_exception(-1, -1, idbien);
+          UnToitPourTous.acheter_bien(idbien);
         }
         break;
 

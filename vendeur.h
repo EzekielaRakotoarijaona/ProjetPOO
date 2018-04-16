@@ -17,7 +17,7 @@ public:
   void afficher_b();
   inline std::vector<int> retourner_tableauBien() {return tableau_bien;};
   void ajouter_bien(int id);
-  bool retirer_bien(int id);
+  void retirer_bien(int id);
   inline ~Vendeur() {};//Destructeur
 };
 
