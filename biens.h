@@ -3,18 +3,17 @@
 
 #include <iostream>
 
-
-
 class Biens{
-  //Attributs
 protected:
+  // attributs
   int prix_bien;
   std::string adresse_bien;
   int surface_bien;
   std::string ref_client_vendeur_bien;
   int id_bien;
-//Methodes
+
 public:
+  // methodes
   Biens();
   Biens(int prix, std::string adresse, int surface, std::string reference,int id);
   inline int retourner_prix() {return prix_bien;};
@@ -22,8 +21,8 @@ public:
   inline int retourner_surface() {return surface_bien;};
   inline std::string retourner_referenceClient() {return ref_client_vendeur_bien;};
   inline int retourner_id() {return id_bien;};
-  void virtual afficher();//Méthode afficher biens
-  inline ~Biens() {};//Destructeur
+  void virtual afficher();
+  inline ~Biens() {};
 };
 
 #endif

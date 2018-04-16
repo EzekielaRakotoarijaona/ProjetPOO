@@ -2,18 +2,25 @@
 #include "acheteur.h"
 using namespace std;
 
-//constructeur
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// ce constructeur va permettre de creer un objet acheteur
 Acheteur::Acheteur(string _nom, string _adresse): Client(_nom, _adresse){
   cout << "acheteur cree" << endl;
 }
 
-//Methode ajouter visite
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// cette fonction va permettre d'ajouter des visites grace a l'ajout de donnees dans les 3 differents vecteurs
 void Acheteur::ajouter_visite(int _prix, bool _proposition, int _idbien){
   prix.push_back(_prix);
   idbien.push_back(_idbien);
   proposition.push_back(_proposition);
 }
 
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// cette fonction va permettre de supprimer les visites ayant pour id celui passe en parametre
 void Acheteur::supprimer_visite(int _idbien){
   int fait = 0;
   for (int i = 0 ; i < idbien.size() ; i++)
@@ -28,12 +35,16 @@ void Acheteur::supprimer_visite(int _idbien){
     cout << "erreur, aucune visite pour le bien ayant l'id " << _idbien << endl;
 }
 
-//Methode Afficher nom acheteur
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// cette fonction va permettre d'afficher le client acheteur
 void Acheteur::afficher_acheteur(){
   this->Client::afficher();
 }
 
-//Methode afficher les visites
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// cette fonction va permettre d'afficher la liste de toutes les visites d'un client acheteur
 void Acheteur::afficher_visites(){
   for(int i = 0 ; i < idbien.size() ; i++){
     cout << "id du bien : " << idbien[i] << endl;

@@ -5,15 +5,16 @@
 #include "biens.h"
 
 class Terrain: public Biens{
-  //Attribut
 protected:
+  // attributs
   bool constructible;
+  
 public:
-  //Méthodes
-  Terrain(int _prix, std::string _adresse, int _surface, std::string _reference, int _id_bien, bool _constructible);//Constructeur
+  // methodes
+  Terrain(int _prix, std::string _adresse, int _surface, std::string _reference, int _id_bien, bool _constructible);
   inline bool retourner_constructible() {return constructible;};
-  void afficher();//Méthode qui affiche le terrain
-  inline ~Terrain() {};//Destructeur
+  void afficher();
+  inline ~Terrain() {};
 };
 
 #endif

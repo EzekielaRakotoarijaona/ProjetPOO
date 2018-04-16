@@ -13,16 +13,17 @@
 
 
 class Agence{
-  // Attributs
 protected:
+  // attributs
   std::map <std::string, Vendeur> clients_vendeurs;
   std::map <std::string, Acheteur> clients_acheteurs;
   std::map <int, Appartement> _appartement;
   std::map <int, Maison> _maison;
   std::map <int, Terrain> _terrain;
   std::map <int, Locaux_pro> _locauxpro;
-  // Méthodes
+
 public:
+  // methodes
   Agence();
   void creer_visite(std::string nom, int idbien, bool proposition, int prix);
   void acheter_bien(int idbien);

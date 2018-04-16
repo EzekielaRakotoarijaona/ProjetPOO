@@ -16,6 +16,9 @@ using namespace std;
 
 #define TAILLE_MAX 4096
 
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// cette fonction va decoder un id de bien afin de definir son type (maison, appartement, ...)
 int decode_id(int id){
   if(id < 1000000 || id > 4999999)
     return -1;
@@ -23,7 +26,9 @@ int decode_id(int id){
   return id;
 }
 
-// constructeur agence
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// ce constructeur va permettre de creer une agence et de creer ou de charger les donnees des fichiers .txt
 Agence::Agence(){
   clients_vendeurs.empty();
   clients_acheteurs.empty();
@@ -34,7 +39,7 @@ Agence::Agence(){
   cout << "agence creee" << endl << endl;
   ifstream file;
 
-  //lecture vendeur.txt
+  // lecture vendeur.txt
   file.open("vendeur.txt");
   if(!file){
     cout <<"vendeur.txt inexistant, creation en cours..." << endl;
@@ -56,7 +61,7 @@ Agence::Agence(){
   cout << "vendeur charge" << endl;
   file.close();
 
-  //lecture maison.txt
+  // lecture maison.txt
   file.open("maison.txt");
   if(!file){
     cout <<"maison.txt inexistant, creation en cours..." << endl;
@@ -113,7 +118,7 @@ Agence::Agence(){
   cout << "maison charge" << endl;
   file.close();
 
-  //lecture appartement.txt
+  // lecture appartement.txt
   file.open("appartement.txt");
   if(!file){
     cout <<"appartement.txt inexistant, creation en cours..." << endl;
@@ -173,7 +178,7 @@ Agence::Agence(){
   cout << "appartement charge" << endl;
   file.close();
 
-  //lecture locaux_pro.txt
+  // lecture locaux_pro.txt
   file.open("locaux_pro.txt");
   if(!file){
     cout <<"locaux_pro.txt inexistants, creation en cours..." << endl;
@@ -214,7 +219,7 @@ Agence::Agence(){
   cout << "locaux_pro charges" << endl;
   file.close();
 
-  //lecture terrain.txt
+  // lecture terrain.txt
   file.open("terrain.txt");
   if(!file){
     cout <<"terrain.txt inexistant, creation en cours..." << endl;
@@ -250,7 +255,7 @@ Agence::Agence(){
   cout << "terrain charge" << endl;
   file.close();
 
-  //lecture acheteur.txt
+  // lecture acheteur.txt
   file.open("acheteur.txt");
   if(!file){
     cout <<"acheteur.txt inexistant, creation en cours...\n";
@@ -294,7 +299,9 @@ Agence::Agence(){
   file.close();
 }
 
+/* ------------------------------------------------------------------------------------------------------------------------- */
 
+// cette fonction va permettre de rajouter une maison dans la map associee et dans la liste des biens du client vendeur
 void Agence::ajouter_maison(Maison m){
   _maison.insert(std::make_pair(m.retourner_id(),m));
   string ref = m.retourner_referenceClient();
@@ -302,6 +309,9 @@ void Agence::ajouter_maison(Maison m){
   it->second.ajouter_bien(m.retourner_id());
 }
 
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// cette fonction va permettre de rajouter un appartement dans la map associee et dans la liste des biens du client vendeur
 void Agence::ajouter_appartement(Appartement a){
   _appartement.insert(std::make_pair(a.retourner_id(),a));
   string ref = a.retourner_referenceClient();
@@ -309,6 +319,9 @@ void Agence::ajouter_appartement(Appartement a){
   it->second.ajouter_bien(a.retourner_id());
 }
 
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// cette fonction va permettre de rajouter un terrain dans la map associee et dans la liste des biens du client vendeur
 void Agence::ajouter_terrain(Terrain t){
   _terrain.insert(std::make_pair(t.retourner_id(),t));
   string ref = t.retourner_referenceClient();
@@ -316,6 +329,9 @@ void Agence::ajouter_terrain(Terrain t){
   it->second.ajouter_bien(t.retourner_id());
 }
 
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// cette fonction va permettre de rajouter des locaux dans la map associee et dans la liste des biens du client vendeur
 void Agence::ajouter_locaux(Locaux_pro l){
   _locauxpro.insert(std::make_pair(l.retourner_id(),l));
   string ref = l.retourner_referenceClient();
@@ -323,7 +339,9 @@ void Agence::ajouter_locaux(Locaux_pro l){
   it->second.ajouter_bien(l.retourner_id());
 }
 
+/* ------------------------------------------------------------------------------------------------------------------------- */
 
+// cette fonction va permettre d'afficher tous les biens d'un vendeur
 void Agence::afficher_biens_vendeurs(){
   string nom;
   cout << "nom du client :" << endl;
@@ -336,19 +354,25 @@ void Agence::afficher_biens_vendeurs(){
   it->second.afficher_b();
 }
 
-// methode ajouter client vendeur
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// cette fonction va permettre d'ajouter un client vendeur
 void Agence::ajouter_client_vendeur(Vendeur c){
   clients_vendeurs.insert(make_pair(c.retourner_nom(),c));
   cout << "Client Ajoute" << endl << endl;
 }
 
-// methode ajouter client acheteur
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// cette fonction va permettre d'ajouter un client acheteur
 void Agence::ajouter_client_acheteur(Acheteur c){
   clients_acheteurs.insert(make_pair(c.retourner_nom(),c));
   cout << "Client Ajoute" << endl << endl;
 }
 
-//Methode supprimer client vendeur
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// cette fonction va permettre de supprimer un client vendeur ainsi que la liste de tous ses biens
 void Agence::supprimer_client_vendeur(string nom){
   map <string, Vendeur>::iterator it;
   it = clients_vendeurs.find(nom);
@@ -356,7 +380,7 @@ void Agence::supprimer_client_vendeur(string nom){
     cout << "introuvable" << endl;
     return;
   }
-  //Acceder a l'objet vendeur puis a son tableau de bien et supprimer tous les biens de ce vendeur
+  // acceder a l'objet vendeur puis a son tableau de bien et supprimer tous les biens de ce vendeur
   vector<int> tab_bien = it->second.retourner_tableauBien();
   int type;
   for(int i = 0; i < tab_bien.size(); i++){
@@ -390,7 +414,9 @@ void Agence::supprimer_client_vendeur(string nom){
   cout << "Client vendeur supprime" << endl << endl;
 }
 
-// methode de suppression des clients acheteur
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// cette fonction va permettre de supprimer un client acheteur
 void Agence::supprimer_client_acheteur(string nom){
   map <string, Acheteur>::iterator it;
   it = clients_acheteurs.find(nom);
@@ -402,7 +428,9 @@ void Agence::supprimer_client_acheteur(string nom){
   cout << "Client acheteur supprime" << endl << endl;
 }
 
-// methode de suppression des appartements
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// cette fonction va permettre de supprimer un appartement
 void Agence::supprimer_appartement(int id){
   map <int, Appartement>::iterator it;
   it = _appartement.find(id);
@@ -418,7 +446,9 @@ void Agence::supprimer_appartement(int id){
   cout << "appartement supprime" <<endl << endl;
 }
 
-// Methode de suppression des maison
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// cette fonction va permettre de supprimer une maison
 void Agence::supprimer_maison(int id){
   map <int, Maison>::iterator it;
   it = _maison.find(id);
@@ -434,7 +464,9 @@ void Agence::supprimer_maison(int id){
   cout << "maison supprimee" << endl << endl;
 }
 
- //Methode de suppression des terrains
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// cette fonction va permettre de supprimer un terrain
 void Agence::supprimer_terrain(int id){
   map <int, Terrain>::iterator it;
   it = _terrain.find(id);
@@ -450,7 +482,9 @@ void Agence::supprimer_terrain(int id){
   cout << "terrain supprime" << endl << endl;
 }
 
- //methode de suppression des locaux
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// cette fonction va permettre de supprimer des locaux
 void Agence::supprimer_locaux(int id){
   map <int, Locaux_pro>::iterator it;
   it = _locauxpro.find(id);
@@ -466,7 +500,9 @@ void Agence::supprimer_locaux(int id){
   cout << "locaux supprimes" << endl << endl;
 }
 
-//Methode afficher biens
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// cette fonction va permettre d'afficher tous les biens selon le type donne
 void Agence::afficher_biens(){
   int type = -1;
   cout << "quel type de bien ?" << endl;
@@ -502,7 +538,9 @@ void Agence::afficher_biens(){
   }
 }
 
+/* ------------------------------------------------------------------------------------------------------------------------- */
 
+// cette fonction va permettre de creer une visite
 void Agence::creer_visite(string nom, int idbien, bool proposition, int prix){
   map <string, Acheteur>::iterator it;
   it = clients_acheteurs.find(nom);
@@ -554,7 +592,9 @@ void Agence::creer_visite(string nom, int idbien, bool proposition, int prix){
   it->second.ajouter_visite(prix, proposition, idbien);
 }
 
+/* ------------------------------------------------------------------------------------------------------------------------- */
 
+// cette fonction va permettre de supprimer une visite ainsi que le bien dans la liste des biens de l'agence et dans celle du vendeur
 void Agence::acheter_bien(int idbien){
   string nom_vendeur;
   int id = decode_id(idbien);
@@ -583,7 +623,9 @@ void Agence::acheter_bien(int idbien){
     supprimer_locaux(idbien);
 }
 
-//Methode afficher clients
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// cette fonction va permettre d'afficher tous les clients selon son type (acheteur / vendeur)
 void Agence::afficher_clients(){
   int type = -1;
   cout << "quel type de client ?" << endl;
@@ -597,6 +639,9 @@ void Agence::afficher_clients(){
       it2->second.afficher_vendeur();
 }
 
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// cette fonction va permettre de verifier si le nom du client existe dans la liste des vendeurs
 bool Agence::existe_ref_client(string ref_client){
   map <string, Vendeur> clients_vendeurs = retourner_client_vendeur();
   map <string, Vendeur>::iterator it;
@@ -608,6 +653,9 @@ bool Agence::existe_ref_client(string ref_client){
   return true;
 }
 
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// cette fonction va permettre de verifier si l'id d'un bien existe, et s'il existe on va mettre le nom du client vendeur dans une variable passee par reference
 bool Agence::existe_bien(int bien, int idbien, string &nom){
   switch(bien){
     case 1: // maison
@@ -657,6 +705,9 @@ bool Agence::existe_bien(int bien, int idbien, string &nom){
   return false;
 }
 
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// cette fonction va permettre de rechercher les biens selon si leur prix est inferieur ou superieur a la valeur recherchee
 void Agence::rechercher_bien_selon_prix(int operateur, int prix, int bien){
   switch(bien){
     case 1: // maison
@@ -714,6 +765,9 @@ void Agence::rechercher_bien_selon_prix(int operateur, int prix, int bien){
   }
 }
 
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// ce destructeur va permettre de detruire proprement l'agence et de sauvegarder les differentes donnees creees
 Agence::~Agence(){
     ofstream file;
     file.open("vendeur.txt",std::ofstream::out | std::ofstream::trunc);

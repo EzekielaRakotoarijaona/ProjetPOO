@@ -4,18 +4,19 @@
 #include <iostream>
 
 class Client{
-  //Attributs
 protected:
+  // attributs
   std::string nom;
   std::string adresse;
-//Méthodes
+
 public:
+  // methodes
   Client();
   Client(std::string n, std::string ad);
   inline std::string retourner_nom() {return nom;};
   inline std::string retourner_adresse() {return adresse;};
-  void afficher();//Méthode afficher client
-  inline ~Client() {};//Destructeur
+  void afficher();
+  inline ~Client() {};
 };
 
 #endif

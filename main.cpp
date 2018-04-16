@@ -10,10 +10,10 @@ using namespace std;
 #include "agence.h"
 #include <time.h>
 
+/* ------------------------------------------------------------------------------------------------------------------------- */
 
-
-
-int create_id_maison(map <int,Maison> v){
+// cette fonction va permettre de creer un id pour les maisons
+int create_id_maison(map <int, Maison> v){
     int id = rand()%100000;
     id += 1000000;
     while(v.find(id) != v.end()){
@@ -23,7 +23,10 @@ int create_id_maison(map <int,Maison> v){
     return id;
 }
 
-int create_id_appartement(map <int,Appartement> v){
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// cette fonction va permettre de creer un id pour les appartements
+int create_id_appartement(map <int, Appartement> v){
   int id = rand()%100000;
   id += 2000000;
   while(v.find(id) != v.end()){
@@ -33,17 +36,10 @@ int create_id_appartement(map <int,Appartement> v){
   return id;
 }
 
-int create_id_locaux(map <int,Locaux_pro> v){
-  int id = rand()%100000;
-  id += 4000000;
-  while(v.find(id) != v.end()){
-    int id = rand()%100000;
-    id += 4000000;
-  }
-  return id;
-}
+/* ------------------------------------------------------------------------------------------------------------------------- */
 
-int create_id_terrain(map<int,Terrain> v){
+// cette fonction va permettre de creer un id pour les terrains
+int create_id_terrain(map <int, Terrain> v){
   int id = rand()%100000;
   id += 3000000;
   while(v.find(id) != v.end()){
@@ -53,7 +49,22 @@ int create_id_terrain(map<int,Terrain> v){
   return id;
 }
 
+/* ------------------------------------------------------------------------------------------------------------------------- */
 
+// cette fonction va permettre de creer un id pour les locaux
+int create_id_locaux(map <int, Locaux_pro> v){
+  int id = rand()%100000;
+  id += 4000000;
+  while(v.find(id) != v.end()){
+    int id = rand()%100000;
+    id += 4000000;
+  }
+  return id;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// cette fonction va permettre de gerer les exceptions au cas ou un utilisateur entre une donnee qui n'est pas comprise entre les bornes souhaitees, ou si le type de la variable d'entree est incorrecte
 void gestion_exception(int inf_a, int sup_a, int &variable_a_modifier){
   if (inf_a == -1 && sup_a != -1){
     while(variable_a_modifier > sup_a || cin.fail()){
@@ -89,14 +100,18 @@ void gestion_exception(int inf_a, int sup_a, int &variable_a_modifier){
   }
 }
 
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// cette fonction va permettre a l'utilisateur de choisir ce qu'il veut faire sur le menu principal
 void gestion_menu(int &fin, int &commande){
   cout << "\n1 : Consulter les visites et les biens disponibles" << "\n2 : gestion des clients et des biens" << "\n3 : quitter" << endl;
   cin >> commande;
   gestion_exception(1, 3, commande);
 }
 
+/* ------------------------------------------------------------------------------------------------------------------------- */
 
-
+// fonction principale
 int main(){
   srand(time(NULL));
   // INITIALISATION DES DONNEES
