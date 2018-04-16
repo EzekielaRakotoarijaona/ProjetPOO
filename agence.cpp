@@ -17,6 +17,7 @@ using namespace std;
 #define TAILLE_MAX 4096
 
 int decode_id(int id){
+  if(id < 1000000)return -1;
   id = id/1000000;
   return id;
 }
@@ -520,6 +521,47 @@ void Agence::creer_visite(string nom, int idbien, bool proposition, int prix){
   {
     cout << "client introuvable" << endl;
     return;
+  }
+  map <int, Maison>::iterator it2;
+  map <int, Appartement>::iterator it3;
+  map <int, Locaux_pro>::iterator it4;
+  map <int, Terrain>::iterator it5;
+  int type = decode_id(idbien);
+  if(type == -1){
+    cout << "bien introuvable" << endl;
+    return;
+  }
+  if(type == 1){
+    it2 = _maison.find(idbien);
+    if(it2 == _maison.end())
+    {
+      cout << "bien introuvable" << endl;
+      return;
+    }
+  }
+  if(type == 2){
+    it3 = _appartement.find(idbien);
+    if(it3 == _appartement.end())
+    {
+      cout << "bien introuvable" << endl;
+      return;
+    }
+  }
+  if(type == 3){
+    it5 = _terrain.find(idbien);
+    if(it5 == _terrain.end())
+    {
+      cout << "bien introuvable" << endl;
+      return;
+    }
+  }
+  if(type == 4){
+    it4 = _locauxpro.find(idbien);
+    if(it4 == _locauxpro.end())
+    {
+      cout << "bien introuvable" << endl;
+      return;
+    }
   }
   it->second.ajouter_visite(prix, proposition, idbien);
 }
