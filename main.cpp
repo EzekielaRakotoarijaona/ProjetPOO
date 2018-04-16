@@ -55,7 +55,7 @@ int create_id_terrain(map<int,Terrain> v){
 
 
 void gestion_exception(int inf_a, int sup_a, int &variable_a_modifier){
-  if (inf_a == -1){
+  if (inf_a == -1 && sup_a != -1){
     while(variable_a_modifier > sup_a || cin.fail()){
       cout << "erreur de saisie, retapez" << endl;
       cin.clear();
@@ -63,7 +63,7 @@ void gestion_exception(int inf_a, int sup_a, int &variable_a_modifier){
       cin >> variable_a_modifier;
     }
   }
-  if (sup_a == -1){
+  if (sup_a == -1 && inf_a != -1){
     while(variable_a_modifier < inf_a || cin.fail()){
       cout << "erreur de saisie, retapez" << endl;
       cin.clear();
@@ -115,9 +115,10 @@ int main(){
 
       // CONSULTATION DE DONNEES
       case 1:
-        cout << "1 : consulter les visites\n2 : consulter les biens disponibles\n3 : consulter les clients\n4 : consulter les biens d'un client\n5 : rechercher" << endl;
+        cout << "1 : consulter les visites\n2 : consulter les biens disponibles\n3 : consulter les clients\n4 : consulter les biens d'un client\n5 : rechercher\n6 : retour" << endl;
         cin >> consult;
-        gestion_exception(1, 5, consult);
+        gestion_exception(1, 6, consult);
+        if (consult == 6) break;
 
         // ce cas va traiter l'affichage de toutes les visites
         if (consult == 1){
@@ -366,6 +367,10 @@ int main(){
       // QUITTER LE PROGRAMME
       case 3:
         return 1;
+
+      default:
+        cout << "option inexistante" << endl;
+        break;
     }
   }
   return 1;
