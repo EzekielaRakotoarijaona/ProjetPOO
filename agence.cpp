@@ -17,7 +17,8 @@ using namespace std;
 #define TAILLE_MAX 4096
 
 int decode_id(int id){
-  if(id < 1000000)return -1;
+  if(id < 1000000 || id > 4999999)
+    return -1;
   id = id/1000000;
   return id;
 }
