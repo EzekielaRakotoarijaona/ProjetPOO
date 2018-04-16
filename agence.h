@@ -26,7 +26,7 @@ public:
   // methodes
   Agence();
   void creer_visite(std::string nom, int idbien, bool proposition, int prix);
-  void acheter_bien(int idbien);
+  void acheter_bien(int idbien, std::string &nom, int &prix);
   void afficher_biens_vendeurs();
   void ajouter_client_vendeur(Vendeur c);
   void ajouter_client_acheteur(Acheteur c);

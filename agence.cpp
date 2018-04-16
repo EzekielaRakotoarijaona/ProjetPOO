@@ -595,11 +595,10 @@ void Agence::creer_visite(string nom, int idbien, bool proposition, int prix){
 /* ------------------------------------------------------------------------------------------------------------------------- */
 
 // cette fonction va permettre de supprimer une visite ainsi que le bien dans la liste des biens de l'agence et dans celle du vendeur
-void Agence::acheter_bien(int idbien){
+void Agence::acheter_bien(int idbien, string &nom_acheteur, int &depense_acheteur){
   string nom_vendeur;
   bool id_existe = false;
-  string nom_acheteur;
-  int depense_acheteur = 0;
+
   int id = decode_id(idbien);
   int id_valide = existe_bien(id, idbien, nom_vendeur);
 
@@ -631,10 +630,7 @@ void Agence::acheter_bien(int idbien){
       supprimer_terrain(idbien);
     if (id == 4)
       supprimer_locaux(idbien);
-
-    cout << "le bien a ete vendu a " << nom_acheteur << " pour " << depense_acheteur << " euros" << endl;
   }
-
 }
 
 /* ------------------------------------------------------------------------------------------------------------------------- */

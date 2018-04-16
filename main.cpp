@@ -356,12 +356,15 @@ int main(){
         if (action == 4){
           int type_bien = -1;
           int suppression;
+          string nom;
+          int prix;
           cout << "1 : maison\n2 : appartement\n3 : terrain\n4 : locaux pro\n5 : retour" << endl;  cin >> type_bien;
           gestion_exception(1, 5, type_bien);
           if (type_bien == 5) break;
 
           cout << "id du bien a supprimer : " << endl;   cin >> suppression;
           gestion_exception(-1, -1, suppression);
+          UnToitPourTous.acheter_bien(suppression, nom, prix);
 
           if (type_bien == 1)
             UnToitPourTous.supprimer_maison(suppression);
@@ -402,9 +405,12 @@ int main(){
         // ce cas va permettre de supprimer les visites pour le bien concerne, le bien dans l'agence et dans la liste des vendeurs.
         if (action == 6){
           int idbien;
+          string nom_acheteur;
+          int depense_acheteur = 0;
           cout << "quel est l'id du bien qui a ete achete : " << endl;  cin >> idbien;
           gestion_exception(-1, -1, idbien);
-          UnToitPourTous.acheter_bien(idbien);
+          UnToitPourTous.acheter_bien(idbien, nom_acheteur, depense_acheteur);
+          cout << "le bien a ete vendu a " << nom_acheteur << " pour " << depense_acheteur << " euros" << endl;
         }
         break;
 
