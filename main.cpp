@@ -79,6 +79,14 @@ void gestion_exception(int inf_a, int sup_a, int &variable_a_modifier){
       cin >> variable_a_modifier;
     }
   }
+  if (sup_a == -1 && inf_a == -1){
+    while(cin.fail()){
+      cout << "erreur de saisie, retapez" << endl;
+      cin.clear();
+      cin.ignore(999, '\n');
+      cin >> variable_a_modifier;
+    }
+  }
 }
 
 void gestion_menu(int &fin, int &commande){
@@ -157,11 +165,10 @@ int main(){
       case 2:
         cout << "1 : ajouter un client\n2 : supprimer client\n3 : ajouter un bien\n4 : supprimer un bien\n5 : ajouter une visite\n6 : retour" << endl;
         cin >> action;
+        gestion_exception(1, 6, action);
 
         // ce cas va traiter le cas de retour
         if (action == 6) break;
-
-        gestion_exception(1, 5, action);
 
         // ce cas va traiter l'ajout d'un client dans la map associée de la classe agence
         if (action == 1){
@@ -169,9 +176,9 @@ int main(){
           string nom_du_client;
           string adresse_du_client;
 
-          cout << "1 : acheteur\n2 : vendeur\3 : retour" << endl;     cin >> type_client;
+          cout << "1 : acheteur\n2 : vendeur\n3 : retour" << endl;     cin >> type_client;
+          gestion_exception(1, 3, type_client);
           if (type_client == 3) break;
-          gestion_exception(1, 2, type_client);
 
           cout << "nom du client : " << endl;              cin >> nom_du_client;
           cout << "adresse du client : " << endl;          cin >> adresse_du_client;
@@ -190,8 +197,10 @@ int main(){
         if (action == 2){
           int type_client = -1;
           string suppression;
-          cout << "1 : acheteur\n2 : vendeur" << endl;          cin >> type_client;
-          gestion_exception(1, 2, type_client);
+          cout << "1 : acheteur\n2 : vendeur\n3 : retour" << endl;          cin >> type_client;
+          gestion_exception(1, 3, type_client);
+          if (type_client == 3) break;
+
           cout << "nom du client a supprimer : " << endl;       cin >> suppression;
 
           if (type_client == 1)
@@ -210,8 +219,9 @@ int main(){
           string ref_client;
           int id_bien;
           cout << "1 : maison\n2 : appartement\n3 : terrain\n4 : locaux pro\n5 : retour" << endl;  cin >> type_bien;
+          gestion_exception(1, 5, type_bien);
           if (type_bien == 5) break;
-          gestion_exception(1, 4, type_bien);
+
           cout << "prix du bien : " << endl;                                           cin >> prix;
           gestion_exception(0, -1, prix);
           cout << "adresse du bien : " << endl;                                        cin >> adresse;
@@ -310,9 +320,10 @@ int main(){
           int type_bien = -1;
           int suppression;
           cout << "1 : maison\n2 : appartement\n3 : terrain\n4 : locaux pro\n5 : retour" << endl;  cin >> type_bien;
+          gestion_exception(1, 5, type_bien);
           if (type_bien == 5) break;
-          gestion_exception(1, 4, type_bien);
-          cout << "id du bien a supprimer : " << endl;                                 cin >> suppression;
+
+          cout << "id du bien a supprimer : " << endl;   cin >> suppression;
           gestion_exception(-1, -1, suppression);
 
           if (type_bien == 1)
@@ -333,7 +344,7 @@ int main(){
           std::map <std::string, Acheteur> clients_acheteurs = UnToitPourTous.retourner_client_acheteur();
           if(clients_acheteurs.empty() == 1)
             cout << "impossible, pas de client trouve" << endl;
-          else{
+          else {
             string nom_client;
             int idbien;
             bool proposition;
