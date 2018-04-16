@@ -1,5 +1,5 @@
 #include <iostream>
-#include <cstdlib>  //me faut cette ligne pour que ça marche sous windows, pardon
+#include <cstdlib>  // pour compiler sous windows
 using namespace std;
 #include "appartement.h"
 #include "maison.h"
@@ -123,12 +123,12 @@ int main(){
   system("clear");
   cout << "bienvenue sur votre logiciel de gestion" << endl;
 
-  // BOUCLE, VA PERMETTRE DE FAIRE TOURNER LE PROGRAMME
+  // BOUCLE, VA PERMETTRE DE FAIRE TOURNER LE PROGRAMME ----------------------------------------------------------------
   while(fin == 0){
     gestion_menu(fin, commande);
     switch(commande){
 
-      // CONSULTATION DE DONNEES
+      // CONSULTATION DE DONNEES ----------------------------------------------------------------------------------------
       case 1:
         cout << "1 : consulter les visites\n2 : consulter les biens disponibles\n3 : consulter les clients\n4 : consulter les biens d'un client\n5 : rechercher\n6 : retour" << endl;
         cin >> consult;
@@ -139,9 +139,8 @@ int main(){
         if (consult == 1){
           map <string, Acheteur> client_ach = UnToitPourTous.retourner_client_acheteur();
           map<string, Acheteur>::iterator it;
-          for(it = client_ach.begin() ; it != client_ach.end() ; it++){
+          for(it = client_ach.begin() ; it != client_ach.end() ; it++)
             it->second.afficher_visites();
-          }
         }
 
         // ce cas va traiter l'affichage de tous les biens
@@ -152,13 +151,17 @@ int main(){
         if (consult == 3)
           UnToitPourTous.afficher_clients();
 
+        // ce cas va traiter l'affichage des biens d'un vendeur, selon le type de bien
         if (consult == 4)
           UnToitPourTous.afficher_biens_vendeurs();
 
+        // ce cas va permettre d'afficher les id des biens selon les criteres demandes
         if (consult == 5){
           int rech = -1;
-          cout << "1 : rechercher un bien selon son prix" << endl;
+          cout << "1 : rechercher un bien selon son prix\n2 : rechercher un bien selon une option particuliere" << endl;
           cin >> rech;
+
+          // recherche selon le prix
           if (rech == 1){
             int prix = -1;
             int operateur = -1;
@@ -174,10 +177,25 @@ int main(){
             gestion_exception(0, -1, prix);
             UnToitPourTous.rechercher_bien_selon_prix(operateur, prix, type_de_bien);
           }
+
+          // recherche selon une option
+          if (rech == 2){
+            bool jardin = 0, piscine = 0, garage = 0, cave = 0, balcon = 0, constructible = 0, stockage = 0;
+            int choix = -1;
+            cout << "que voulez-vous dans votre bien : " << endl;
+            cout << "1 : jardin\n2 : piscine\n3 : garage\n4 : cave\n5 : balcon\n6 : zone constructible\n7 : piece de stockage" << endl;
+            cin >> choix;
+            gestion_exception(1, 7, choix);
+            if (choix == 1) jardin = 1;            if (choix == 2) piscine = 1;
+            if (choix == 3) garage = 1;            if (choix == 4) cave = 1;
+            if (choix == 5) balcon = 1;            if (choix == 6) constructible = 1;
+            if (choix == 7) stockage = 1;
+            UnToitPourTous.rechercher_bien_selon_option(jardin, piscine, garage, cave, balcon, constructible, stockage);
+          }
         }
         break;
 
-      // GESTION DES CLIENTS, DES BIENS ET DES VISITES
+      // GESTION DES CLIENTS, DES BIENS ET DES VISITES -------------------------------------------------------------------
       case 2:
         cout << "1 : ajouter un client\n2 : supprimer client\n3 : ajouter un bien\n4 : supprimer un bien\n5 : ajouter une visite\n6 : acheter un bien\n7 : retour" << endl;
         cin >> action;
@@ -197,10 +215,13 @@ int main(){
           cout << "nom du client : " << endl;              cin >> nom_du_client;
           cout << "adresse du client : " << endl;          cin >> adresse_du_client;
 
+          // client acheteur
           if (type_client == 1){
             Acheteur acheteur_a_ajouter(nom_du_client, adresse_du_client);
             UnToitPourTous.ajouter_client_acheteur(acheteur_a_ajouter);
           }
+
+          // client vendeur
           if (type_client == 2){
             Vendeur vendeur_a_ajouter(nom_du_client, adresse_du_client);
             UnToitPourTous.ajouter_client_vendeur(vendeur_a_ajouter);
@@ -246,6 +267,7 @@ int main(){
           bool test = UnToitPourTous.existe_ref_client(ref_client);
           if (test == true){
 
+            // ajout d'une maison
             if (type_bien == 1){
               int nombre_pieces;
               bool garage;
@@ -270,6 +292,7 @@ int main(){
               UnToitPourTous.ajouter_maison(mai);
             }
 
+            // ajout d'un appartement
             if (type_bien == 2){
               int nombre_de_piece_appartement;
               int etage;
@@ -283,7 +306,6 @@ int main(){
               id_bien = create_id_appartement(UnToitPourTous.retourner_appartement());
               cout << "nombre de pieces : " << endl;                         cin >> nombre_de_piece_appartement;
               gestion_exception(0, -1, nombre_de_piece_appartement);
-              cin.clear();
               cout << "nombre d'etage : " << endl;                           cin >> etage;
               gestion_exception(0, -1, etage);
               cout << "presence d'un garage (1 ou 0) : " << endl;            cin >> int_garage;
@@ -301,7 +323,7 @@ int main(){
               UnToitPourTous.ajouter_appartement(app);
             }
 
-
+            // ajout d'un terrain
             if (type_bien == 3){
               bool constructible;
               int int_constructible;
@@ -313,6 +335,7 @@ int main(){
               UnToitPourTous.ajouter_terrain(terr);
             }
 
+            // ajout de locaux
             if (type_bien == 4){
               int taille_vitrine;
               bool piece_stockage;
@@ -376,6 +399,7 @@ int main(){
           }
         }
 
+        // ce cas va permettre de supprimer les visites pour le bien concerne, le bien dans l'agence et dans la liste des vendeurs.
         if (action == 6){
           int idbien;
           cout << "quel est l'id du bien qui a ete achete : " << endl;  cin >> idbien;
@@ -384,10 +408,11 @@ int main(){
         }
         break;
 
-      // QUITTER LE PROGRAMME
+      // QUITTER LE PROGRAMME ---------------------------------------------------------------------------------------
       case 3:
         return 1;
 
+      // VALEUR PAR DEFAUT, toute valeur entree par l'utilisateur qui est differente de 1, 2 ou 3 affichera le message d'erreur
       default:
         cout << "option inexistante" << endl;
         break;

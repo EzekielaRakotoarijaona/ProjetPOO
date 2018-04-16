@@ -1,6 +1,2 @@
-finir la focntion supprimer client vendeur commentaire dessus (Done)
-suite des fonctions dans agence (compléter + save) (A voir)
 faire les fonctions de recherche specifique (En cours)
-faire une fonction de creation d'id pour les biens (Done)
-menu et interface utilisateur dans le main (En cours presque done)
-rapport et UML(en cours)
+rapport et UML (en cours)

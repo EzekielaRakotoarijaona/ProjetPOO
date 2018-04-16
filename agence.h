@@ -51,6 +51,7 @@ public:
   bool existe_ref_client(std::string ref_client);
   bool existe_bien(int bien, int idbien, std::string &nom);
   void rechercher_bien_selon_prix(int operateur, int prix, int bien);
+  void rechercher_bien_selon_option(bool jardin, bool piscine, bool garage, bool cave, bool balcon, bool constructible, bool piece_stockage);
   ~Agence();
 };
 

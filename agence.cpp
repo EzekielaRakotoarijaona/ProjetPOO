@@ -115,7 +115,7 @@ Agence::Agence(){
     Maison m(prix, adresse_bien, surface, reference, id, pieces, garage, jardin, piscine);
     this->ajouter_maison(m);
   }
-  cout << "maison charge" << endl;
+  cout << "maison chargee" << endl;
   file.close();
 
   // lecture appartement.txt
@@ -761,6 +761,51 @@ void Agence::rechercher_bien_selon_prix(int operateur, int prix, int bien){
             cout << "id : " << it->second.retourner_id() << endl;
       }
       break;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+// cette fonction va permettre de rechercher les biens selon si les options qu'ils possedent
+void Agence::rechercher_bien_selon_option(bool jardin, bool piscine, bool garage, bool cave, bool balcon, bool constructible, bool piece_stockage){
+  if (jardin == 1 || piscine == 1 || garage == 1){
+    map <int, Maison> mai = retourner_maison();
+    for(map <int, Maison>::iterator it = mai.begin() ; it != mai.end() ; it++){
+      if (jardin == 1 && it->second.retourner_jardin() == 1)
+        cout << "id : " << it->second.retourner_id() << endl;
+      if (piscine == 1 && it->second.retourner_piscine() == 1)
+        cout << "id : " << it->second.retourner_id() << endl;
+      if (garage == 1 && it->second.retourner_garage() == 1)
+        cout << "id : " << it->second.retourner_id() << endl;
+    }
+  }
+
+  if (garage == 1 || cave == 1 || balcon == 1){
+    map <int, Appartement> app = retourner_appartement();
+    for(map <int, Appartement>::iterator it2 = app.begin() ; it2 != app.end() ; it2++){
+      if (garage == 1 && it2->second.retourner_garage() == 1)
+        cout << "id : " << it2->second.retourner_id() << endl;
+      if (cave == 1 && it2->second.retourner_cave() == 1)
+        cout << "id : " << it2->second.retourner_id() << endl;
+      if (balcon == 1 && it2->second.retourner_balcon() == 1)
+        cout << "id : " << it2->second.retourner_id() << endl;
+    }
+  }
+
+  if (constructible == 1){
+    map <int, Terrain> terr = retourner_terrain();
+    for(map <int, Terrain>::iterator it3 = terr.begin() ; it3 != terr.end() ; it3++){
+      if (it3->second.retourner_constructible() == 1)
+        cout << "id : " << it3->second.retourner_id() << endl;
+    }
+  }
+
+  if (piece_stockage == 1){
+    map <int, Locaux_pro> loc = retourner_locauxpro();
+    for(map <int, Locaux_pro>::iterator it4 = loc.begin() ; it4 != loc.end() ; it4++){
+      if (it4->second.retourner_stockage() == 1)
+        cout << "id : " << it4->second.retourner_id() << endl;
     }
   }
 }
