@@ -20,18 +20,46 @@ void Acheteur::ajouter_visite(int _prix, bool _proposition, int _idbien){
 
 /* ------------------------------------------------------------------------------------------------------------------------- */
 
-// cette fonction va permettre de supprimer les visites ayant pour id celui passe en parametre
-bool Acheteur::supprimer_visite(int _idbien){
-  for (int i = 0 ; i < idbien.size() ; i++)
-    if (idbien[i] == _idbien){
-      this->idbien.erase(idbien.begin() + i);
-      this->proposition.erase(proposition.begin() + i);
-      this->prix.erase(prix.begin() + i);
-      cout << "visite supprimee" << endl;
-      return true;
+// cette fonction va permettre de supprimer les visites ayant pour id celui passe en parametre, seulement si une proposition de prix pour l'achat du bien est precise
+void Acheteur::supprimer_visite(int _idbien, bool &suppression, string &nom, int &depense, bool forcage_suppression){
+  bool propose = false;
+
+  if (forcage_suppression == true){
+    for (int i = 0 ; i < idbien.size() ; i++)
+      if (idbien[i] == _idbien){
+        this->idbien.erase(idbien.begin() + i);
+        this->proposition.erase(proposition.begin() + i);
+        this->prix.erase(prix.begin() + i);
+        cout << "visite supprimee" << endl;
+      }
+  }
+
+  else {
+    for (int i = 0 ; i < proposition.size() ; i++)
+      if (proposition[i] == true && idbien[i] == _idbien){
+        propose = true;
+        if (prix[i] > depense){
+          nom = retourner_nom();
+          depense = prix[i];
+        }
+      }
+
+    if (propose == true){
+      for (int i = 0 ; i < idbien.size() ; i++)
+        if (idbien[i] == _idbien){
+          this->idbien.erase(idbien.begin() + i);
+          this->proposition.erase(proposition.begin() + i);
+          this->prix.erase(prix.begin() + i);
+          cout << "visite supprimee" << endl;
+          suppression = true;
+        }
+      if (suppression == false)
+        cout << "erreur, aucune visite ayant l'id " << _idbien << " n'a ete trouve" << endl;
     }
-  cout << "erreur, aucune visite pour le bien ayant l'id " << _idbien << endl;
-  return false;
+
+    else
+      cout << "impossible, aucune proposition n'a ete faite pour le bien " << _idbien << endl;
+  }
 }
 
 /* ------------------------------------------------------------------------------------------------------------------------- */

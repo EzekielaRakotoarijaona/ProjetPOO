@@ -597,18 +597,26 @@ void Agence::creer_visite(string nom, int idbien, bool proposition, int prix){
 // cette fonction va permettre de supprimer une visite ainsi que le bien dans la liste des biens de l'agence et dans celle du vendeur
 void Agence::acheter_bien(int idbien){
   string nom_vendeur;
-  bool fait = false;
+  bool id_existe = false;
+  string nom_acheteur;
+  int depense_acheteur = 0;
   int id = decode_id(idbien);
   int id_valide = existe_bien(id, idbien, nom_vendeur);
 
   if (id < 1 || id > 4 || id_valide == false)
     return;
 
-  // supprimer la visite
+  // supprimer les visites qui proposent un prix d'achat, et on retient le nom et le prix du plus offrant
   for(map <string, Acheteur>::iterator it = clients_acheteurs.begin() ; it != clients_acheteurs.end() ; it++)
-    fait = it->second.supprimer_visite(idbien);
+    it->second.supprimer_visite(idbien, id_existe, nom_acheteur, depense_acheteur, false);
 
-  if (fait == true){
+  // si on n'a pas supprime de visite, alors il est inutile de supprimer le bien
+  if (id_existe == true){
+
+    // on force la suppression des visites qui n'ont pas propose de prix d'achat
+    for(map <string, Acheteur>::iterator it = clients_acheteurs.begin() ; it != clients_acheteurs.end() ; it++)
+      it->second.supprimer_visite(idbien, id_existe, nom_acheteur, depense_acheteur, true);
+
     // supprimer le bien du vendeur
     map <string, Vendeur>::iterator it2;
     it2 = clients_vendeurs.find(nom_vendeur);
@@ -623,7 +631,10 @@ void Agence::acheter_bien(int idbien){
       supprimer_terrain(idbien);
     if (id == 4)
       supprimer_locaux(idbien);
+
+    cout << "le bien a ete vendu a " << nom_acheteur << " pour " << depense_acheteur << " euros" << endl;
   }
+
 }
 
 /* ------------------------------------------------------------------------------------------------------------------------- */
