@@ -16,7 +16,7 @@ using namespace std;
 int create_id_maison(map <int, Maison> v){
     int id = rand()%100000;
     id += 1000000;
-    while(v.find(id) != v.end()){
+    while (v.find(id) != v.end()){
       int id = rand()%100000;
       id += 1000000;
     }
@@ -29,7 +29,7 @@ int create_id_maison(map <int, Maison> v){
 int create_id_appartement(map <int, Appartement> v){
   int id = rand()%100000;
   id += 2000000;
-  while(v.find(id) != v.end()){
+  while (v.find(id) != v.end()){
     int id = rand()%100000;
     id += 2000000;
   }
@@ -42,7 +42,7 @@ int create_id_appartement(map <int, Appartement> v){
 int create_id_terrain(map <int, Terrain> v){
   int id = rand()%100000;
   id += 3000000;
-  while(v.find(id) != v.end()){
+  while (v.find(id) != v.end()){
     int id = rand()%100000;
     id += 3000000;
   }
@@ -55,7 +55,7 @@ int create_id_terrain(map <int, Terrain> v){
 int create_id_locaux(map <int, Locaux_pro> v){
   int id = rand()%100000;
   id += 4000000;
-  while(v.find(id) != v.end()){
+  while (v.find(id) != v.end()){
     int id = rand()%100000;
     id += 4000000;
   }
@@ -66,38 +66,37 @@ int create_id_locaux(map <int, Locaux_pro> v){
 
 // cette fonction va permettre de gerer les exceptions au cas ou un utilisateur entre une donnee qui n'est pas comprise entre les bornes souhaitees, ou si le type de la variable d'entree est incorrecte
 void gestion_exception(int inf_a, int sup_a, int &variable_a_modifier){
-  if (inf_a == -1 && sup_a != -1){
-    while(variable_a_modifier > sup_a || cin.fail()){
+  if (inf_a == -1 && sup_a != -1)
+    while (variable_a_modifier > sup_a || cin.fail()){
       cout << "erreur de saisie, retapez" << endl;
       cin.clear();
       cin.ignore(999, '\n');
       cin >> variable_a_modifier;
     }
-  }
-  if (sup_a == -1 && inf_a != -1){
-    while(variable_a_modifier < inf_a || cin.fail()){
+
+  if (sup_a == -1 && inf_a != -1)
+    while (variable_a_modifier < inf_a || cin.fail()){
       cout << "erreur de saisie, retapez" << endl;
       cin.clear();
       cin.ignore(999, '\n');
       cin >> variable_a_modifier;
     }
-  }
-  if (sup_a != -1 && inf_a != -1){
-    while(variable_a_modifier > sup_a || variable_a_modifier < inf_a || cin.fail()){
+
+  if (sup_a != -1 && inf_a != -1)
+    while (variable_a_modifier > sup_a || variable_a_modifier < inf_a || cin.fail()){
       cout << "erreur de saisie, retapez" << endl;
       cin.clear();
       cin.ignore(999, '\n');
       cin >> variable_a_modifier;
     }
-  }
-  if (sup_a == -1 && inf_a == -1){
-    while(cin.fail()){
+
+  if (sup_a == -1 && inf_a == -1)
+    while (cin.fail()){
       cout << "erreur de saisie, retapez" << endl;
       cin.clear();
       cin.ignore(999, '\n');
       cin >> variable_a_modifier;
     }
-  }
 }
 
 /* ------------------------------------------------------------------------------------------------------------------------- */
@@ -124,9 +123,9 @@ int main(){
   cout << "bienvenue sur votre logiciel de gestion" << endl;
 
   // BOUCLE, VA PERMETTRE DE FAIRE TOURNER LE PROGRAMME ----------------------------------------------------------------
-  while(fin == 0){
+  while (fin == 0){
     gestion_menu(fin, commande);
-    switch(commande){
+    switch (commande){
 
       // CONSULTATION DE DONNEES ----------------------------------------------------------------------------------------
       case 1:
@@ -138,8 +137,8 @@ int main(){
         // ce cas va traiter l'affichage de toutes les visites
         if (consult == 1){
           map <string, Acheteur> client_ach = UnToitPourTous.retourner_client_acheteur();
-          map<string, Acheteur>::iterator it;
-          for(it = client_ach.begin() ; it != client_ach.end() ; it++)
+          map <string, Acheteur>::iterator it;
+          for (it = client_ach.begin() ; it != client_ach.end() ; it++)
             it->second.afficher_visites();
         }
 
@@ -158,22 +157,21 @@ int main(){
         // ce cas va permettre d'afficher les id des biens selon les criteres demandes
         if (consult == 5){
           int rech = -1;
+
           cout << "1 : rechercher un bien selon son prix\n2 : rechercher un bien selon une option particuliere" << endl;
           cin >> rech;
 
           // recherche selon le prix
           if (rech == 1){
-            int prix = -1;
-            int operateur = -1;
-            int type_de_bien = -1;
+            int prix = -1, operateur = -1, type_de_bien = -1;
             cout << "quel type de bien " << endl;
             cout << "1 : maison\n2 : appartement\n3 : terrain\n4 : locaux pro\n5 : retour" << endl;     cin >> type_de_bien;
             if (type_de_bien == 5)  break;
             gestion_exception(1, 4, type_de_bien);
 
-            cout << "1 : inferieur a\n2 : superieur a" << endl;                             cin >> operateur;
+            cout << "1 : inferieur a\n2 : superieur a" << endl;       cin >> operateur;
             gestion_exception(1, 2, operateur);
-            cout << "quel prix : " << endl;                                                 cin >> prix;
+            cout << "quel prix : " << endl;                           cin >> prix;
             gestion_exception(0, -1, prix);
             UnToitPourTous.rechercher_bien_selon_prix(operateur, prix, type_de_bien);
           }
@@ -232,6 +230,7 @@ int main(){
         if (action == 2){
           int type_client = -1;
           string suppression;
+
           cout << "1 : acheteur\n2 : vendeur\n3 : retour" << endl;          cin >> type_client;
           gestion_exception(1, 3, type_client);
           if (type_client == 3) break;
@@ -248,34 +247,29 @@ int main(){
         // ce cas va traiter l'ajout de differents biens
         if (action == 3){
           int type_bien = -1;
-          int prix;
+          int prix, surface, id_bien;
           string adresse;
-          int surface;
           string ref_client;
-          int id_bien;
+
           cout << "1 : maison\n2 : appartement\n3 : terrain\n4 : locaux pro\n5 : retour" << endl;  cin >> type_bien;
           gestion_exception(1, 5, type_bien);
           if (type_bien == 5) break;
 
-          cout << "prix du bien : " << endl;                                           cin >> prix;
+          cout << "prix du bien : " << endl;                 cin >> prix;
           gestion_exception(0, -1, prix);
-          cout << "adresse du bien : " << endl;                                        cin >> adresse;
-          cout << "surface du bien : " << endl;                                        cin >> surface;
+          cout << "adresse du bien : " << endl;              cin >> adresse;
+          cout << "surface du bien : " << endl;              cin >> surface;
           gestion_exception(0, -1, surface);
-          cout << "reference du client : " << endl;                                    cin >> ref_client;
+          cout << "reference du client : " << endl;          cin >> ref_client;
 
           bool test = UnToitPourTous.existe_ref_client(ref_client);
           if (test == true){
 
             // ajout d'une maison
             if (type_bien == 1){
-              int nombre_pieces;
-              bool garage;
-              int int_garage;
-              bool jardin;
-              int int_jardin;
-              bool piscine;
-              int int_piscine;
+              int nombre_pieces, int_garage, int_jardin, int_piscine;
+              bool garage, jardin, piscine;
+
               id_bien = create_id_maison(UnToitPourTous.retourner_maison());
               cout << "nombre de pieces : " << endl;                         cin >> nombre_pieces;
               gestion_exception(1, -1, nombre_pieces);
@@ -294,15 +288,9 @@ int main(){
 
             // ajout d'un appartement
             if (type_bien == 2){
-              int nombre_de_piece_appartement;
-              int etage;
-              bool garage;
-              int int_garage;
-              bool cave;
-              int int_cave;
-              bool balcon;
-              int int_balcon;
-              int nombre_appartement_immeuble;
+              int nombre_de_piece_appartement, etage, int_garage, int_cave, int_balcon, nombre_appartement_immeuble;
+              bool garage, cave, balcon;
+
               id_bien = create_id_appartement(UnToitPourTous.retourner_appartement());
               cout << "nombre de pieces : " << endl;                         cin >> nombre_de_piece_appartement;
               gestion_exception(0, -1, nombre_de_piece_appartement);
@@ -327,6 +315,7 @@ int main(){
             if (type_bien == 3){
               bool constructible;
               int int_constructible;
+
               id_bien = create_id_terrain(UnToitPourTous.retourner_terrain());
               cout << "le terrain est constructible (1 ou 0) : " << endl;     cin >> int_constructible;
               gestion_exception(0, 1, int_constructible);
@@ -337,9 +326,9 @@ int main(){
 
             // ajout de locaux
             if (type_bien == 4){
-              int taille_vitrine;
+              int taille_vitrine, int_pieces_stockage;
               bool piece_stockage;
-              int int_pieces_stockage;
+
               id_bien = create_id_locaux(UnToitPourTous.retourner_locauxpro());
               cout << "taille de la vitrine : " << endl;                        cin >> taille_vitrine;
               gestion_exception(0, -1, taille_vitrine);
@@ -355,14 +344,14 @@ int main(){
         // ce cas va traiter la suppression d'un bien selon son identifiant
         if (action == 4){
           int type_bien = -1;
-          int suppression;
+          int suppression, prix;
           string nom;
-          int prix;
+
           cout << "1 : maison\n2 : appartement\n3 : terrain\n4 : locaux pro\n5 : retour" << endl;  cin >> type_bien;
           gestion_exception(1, 5, type_bien);
           if (type_bien == 5) break;
-          
-          cout << "attention, la suppression d'un bien va entrainer la suppression des visites associees"
+
+          cout << "attention, la suppression du bien va entrainer la suppression des visites associees" << endl;
           cout << "id du bien a supprimer : " << endl;   cin >> suppression;
           gestion_exception(-1, -1, suppression);
           UnToitPourTous.acheter_bien(suppression, nom, prix);
@@ -370,15 +359,14 @@ int main(){
 
         // ce cas va permettre d'ajouter des visites
         if (action == 5){
-          std::map <std::string, Acheteur> clients_acheteurs = UnToitPourTous.retourner_client_acheteur();
-          if(clients_acheteurs.empty() == 1)
+          map <string, Acheteur> clients_acheteurs = UnToitPourTous.retourner_client_acheteur();
+          if (clients_acheteurs.empty() == 1)
             cout << "impossible, pas de client trouve" << endl;
           else {
             string nom_client;
-            int idbien;
+            int idbien, int_proposition, prix;
             bool proposition;
-            int int_proposition;
-            int prix;
+
             cout << "quel est le nom du client : " << endl;                       cin >> nom_client;
             cout << "l'identifiant du bien qui interesse le client : " << endl;   cin >> idbien;
             gestion_exception(-1, -1, idbien);

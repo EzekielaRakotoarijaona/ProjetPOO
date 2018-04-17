@@ -4,18 +4,6 @@ using namespace std;
 
 /* ------------------------------------------------------------------------------------------------------------------------- */
 
-// ce constructeur va permettre de creer un bien par defaut
-Biens::Biens(){
-  prix_bien = 0;
-  adresse_bien = "\0";
-  surface_bien = 0;
-  ref_client_vendeur_bien = "\0";
-  id_bien = 0;
-  cout << "bien cree" << endl;
-}
-
-/* ------------------------------------------------------------------------------------------------------------------------- */
-
 // ce constructeur surcharge va permettre de creer un bien selon differentes donnees passees en parametre
 Biens::Biens(int prix, string adresse, int surface, string reference, int id){
   prix_bien = prix;

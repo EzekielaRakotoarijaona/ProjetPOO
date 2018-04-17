@@ -42,12 +42,12 @@ public:
   void supprimer_locaux(int id);
   void afficher_clients();
   void afficher_biens();
-  inline std::map <std::string, Vendeur> retourner_client_vendeur() {return clients_vendeurs;};
-  inline std::map <std::string, Acheteur> retourner_client_acheteur() {return clients_acheteurs;};
-  inline std::map <int, Appartement> retourner_appartement() {return _appartement;};
-  inline std::map <int, Maison> retourner_maison() {return _maison;};
-  inline std::map <int, Terrain> retourner_terrain() {return _terrain;};
-  inline std::map <int, Locaux_pro> retourner_locauxpro() {return _locauxpro;};
+  inline std::map <std::string, Vendeur> retourner_client_vendeur() { return clients_vendeurs; };
+  inline std::map <std::string, Acheteur> retourner_client_acheteur() { return clients_acheteurs; };
+  inline std::map <int, Appartement> retourner_appartement() { return _appartement; };
+  inline std::map <int, Maison> retourner_maison() { return _maison; };
+  inline std::map <int, Terrain> retourner_terrain() { return _terrain; };
+  inline std::map <int, Locaux_pro> retourner_locauxpro() { return _locauxpro; };
   bool existe_ref_client(std::string ref_client);
   bool existe_bien(int bien, int idbien, std::string &nom);
   void rechercher_bien_selon_prix(int operateur, int prix, int bien);

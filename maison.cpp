@@ -5,7 +5,7 @@ using namespace std;
 /* ------------------------------------------------------------------------------------------------------------------------- */
 
 // ce constructeur va permettre de creer un objet maison
-Maison::Maison(int prix, string adresse, int surface, string ref_client, int _id_bien,int _nombre_pieces, bool _garage, bool _jardin, bool _piscine):Biens(prix, adresse, surface, ref_client, _id_bien){
+Maison::Maison(int prix, string adresse, int surface, string ref_client, int _id_bien, int _nombre_pieces, bool _garage, bool _jardin, bool _piscine):Biens(prix, adresse, surface, ref_client, _id_bien){
   nombre_pieces = _nombre_pieces;
   garage = _garage;
   jardin = _jardin;

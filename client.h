@@ -11,10 +11,9 @@ protected:
 
 public:
   // methodes
-  Client();
   Client(std::string n, std::string ad);
-  inline std::string retourner_nom() {return nom;};
-  inline std::string retourner_adresse() {return adresse;};
+  inline std::string retourner_nom() { return nom; };
+  inline std::string retourner_adresse() { return adresse; };
   void afficher();
   inline ~Client() {};
 };

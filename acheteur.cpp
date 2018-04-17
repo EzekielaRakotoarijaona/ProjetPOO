@@ -54,7 +54,7 @@ void Acheteur::supprimer_visite(int _idbien, bool &suppression, string &nom, int
           suppression = true;
         }
       if (suppression == false)
-        cout << "erreur, aucune visite ayant l'id " << _idbien << " n'a ete trouve" << endl;
+        cout << "erreur, aucune visite ayant l'id " << _idbien << " n'a ete trouvee" << endl;
     }
   }
 }
@@ -70,7 +70,7 @@ void Acheteur::afficher_acheteur(){
 
 // cette fonction va permettre d'afficher la liste de toutes les visites d'un client acheteur
 void Acheteur::afficher_visites(){
-  for(int i = 0 ; i < idbien.size() ; i++){
+  for (int i = 0 ; i < idbien.size() ; i++){
     cout << "id du bien : " << idbien[i] << endl;
     cout << "proposition : " << proposition[i] << endl;
     cout << "prix : " << prix[i] << endl << endl;

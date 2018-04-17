@@ -6,7 +6,7 @@ using namespace std;
 /* ------------------------------------------------------------------------------------------------------------------------- */
 
 // ce constructeur va permettre de creer un objet client vendeur
-Vendeur::Vendeur(string nom, string adresse):Client(nom, adresse){
+Vendeur::Vendeur(string nom, string adresse): Client(nom, adresse){
   cout << "vendeur cree" << endl;
 }
 
@@ -22,7 +22,7 @@ void Vendeur::afficher_vendeur(){
 
 // cette fonction va permettre d'afficher les biens d'un client vendeur
 void Vendeur::afficher_b(){
-  for(int i = 0 ; i < tableau_bien.size() ; i++)
+  for (int i = 0 ; i < tableau_bien.size() ; i++)
     cout << "id bien : " << tableau_bien[i] << endl;
   cout << endl;
 }
