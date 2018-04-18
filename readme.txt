@@ -4,7 +4,7 @@ _______________________________________________README UN TOIT POUR TOUS_________
 
 1- Compilation :
 
-Lancer en fonction du système d'exploitation dans le repertoire courant une des commandes suivantes en terminal :
+Lancer en fonction du système d'exploitation dans le répertoire courant une des commandes suivantes en terminal :
 
 Linux, Mac : g++ *.cpp -o nom_de_l_executable
 
@@ -18,13 +18,13 @@ Windows : nom_de_l_executable.exe
 
 3- Utilisation :
 
-- Au lancement il existera déjà des fichiers .txt de sauvegardes de bases qui seront chargés avec une certaine base. Si l'on veut au lancement une base vide, il suffit de supprimer chaque fichiers .txt.
+- Au lancement il existera déjà des fichiers .txt de sauvegarde de base qui seront chargés avec une certaine base. Si on veut une base vide au lancement, il suffit de supprimer chaque fichier .txt.
 
-- Après le chargement, un menu apparaîtra dans la fenêtre. Chaque options sera précédée d'un chiffre pour que l'on sache ce que l'on souhaite faire. Il faut alors taper le chiffre de l'option souhaité et valider avec entrer.
+- Après le chargement, un menu apparaîtra dans la fenêtre. Chaque option sera précédée d'un chiffre pour qu'on sache ce que l'on souhaite faire. Il faut alors taper le chiffre de l'option souhaitée et valider avec la touche "entrée".
 
-- Lors de la saisie d'informations concernant un bien ou un client, les espaces ne sont pas permis il faut alors utiliser un "_" pour espace.
+- Lors de la saisie d'information concernant un bien ou un client, les espaces ne sont pas autorisés, il faut alors utiliser un "_" à la place.
 
-- A la fermeture si elle n'est pas inopinée, chaque modifications, ajout de biens ou clients ou suppressions sera sauvegarder à nouveau dans les fichiers txt pour la prochaine utilisation.
+- À la fermeture, si elle n'est pas inopinée, chaque modification, ajout de bien ou client, ou suppression sera sauvegardée à nouveau dans les fichiers .txt pour la prochaine utilisation.
 
 
 
