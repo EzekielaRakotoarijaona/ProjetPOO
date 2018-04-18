@@ -103,7 +103,7 @@ void gestion_exception(int inf_a, int sup_a, int &variable_a_modifier){
 
 // cette fonction va permettre a l'utilisateur de choisir ce qu'il veut faire sur le menu principal
 void gestion_menu(int &fin, int &commande){
-  cout << "\n1 : Consulter les visites et les biens disponibles" << "\n2 : gestion des clients et des biens" << "\n3 : quitter" << endl;
+  cout << "\n1 : consulter les visites et les biens disponibles" << "\n2 : gestion des clients et des biens" << "\n3 : quitter" << endl;
   cin >> commande;
   gestion_exception(1, 3, commande);
 }
