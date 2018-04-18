@@ -1,21 +1,37 @@
-Format des fichiers de sauvegarde:
 
-bien.txt :
 
-id(1... si Appartement,2... si Maison, 3... si Terrain, 4... si Locaux_Pro) "chaque attribut suivi d'un espace en fonction du type de bien" \n
+_______________________________________________README UN TOIT POUR TOUS___________________________________________________________
 
-clients_acheteurs.txt :
+1- Compilation :
 
-nom
+Lancer en fonction du système d'exploitation dans le repertoire courant une des commandes suivantes en terminal :
 
-adresse
+Linux, Mac : g++ *.cpp -o nom_de_l_executable
 
-id visite proposition id visite proposition .... \n
+Windows : windows : g++ -std=c++11 *.cpp -o nom_de_l_executable
 
-clients_vendeurs.txt :
+2- Execution :
 
-nom
+Linux, Mac : ./nom_de_l_executable
 
-adresse
+Windows : nom_de_l_executable.exe
 
-id id id id .... \n 
+3- Utilisation :
+
+- Au lancement il existera déjà des fichiers .txt de sauvegardes de bases qui seront chargés avec une certaine base. Si l'on veut au lancement une base vide, il suffit de supprimer chaque fichiers .txt.
+
+- Après le chargement, un menu apparaîtra dans la fenêtre. Chaque options sera précédée d'un chiffre pour que l'on sache ce que l'on souhaite faire. Il faut alors taper le chiffre de l'option souhaité et valider avec entrer.
+
+- Lors de la saisie d'informations concernant un bien ou un client, les espaces ne sont pas permis il faut alors utiliser un "_" pour espace.
+
+- A la fermeture si elle n'est pas inopinée, chaque modifications, ajout de biens ou clients ou suppressions sera sauvegarder à nouveau dans les fichiers txt pour la prochaine utilisation.
+
+
+
+
+
+
+©RAKOTOARIJAONA
+©MONGE
+©NAITAMARA
+©MAGASSOUBA
