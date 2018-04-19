@@ -38,7 +38,7 @@ void Acheteur::supprimer_visite(int _idbien, bool &suppression, string &nom, int
     for (int i = 0 ; i < proposition.size() ; i++)
       if (proposition[i] == true && idbien[i] == _idbien){
         propose = true;
-        if (prix[i] > depense){
+        if (prix[i] >= depense){
           nom = retourner_nom();
           depense = prix[i];
         }

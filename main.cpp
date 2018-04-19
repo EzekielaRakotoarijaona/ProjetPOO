@@ -387,7 +387,6 @@ int main(){
           cout << "quel est l'id du bien qui a ete achete : " << endl;  cin >> idbien;
           gestion_exception(-1, -1, idbien);
           UnToitPourTous.acheter_bien(idbien, nom_acheteur, depense_acheteur, false);
-          cout << "le bien a ete vendu a " << nom_acheteur << " pour " << depense_acheteur << " euros" << endl;
         }
         break;
 

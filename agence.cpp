@@ -623,6 +623,7 @@ void Agence::acheter_bien(int idbien, string &nom_acheteur, int &depense_acheteu
       supprimer_terrain(idbien);
     if (id == 4)
       supprimer_locaux(idbien);
+    cout << "le bien a ete vendu a " << nom_acheteur << " pour " << depense_acheteur << " euros" << endl;
   }
 
   if (forcage == true){
