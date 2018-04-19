@@ -354,7 +354,7 @@ int main(){
           cout << "attention, la suppression du bien va entrainer la suppression des visites associees" << endl;
           cout << "id du bien a supprimer : " << endl;   cin >> suppression;
           gestion_exception(-1, -1, suppression);
-          UnToitPourTous.acheter_bien(suppression, nom, prix);
+          UnToitPourTous.acheter_bien(suppression, nom, prix, true);
         }
 
         // ce cas va permettre d'ajouter des visites
@@ -386,7 +386,7 @@ int main(){
           int depense_acheteur = 0;
           cout << "quel est l'id du bien qui a ete achete : " << endl;  cin >> idbien;
           gestion_exception(-1, -1, idbien);
-          UnToitPourTous.acheter_bien(idbien, nom_acheteur, depense_acheteur);
+          UnToitPourTous.acheter_bien(idbien, nom_acheteur, depense_acheteur, false);
           cout << "le bien a ete vendu a " << nom_acheteur << " pour " << depense_acheteur << " euros" << endl;
         }
         break;
